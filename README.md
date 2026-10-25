@@ -1,9 +1,38 @@
-# Clockwork Alibi
+# Clockwork Alibi · תעלומת שעון התחנה
 
-Browser 3D English-learning game for Hebrew-speaking grade-7/8 students.
+A finite real-3D browser time-loop mystery for Hebrew-speaking grade-8 English learners. Explore a miniature station, combine partial English witness accounts, scrub a sixty-second loop, test an editable reconstruction and physically change the replay. Five short cases end with a changed lantern/side-door transfer incident.
 
-Commissioned 25 October 2026. Implementation is starting in its dedicated builder chat; this initial commit contains the build brief and retrieved curriculum sources.
+## Play locally
 
-Read [BUILD_HANDOFF.md](BUILD_HANDOFF.md) and [COMMON.md](COMMON.md). The builder will replace this with run, controls, verification and deployment instructions.
+```sh
+npm ci
+npm run dev
+```
 
-Curriculum source: https://english.workbook.co.il . Gameplay and example scenarios are original. This prototype is not a Ministry-approved coursebook.
+Open http://localhost:5202. Dev uses strict port 5202; static preview uses strict port 4202. No backend, authentication, keys or runtime AI. Dependencies and Hebrew fonts bundle locally.
+
+Click the floor or a world label to walk. Arrow keys / WASD move; E inspects the nearest target; Space pauses time; R opens the notebook; F toggles fullscreen; Escape closes reading and pauses. Touch uses world labels or the on-screen arrows. Witness reading pauses time. Words with dotted underlines give Hebrew vocabulary help; replayable speech uses an available local English system voice, with text always present. Sound and reduced motion are in options.
+
+The bottom timeline scrubs the historical loop. `לנסות לשנות` starts an interactive replay. Investigate both viewpoints, inspect a suitcase/cart label, then record activity, opening instant and identity in the notebook. A failed reconstruction remains editable. In a replay, physically latch the relevant closed opening while its mechanism is available, or secure the object before the gust; advance past the gust and return to collect it. Chapter completion requires both supported reconstruction and physical recovery. Reading/pausing does not consume an unaided attempt; solution hints and consequential mistakes do. The final case has no solution hint.
+
+## Build and verify
+
+```sh
+npm test
+npm run build
+npm run preview
+```
+
+Pure truth and sentence fixtures live in `src/content.ts` and `src/simulation.ts`. Tests include an independent authored oracle for all five cases. `window.render_game_to_text()` reports state for browser verification; `window.advanceTime(ms)` deterministically steps controls and time while respecting time pause. Events stay in localStorage on this device; no student identities or remote analytics are collected.
+
+## Asset status — important
+
+The initial imagegen design target was generated and inspected before implementation; exact prompt and image are in `docs/visual-targets`. It is a design target, not an actual screenshot.
+
+**Required Tripo GLBs and the porter rig are blocked.** Three Chrome CUA entry calls timed out before returning any UI state. No generation, download, rig or credit spend was initiated. Current automata and bird are original procedural temporary geometry; they do not meet the requested Tripo asset requirement. `ASSETS.md` records the blocker and prepared prompts. A local GLTFLoader integration is ready for acquired files, but no missing models are silently fetched at runtime. The geometry is independent from authoritative temporal/collision rules.
+
+## Static deployment preparation
+
+Vite uses `base: './'`; `npm run build` produces `dist/`. For a future Vercel deployment choose framework Vite, build command `npm run build`, output directory `dist`, and no environment variables. Production deployment is intentionally left for the user.
+
+See `CURRICULUM.md`, `GAME_IDENTITY.md`, `ASSETS.md`, `PLAYTEST.md`, `VISUAL_REVIEW.md` and `progress.md` for verified scope, evidence and limitations. This is a learning-game prototype, not a validated assessment of English proficiency.
