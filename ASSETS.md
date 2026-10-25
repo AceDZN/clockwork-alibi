@@ -14,9 +14,15 @@ The art agent attempted the normal browser entry points through `mcp__cua_repl` 
 2. `cua.getState()`: timed out after 32.529 seconds; kernel reset.
 3. One bounded availability retry, `cua.getState()` with 60-second tool timeout: timed out after 71.069 seconds; kernel reset.
 
-No usable browser documentation, tab state, asset list, account balance, license statement, task ID or download UI was returned. It is unknown whether the first operation created a tab before timing out. No other crew's tab was claimed, navigated or changed. No purchase, upgrade, generation, cancellation, rigging operation or credit spend was initiated by this agent. No Tripo API, token extraction or alternate modeling service was used.
+Those initial calls returned no usable browser state. A later availability audit on 26 October succeeded after host load improved: `cua.getState()` returned Chrome inventory in 13.746 seconds, and a new own tab was opened successfully at My Assets in 10.153 seconds. Own tab ID: `512279088`, session “🕰 Clockwork Alibi assets”. The visible account balance at that moment was **6,835 credits**. Native apps reported the Mac locked, but the Chrome extension surface worked temporarily.
 
-This is a browser-control availability blocker, not a reported credit/login blocker. Existing asset ownership and current credit balance could not be verified. Stop repeated retries until browser availability changes.
+The agent inspected the first approximately 40 named My Assets thumbnails and another screen of older asset thumbnails. They included steampunk pump/spotlight/thermometer props, various buildings, children and other characters. No suitable clockwork porter or mechanical bird was identified in that inspected subset. This was not a complete search of every owned asset, and public discoverability was never treated as license evidence.
+
+Navigation of the own tab to `https://studio.tripo3d.ai/workspace/generate/` timed out after 22.675 seconds. A fresh AX read then timed out after 31.866 seconds and reset the kernel. Post-reset binding of the same own tab timed out after 36.632 seconds. A lighter browser-only binding, without a page accessibility read, also timed out after 35.934 seconds. This prevented reaching the documented screenshot surface and supports a renewed browser-connection availability blocker, rather than simply a slow 3D page tree.
+
+No other crew's tab was claimed, navigated or changed. No purchase, upgrade, generation, cancellation, rigging operation or credit spend was initiated by this agent. No Tripo API, token extraction or alternate modeling service was used. No model task URL, model download or rig operation was reached.
+
+Current blocker: **intermittent browser-control connection**, not a verified credit/login problem. The 6,835-credit balance is a historical observation, not a reserved or current balance. Repeated retries stopped after the renewed unchanged boundary.
 
 ## Required local model manifest
 
@@ -42,7 +48,7 @@ Optional clock only if no appropriate owned asset:
 
 > Clockwork Alibi original railway station clock, round ivory dial with dark simple hour marks and two hands, teal iron case and copper gear details, single freestanding game prop, stylized miniature mechanical theater, no characters no background no text.
 
-These prompts are prepared and **have not been submitted**. Maximum three new model generations is still intact. Account-owned existing assets must be inspected first.
+These prompts are prepared and **have not been submitted**. Maximum three new model generations is still intact. The inspected My Assets subset lacked a suitable porter/bird; complete the owned-asset check when browser control is stable.
 
 ## Resumption procedure
 

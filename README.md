@@ -29,7 +29,7 @@ Pure truth and sentence fixtures live in `src/content.ts` and `src/simulation.ts
 
 The initial imagegen design target was generated and inspected before implementation; exact prompt and image are in `docs/visual-targets`. It is a design target, not an actual screenshot.
 
-**Required Tripo GLBs and the porter rig are blocked.** Three Chrome CUA entry calls timed out before returning any UI state. No generation, download, rig or credit spend was initiated. Current automata and bird are original procedural temporary geometry; they do not meet the requested Tripo asset requirement. `ASSETS.md` records the blocker and prepared prompts. A local GLTFLoader integration is ready for acquired files, but no missing models are silently fetched at runtime. The geometry is independent from authoritative temporal/collision rules.
+**Required Tripo GLBs and the porter rig are blocked.** Chrome control timed out repeatedly, briefly recovered to inspect owned assets, then failed again before any submission. No generation, download, rig or credit spend was initiated. Current automata and bird are original procedural temporary geometry; they do not meet the requested Tripo asset requirement. `ASSETS.md` records the blocker and prepared prompts. A local GLTFLoader entry point exists; model scale, rig playback and chapter transitions still require testing when files arrive. No missing models are silently fetched at runtime. The geometry is independent from authoritative temporal/collision rules.
 
 ## Static deployment preparation
 
@@ -40,3 +40,5 @@ See `CURRICULUM.md`, `GAME_IDENTITY.md`, `ASSETS.md`, `PLAYTEST.md`, `VISUAL_REV
 For the optional reproducible browser chain, start the dev server, install Playwright’s matching browser with `npx playwright install chromium`, then run `node scripts/browser-check.mjs`. It interacts with normal controls and the deterministic time hook; it never injects a winning state. `GAME_URL`, `BROWSER_EVIDENCE_DIR`, and `PLAYWRIGHT_EXECUTABLE_PATH` may override the URL, capture folder, or installed browser executable. Browser captures default to untracked work/.
 
 First-decision exposure (attempts, hints and completions) also persists locally across restarting and replaying a case, so a repeated completion cannot be described as a first unaided decision.
+
+`node scripts/browser-controls.mjs` separately verifies start/pause focus, notebook Escape, completed-case toolbar guards, fullscreen entry/exit and Next through a legitimate solved case.

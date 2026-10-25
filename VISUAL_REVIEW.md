@@ -62,3 +62,9 @@ Tripo acquisition remains blocked by browser-control timeouts; `ASSETS.md` and `
 GPU performance has not been measured on a representative student device or a normal hardware-accelerated browser. The lead observed around 1 FPS in a software-rendered headless run under shared-host load. That observation is a real limitation of the tested environment and does not support a playable-performance claim or a representative GPU benchmark. A hardware browser run and mobile device check remain necessary.
 
 No claim of student learning gain, fun validation with students, or final visual parity follows from these captures.
+
+## Final follow-up captures
+
+The lead opened `docs/evidence/case1-recovered.png`, `mobile-witness.png`, `mobile-notebook.png` and `transfer-account.png` after the later scene/UI changes. They confirm the lower/wider private-luggage canopy in the captured states, left-side transfer layout and carried ladder, distinct attendant label and account, readable opaque reading/completion panels, and usable responsive notebook. The completion capture has no X and its toolbar is visibly disabled. Distant action targets now use compact markers; witness names and nearby targets retain labels. Case2's `overlap-mistake.png` records both learned activity tracks and a contradiction.
+
+This verifies those captured views, not every possible view/time or a physically tested mobile device. The original material/detail gap remains substantial, and no Tripo rig/model has been integrated. The benchmark limitation remains as described above. The built-in design target was not used as an implemented-game screenshot.

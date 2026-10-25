@@ -1,6 +1,6 @@
 # Independent English and gameplay review
 
-Reviewed `src/content.ts` and `src/simulation.ts`, 25 October 2026. The fixtures below describe the implemented pure rules. Browser findings remain pending until the playable scene exists. All scenario sentences are original.
+Reviewed the implemented content, pure simulation and actual browser UI on 25–26 October 2026. All five case chains, mistake/recovery paths, mobile reading/controls, exposure tracking and completion/fullscreen controls passed. All scenario sentences are original. Required Tripo assets/rigs remain an external blocker; this review does not establish learning gains or enjoyment.
 
 ## Semantic guardrails
 
@@ -67,7 +67,7 @@ The opening question is required to support opening time; carrying alone does no
 
 Painter: “While I was moving the ladder, the visitor opened the side door. I moved the ladder from 00:05 to 00:17.”
 
-Visitor: “The visitor opened the side door at 00:13. The lantern fell into the CANVAS cart before the curtain closed at 00:18.”
+Attendant: “The visitor opened the side door at 00:13. The lantern fell into the CANVAS cart before the curtain closed at 00:18.”
 
 Changed object, actor, opening, container, timing and vessel layout prevent reuse of the first solution. The visitor explicitly gives opening time; `while` alone does not. Courtyard-window latching at 17, side-door latching at 20, securing at 20, and choosing STAGE all fail. No solution hint is supplied.
 
@@ -84,33 +84,53 @@ Changed object, actor, opening, container, timing and vessel layout prevent reus
 
 ## Verification
 
-`tests/reviewer-semantics.test.ts` uses an independent hard-coded authored oracle rather than generating expected answers from the implementation’s table. It checks five physical outcomes, two-viewpoint necessity, no retroactive effects, event/interval boundaries, overlap versus sequence, same-colour owner identity, distinct useful questions, `did + find` / `found`, and changed transfer route/time/identity.
+`npm test` passed all 35 tests (20 independent reviewer checks and 15 other checks, including exposure/identity regression tests), with 0 failures. `tests/reviewer-semantics.test.ts` uses an independent hard-coded authored oracle rather than deriving expected answers from the implementation table. It covers all five outcomes, two-viewpoint necessity, no retroactive effects, event/interval boundaries, overlap versus sequence, same-colour identity, useful questions, `did + find` / `found`, and changed transfer route/time/identity.
 
-`npm test` passed all 32 tests (20 independent reviewer checks and 12 existing checks), with 0 failures. Runtime/browser review pending. These tests do not establish enjoyment or learning gains.
+Actual browser checks used the web-game skill’s installed Playwright 1.61.1 and Chromium headless shell 1228. The repository’s pinned Playwright 1.56.1 expected a browser revision unavailable on this host, so the existing skill runtime was used without package changes. Actions invoked actual UI controls and form input handlers; only `advanceTime` stepped time, and `render_game_to_text` supplied assertions. No win-state injection or direct simulation-state mutation was used.
 
-## Independent visual inspection, 26 October 2026
+### Complete five-case UI flow
 
-Opened `docs/evidence/gameplay-investigation.png`, `docs/evidence/gameplay-witness.png`, and `docs/visual-targets/target-01.png` directly. The actual scene is real 3D and visibly uses the intended elevated cutaway station, teal iron, ivory clock, copper details, and narrow bottom timeline. The witness account has explicit LTR English and readable contrast within the Hebrew shell. The compact notebook replaces the target’s single caption as a practical reading surface.
-
-The visual gap is material: the actual station has simple matte geometry and much less character/architectural detail than the generated target’s reflective mechanical theater. Required Tripo model/rig integration remains an external asset limitation, not a requirement these captures establish. Footer labels appear very small at 1440×900; mobile usability requires its own capture. This inspection does not establish frame rate, fun, or learning gains.
-
-Source-review corrections made by the lead before the independent browser chain: visitor explicitly anchors case1 opening at the bell; luggage canopy remains opaque so lid states do not become a visual identity shortcut; transfer route/object/vessels move to the side-door area; transfer painter receives a visible ladder and wind uses the side-door source. These corrections still need completed browser-chain evidence.
-
-## Independent browser gameplay results, 26 October 2026
-
-Used `work/reviewer-browser.mjs` with the web-game skill’s installed Playwright 1.61.1 and Chromium headless shell 1228. The repository’s pinned Playwright 1.56.1 expected an unavailable browser revision, so the existing skill runtime was used without changing packages. Actions invoked actual UI controls and form input handlers; only `advanceTime` stepped time, and `render_game_to_text` supplied assertions. No win-state injection or direct simulation-state mutation was used.
-
-Passed through actual UI:
+`work/reviewer-final.mjs` completed with exit 0 and no page/console errors, using one page, mobile first and then desktop.
 
 - Timeline scrubbing pauses time; arrow-key movement remains available while the investigation clock is paused.
-- Witness reading pauses time and uses LTR English; on-demand `while` vocabulary produces Hebrew support.
-- Case 1: selecting AVI produces an identity contradiction quoting the visitor’s English account; selecting NOA and correcting the reconstruction, then latching at17 and physically recovering at23 produces `won`, with `validated` and `recovered` true. Retry correctly clears the unaided flag.
-- Case 2: reading28–34 is rejected as a sequence-only reconstruction; changing to14–34 passes. Securing the object at10 and physically recovering at29 validates the alternate route.
-- Case 3: NOA identity in the changed vessel position, opening25, latch21 and recovery28 complete the case despite both cases being blue.
-- Case 4: all three complete questions reveal distinct answers. The known key becomes collectible beside the clock at24; collecting it, latching at27 and recovering at34 completes the case.
-- Transfer: moving-the-ladder activity, opening13 and CANVAS identity pass; side-door latch11 and recovery17 complete the changed incident on the first attempted reconstruction/intervention, with `hints:0`, `retries:0`, `unaided:true`. The hint control is disabled. This is an automated run flag, not a student-learning assessment.
-- The fifth case advances to the finite `finished` state.
+- Witness reading pauses time and uses LTR English. On-demand `while` vocabulary produces Hebrew support.
+- Case 1: selecting AVI produces an identity contradiction quoting the visitor’s English account. Selecting NOA and correcting the reconstruction, then latching at 17 and physically recovering at 23, produces `won`, `validated:true` and `recovered:true`. Retry clears the unaided flag.
+- Case 2: reading 28–34 is rejected as sequence-only; changing to 14–34 passes. Securing at 10 and physically recovering at 29 verifies the alternate route.
+- Case 3: NOA identity in the changed vessel position, opening 25, latch 21 and recovery 28 complete the case despite both cases being blue.
+- Case 4: all three complete questions reveal distinct answers. The known key becomes collectible beside the clock at 24; collecting it, latching at 27 and recovering at 34 complete the case.
+- Transfer: moving-the-ladder activity, opening 13 and CANVAS identity pass. Side-door latch 11 and recovery 17 complete the changed incident on the first attempted reconstruction/intervention, with `hints:0`, `retries:0`, `unaided:true`. The hint control is disabled. This is an automated run flag, not a student-learning assessment.
+- Transfer’s actual account panel is headed “עובדת התחנה” and reports the visitor’s action in third person. Authoritative fields separately identify attendant observer and visitor opener.
+- The fifth case advances to finite `finished` state. Play Again preserves completed exposure and `unaided:false`, preventing repeated success from appearing first unaided.
 
-Evidence: paired stage JSON and real browser images are under `work/reviewer-browser/`. Captures include wrong identity, overlap mistake, cases1/3/4 recovery, transfer recovery and finish. State JSON is saved before screenshots. The first full-page screenshot exceeded60 seconds under host load, so an actual canvas image was used as fallback; another earlier run retained a visible full-UI contradiction capture.
+### Mobile, visual panels and restart
 
-Visual limitation discovered by opening captures: several stage PNGs show the 3D scene but omit the expected panel while their paired JSON has `panel:win` or `panel:contradiction`. Decorative opacity entrance animation and continuous software rendering are plausible causes under the overloaded host. These images **do not establish visible completion/contradiction panels**. Lead will remove that opacity entrance and stop redundant paused rendering, then perform focused visual verification. Rule assertions above passed before those rendering-only changes. Mobile checks remain in progress at this entry.
+At 390×844, actual full-page images show opaque readable LTR witness text, a notebook that fits the viewport, and usable 44px movement controls. Dpad movement, mute/reduced-motion toggles and restart pass. Hint→restart retains `unaided:false` and `previousExposure.hinted:true`, while clearing current facts. Desktop completion and contradiction panels are visibly readable with computed opacity 1.
+
+The initial source review found an exact-time inference gap in case 1, a visible-open-lid shortcut, ambiguous transfer witness/opener identity, resettable first-unaided tracking, and opacity/screenshot starvation under software rendering. The final build resolves these with an explicit bell anchor, opaque luggage cover, distinct attendant/visitor roles, a persistent minimal exposure ledger, immediate panel visibility and rendering on change while paused.
+
+### Completion and keyboard controls
+
+`work/reviewer-controls.mjs` completed with exit 0 and no page/console errors. It produced a real case 1 win before checking controls:
+
+- Start is idempotent. Space toggles pause/resume while exactly one start event remains recorded.
+- Escape closes the notebook even while its range input has focus.
+- Escape and R preserve the completion panel. Toolbar controls cannot replace it or strand the player, and the completion panel has no close X.
+- F enters fullscreen and Escape exits it while preserving completion.
+- Next remains visibly available and advances to case 2.
+
+At 1280×720, the observed Start button bounds were x 106.796875, y 457.625, width 399, height 52; center approximately (306,484).
+
+### Evidence and remaining limits
+
+Real images were opened and inspected beside the generated target. The actual station uses the planned elevated 3D cutaway, teal/ivory/copper palette, clock mechanism and narrow timeline. The final transfer visibly changes the object/vessels/privacy cover to the side-door area and shows the ladder. The actual scene remains much simpler and more matte than the target’s detailed reflective theater. Required Tripo model acquisition and rig animation are not established by these captures; runtime hooks report no loaded models/animations.
+
+Selected local evidence is under `work/reviewer-final/`: `00-mobile-witness.png`, `00-mobile-notebook.png`, `00-mobile-restart-history.png`, `01-wrong-identity.png`, `06-attendant-account.png`, `06-transfer-recovered.png`, `07-finished.png`, with paired state JSON. `work/reviewer-controls/02-win-after-controls.png` establishes the final completion guard without X. Curated images can be copied to public documentation; raw reports/state remain local test artifacts. Earlier captures with invisible panels are superseded and must not be used as visual proof.
+
+The overloaded host caused initial loading/screenshot delays and one earlier mobile navigation timeout. The final one-page mobile/desktop run and focused controls run completed. This review does not establish hardware-accelerated performance on student devices, audible speech availability, enjoyment or learning gains. Speech depends on a local English browser voice; absence must leave readable text and a clear fallback message.
+
+
+### Focused overlap and trail evidence
+
+`work/reviewer-overlap.mjs` completed through normal case 1 → Next → case 2 UI with exit 0 and no page/console errors. Both accounts were read, AVI was selected, and the player walked west. At t=0 the trail hook returned 0. At t=24 it returned 5 enabled samples, corresponding to source times 8,12,16,20,24; the future sample at 28 was hidden. The current-time sample at 24 is included, so this is a ≤ current time rule. Both ongoing-world activity flags were true at 24.
+
+Opened and inspected the actual full-page `work/reviewer-overlap/tracks-at24.png` and `overlap.png`. The former shows two visible, spatially overlapping timeline tracks at 24. The latter shows the opaque contradiction panel after proposing reading 28–34, with the English witness account and both historical tracks visible. DOM checks confirmed opacity 1 for both tracks and the contradiction, plus positive pixel overlap between the tracks. These replace the earlier canvas-only case 2 evidence.

@@ -1,0 +1,8 @@
+{
+  "report": [
+    "Start remains idempotent and Space toggles pause with exactlyone start event.",
+    "Escape closes notebook while its range input has focus.",
+    "Actual case1 completion survives Escape, R, disabled toolbar clicks, fullscreen F and fullscreen Escape; Next remains visible and advances to case2."
+  ],
+  "errors": []
+}

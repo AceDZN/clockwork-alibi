@@ -1,32 +1,60 @@
-# Playtest evidence
+# Verified scope and browser evidence
 
-26 October 2026. These checks establish implementation behavior, not learning gains or classroom enjoyment.
+26 October 2026. Functional verification establishes program behavior, not learning gains or enjoyment with students.
 
-## Pure rules and English
+## Build and pure rules
 
-`npm test`: 32 checks passed before final visual iteration. The independent reviewer owns `tests/reviewer-semantics.test.ts`, whose expected times/identities are an authored oracle rather than generated from implementation values. Checks cover every case’s lost/saved outcome, two-viewpoint necessity, exact instant versus half-open ongoing interval, overlap versus sequence, owner identity despite matching colour, useful questions with did + find / irregular found, non-retroactive actions, and transfer rejection of old route/time/identity. A final rerun follows final source changes.
+- `npm test`: **35 passed, 0 failed**. Twenty independent reviewer checks use a separate authored oracle, plus simulation and exposure-history checks.
+- `npm run build`: TypeScript and Vite production build pass. Relative base, static dist and vercel.json are ready for a future user deployment.
+- Patched Vite7.3.7. npm audit after the patch and final production-dependency audit: zero vulnerabilities.
 
-`npm run build`: typecheck and production build passed for the initial playable pass. The final build is being rerun after visual and transfer layout changes. Patched Vite 7.3.7; npm audit reported zero vulnerabilities after updating.
+Tests cover all five lost/saved outcomes; two independent viewpoints; instant versus half-open ongoing interval; overlap versus sequence; same-colour owner identity; useful questions with did + find and irregular found; non-retroactive interventions; transfer rejecting old route/time/identity; assistance history across restart/storage/replay; distinct attendant observer and visitor opener.
 
-## Browser runs
+## Real browser gameplay
 
-The required skill client was invoked from `/Users/acedzn/.codex/skills/develop-web-game/scripts/web_game_playwright_client.js` with real keyboard bursts on port5202. Initial attempt lost its execution context during a Vite edit. Later attempts produced actual canvas captures/state with no console errors, but its built-in 5-second stable-element click timed out under heavy software-WebGL host load and those runs remained in intro. These are not counted as successful gameplay verification.
+The independent reviewer used the matching bundled Playwright browser, normal DOM controls, and `window.advanceTime`. It did not inject a win or call internal game actions. Form input events run the same handlers as user input. The text hook supplied assertions, not hidden state mutations.
 
-A supplementary matching-Playwright browser run used normal UI handlers (`dispatchEvent('click')` on the same visible controls) and `window.advanceTime` for deterministic movement. It entered gameplay, walked from (-4,3) to the porter, opened a witness account and verified paused time and collected fact. No page or console errors were reported. Full viewport captures:
+| Case | Verified consequence and recovery |
+|---|---|
+|1|Wrong AVI identity causes a contradiction; physically inspect NOA, edit, latch at17, advance past gust22 and recover at23.|
+|2|Sequence-only reading28–34 fails; corrected overlapping14–34 succeeds. Securing the object before the gust is accepted as an alternate route.|
+|3|Same-blue owner identity and changed luggage position solve correctly; latch21 and recover after27.|
+|4|Three questions reveal different facts; find key beside clock24, latch27 and recover after33.|
+|5|Changed left layout, painter/ladder, distinct attendant witness, visitor/side door13 and CANVAS cart. First automated attempt used latch11 and recovery17 with no hint/retry. This is an automated first attempt, not evidence of a student's unaided comprehension.|
 
-- `docs/evidence/gameplay-investigation.png`
-- `docs/evidence/gameplay-witness.png`
+Finite finish and play-again work. Prior hints, attempts and completions persist locally, so restart/repeated completion cannot be described as a first unaided decision. No page or console errors were recorded in the successful chains.
 
-The lead opened and visually inspected both captures. The first real capture caused camera zoom, amber window light and static-geometry merging improvements. It also revealed a major art-detail gap versus the generated target. The reviewer independently inspected both captures.
+Separate final control checks solved a case legitimately and verified: exactly one Start event; Space pause/resume; notebook Escape from an input; completion survives Escape/R and toolbar attempts; completed toolbar disabled; no dismiss X; F fullscreen; explicit Escape exit; Next advances visibly. Earlier checks caught hidden-start focus and completion-dismissal traps; both were fixed and rerun successfully.
 
-Full five-case browser success/failure/transfer/mobile verification is in progress; do not treat it as passed until the report below is updated.
+## Mobile layout and accessibility
 
-## Performance and asset limits
+At390×844, actual captures were opened and inspected: English account stays LTR/readable, notebook button is reachable,44px directional controls move, mute/reduced-motion/settings work, and hint→restart keeps unaidedfalse while clearing case facts. These are responsive-browser/pointer checks, not tests on a physical student phone or tablet. Hebrew keyboard compatibility uses physical event.code; arrows were exercised. Local English system speech is optional and depends on installed voices; visible text remains available.
 
-The captured software-WebGL run reported approximately1FPS during startup/shared-host load; this is a poor interactive result and not a representative GPU benchmark. Architecture meshes are merged by material, shadows cache at1024, DPR is capped at2, and deterministic time bursts render once instead of once per simulation substep. Hardware-browser performance and classroom devices remain unverified.
+## Required skill client
 
-Initial production output before the final layout pass was 864KiB on disk: raw bundled assets834,255bytes, aggregate gzip352,368bytes (includes all generated font alternatives, not an exact network waterfall). JavaScript was639KB raw /169.54KB gzip. No model bytes are included because required Tripo assets remain blocked; measuring that budget as satisfied would be misleading.
+The existing `/Users/acedzn/.codex/skills/develop-web-game/scripts/web_game_playwright_client.js` was run repeatedly after meaningful changes with real action bursts and its screenshots were opened. Early runs hit HMR or its5-second stable-click timeout under heavy software-WebGL load; those intro-only captures were not counted as gameplay passes. An observed Start button bounding box at1280×720 supplied a normal pointer click at306,484 for a successful gameplay/movement run. The final pointer/keyboard state and canvas are included alongside the supplementary UI chains.
 
-## Actual outstanding external step
+Reproduce the broader chains with `node scripts/browser-check.mjs` and `node scripts/browser-controls.mjs` after installing the matching Playwright browser. See README for overrides.
 
-Tripo Chrome automation timed out before obtaining any UI. Zero acquired GLBs, zero rig clips and zero credit spend. Temporary procedural automata/bird are visible; they are explicitly not Tripo completion. Details: ASSETS.md and docs/asset-browser-blocker.md.
+## Curated evidence
+
+- `docs/evidence/gameplay-investigation.png`, `gameplay-witness.png`: initial real desktop investigation/read state.
+- `wrong-identity.png`, `overlap-mistake.png`: editable evidence contradictions.
+- `case1-recovered.png`: final guarded completion panel, visibly opaque, no X, toolbar disabled.
+- `mobile-witness.png`, `mobile-notebook.png`, `mobile-history-state.json`: responsive reading and persistent assistance.
+- `transfer-account.png`, `transfer-state.json`: changed left layout, ladder, attendant and successful transfer.
+- `five-case-browser-report.json`, `completion-controls-report.json`: successful functional reports with empty error lists.
+
+The lead and independent reviewers opened the actual selected images. Generated target imagery is separately labelled under docs/visual-targets. Initial captures precede the lower/wider canopy and final controls; the selected follow-up images show those changes. Source motion trails now reveal only sampled past positions inside the authoritative activity interval, never future positions.
+
+## Download, frame budget and actual limitations
+
+Final static output:848,043bytes on disk; aggregate gzip357,285bytes across all output files (not a network waterfall). Main JavaScript646.79KB raw /171.67KB gzip; CSS17.43KB raw /4.71KB gzip. Includes locally bundled font alternatives and license. No GLB bytes are included because required models remain missing; this does not establish the full asset budget.
+
+A startup software-WebGL run under shared-host load measured about1FPS and later samples could round to0. That was a poor result. Static architecture now merges by material, shadows cache at1024, DPR caps at2, deterministic bursts render once, and unchanged paused scenes do not redraw. Final active rendering uses wall-clock deltas; idle animation-frame callbacks are excluded from the FPS hook. Representative hardware/GPU and student-device performance remain unverified; no smooth-performance claim is made.
+
+**Required Tripo models and porter rig remain blocked.** Chrome control briefly recovered, opened the crew's own tab and showed6835credits/owned assets, then failed again before submission. No generation, download, rig or credit spend occurred. Procedural automata and bird are temporary geometry, not rigged Tripo assets. ASSETS.md records the exact attempts and prepared prompts. Model scaling, clip playback and chapter transitions require verification after acquisition. Real-model visual parity, student fun and learning gains remain outstanding.
+
+Final focused visual check passed with no errors: `overlapping-tracks.png` shows both ongoing activities at24 and gold/cyan tracks at opacity1 with253.30px overlap; `overlap-mistake.png` shows an opaque, evidence-backed contradiction. The trail hook reports0 at time0 and5 at24 (8,12,16,20,24); future28 is hidden. The lead opened both full UI images. The final skill-client readback also confirms one Start event, paused time10, arrow movement and one valid past trail.
+
+Built-preview smoke at http://localhost:4202 also passed through the required client: Start, Space and arrow movement; mode explore, pausedtrue, time10, playerx−3.87, one Start event, no error file. This verifies the compiled static bundle runs, beyond an HTTP200 index response. Dev5202 and preview4202 remain running.

@@ -126,7 +126,8 @@ export class Station {
     animate(this.player,movement.lengthSq()>0,this.elapsed*9);
     const progress=THREE.MathUtils.clamp((time-c.carrying[0])/(c.carrying[1]-c.carrying[0]),0,1);this.porter.position.set(-6.5+progress*4.3,0,-.8);animate(this.porter,world.carrying,time*8);this.porter.rotation.y=Math.PI/2;this.targets.find(t=>t.id==='porter')!.position.copy(this.porter.position);
     this.windowLeaf.rotation.y=world.opened&&c.opening==='window'?-1.2:0;this.doorLeaf.rotation.y=world.opened&&c.opening==='door'?-1.2:0;
-    this.hiddenCanopy.visible=true;this.trails.visible=!this.reduced&&this.player.position.x<-1;
+    this.hiddenCanopy.visible=true;this.trails.visible=!this.reduced&&this.player.position.x<-1&&time>=c.carrying[0];
+    this.trails.children.forEach((ghost,i)=>{const fraction=i/Math.max(1,this.trails.children.length-1);ghost.position.x=-6.5+fraction*4.3;ghost.visible=time>=c.carrying[0]+fraction*(c.carrying[1]-c.carrying[0]);});
     this.bird.visible=world.object==='shelf'||world.object==='secured'||(world.gust&&time<c.gust+.7);this.bird.position.set(c.transfer?-6.2:6.6,1.28,-2.7);this.bird.rotation.y=this.reduced?0:Math.sin(time*2)*.15;
     if(world.gust&&time<c.gust+.7){const u=(time-c.gust)/.7;this.bird.position.x-=u*.8;this.bird.position.z+=u*1.5;this.bird.position.y+=Math.sin(u*Math.PI)*.35;}
     this.carriedBoxes.visible=c.actor==='porter';this.carriedBoxes.position.y=world.carrying?0:-.65;this.readingBook.visible=world.reading;this.carriedLadder.visible=c.actor==='painter';

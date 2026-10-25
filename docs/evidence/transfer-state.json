@@ -44,7 +44,7 @@
     },
     {
       "id": "visitor",
-      "label": "העדה בחדר ההמתנה",
+      "label": "עובדת התחנה",
       "x": 0.3,
       "z": -2,
       "screen": {
@@ -144,7 +144,19 @@
   "notice": "הבריח ננעל. קדמו את הזמן ובדקו מה קורה לרוח.",
   "loadedModels": [],
   "modelAnimations": {},
-  "fpsAverage": 0,
+  "fpsAverage": null,
+  "renderedFrames": 101,
+  "fpsScope": "active rendered frames over wall time, paused idle excluded",
+  "previousExposure": {
+    "attempted": true,
+    "hinted": false,
+    "completed": true
+  },
+  "roles": {
+    "primary": "painter",
+    "observer": "attendant",
+    "opener": "visitor"
+  },
   "localOnlyEvents": [
     {
       "challenge": 5,

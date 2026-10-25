@@ -1,0 +1,177 @@
+{
+  "mode": "explore",
+  "chapter": 1,
+  "time": 10,
+  "paused": true,
+  "panel": null,
+  "objective": "מי ראה את מה שקרה לציפור? חברו שתי עדויות ושנו את הלולאה.",
+  "coordinateSystem": "x east/right; y up; z south/front; world floor y=0",
+  "player": {
+    "x": -4,
+    "z": 3
+  },
+  "selectedTarget": null,
+  "targets": [
+    {
+      "id": "vessel-NOA",
+      "label": "מזוודה · NOA",
+      "x": 4,
+      "z": 0.8,
+      "screen": {
+        "x": 546.8508718082892,
+        "y": 546.8127162128119
+      }
+    },
+    {
+      "id": "vessel-AVI",
+      "label": "מזוודה · AVI",
+      "x": 5.7,
+      "z": 2.4,
+      "screen": {
+        "x": 613.6272323745354,
+        "y": 637.7435754747451
+      }
+    },
+    {
+      "id": "porter",
+      "label": "הסבל",
+      "x": -5,
+      "z": -1,
+      "screen": {
+        "x": 178.79651104717783,
+        "y": 356.54428525572877
+      }
+    },
+    {
+      "id": "visitor",
+      "label": "העדה בחדר ההמתנה",
+      "x": 0.3,
+      "z": -2,
+      "screen": {
+        "x": 420.20294634702867,
+        "y": 408.1288966952126
+      }
+    },
+    {
+      "id": "window",
+      "label": "תריס החצר",
+      "x": 5.2,
+      "z": -3.5,
+      "screen": {
+        "x": 679.5698609508518,
+        "y": 446.9809826815335
+      }
+    },
+    {
+      "id": "door",
+      "label": "דלת הצד",
+      "x": -7,
+      "z": -3.5,
+      "screen": {
+        "x": 165.36500309717147,
+        "y": 285.33299351515853
+      }
+    },
+    {
+      "id": "object",
+      "label": "ציפור השעון",
+      "x": 6.5,
+      "z": -2.7,
+      "screen": {
+        "x": 737.7195901080744,
+        "y": 490.1375216380528
+      }
+    },
+    {
+      "id": "clock",
+      "label": "שעון התחנה",
+      "x": 7.8,
+      "z": -1.5,
+      "screen": {
+        "x": 797.0253114774183,
+        "y": 549.9455664804088
+      }
+    }
+  ],
+  "facts": [],
+  "knownAccounts": [],
+  "hypothesis": {
+    "eventTime": 30,
+    "activity": "reading",
+    "readingStart": 30,
+    "readingEnd": 48,
+    "vessel": ""
+  },
+  "validated": false,
+  "interventions": [],
+  "world": {
+    "time": 10,
+    "carrying": true,
+    "reading": false,
+    "opened": false,
+    "gust": false,
+    "object": "shelf",
+    "vessel": null,
+    "departed": false,
+    "latched": false,
+    "saved": false
+  },
+  "recovered": false,
+  "hasKey": false,
+  "attempts": 0,
+  "retries": 0,
+  "hints": 0,
+  "unaided": false,
+  "physicalSaves": 0,
+  "languageWins": 0,
+  "notice": "בדקו מתי נפתח החלון, ומה שם הבעלים של המזוודה. אפשר לנעול את התריס לפני הפתיחה או לקבע את הציפור לפני הרוח.",
+  "loadedModels": [],
+  "modelAnimations": {},
+  "fpsAverage": null,
+  "renderedFrames": 9,
+  "fpsScope": "active rendered frames over wall time, paused idle excluded",
+  "previousExposure": {
+    "attempted": false,
+    "hinted": true,
+    "completed": false
+  },
+  "roles": {
+    "primary": "porter",
+    "observer": "visitor",
+    "opener": "musician"
+  },
+  "localOnlyEvents": [
+    {
+      "challenge": 1,
+      "action": "start",
+      "success": false,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 1,
+      "action": "read:porter-account",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 1,
+      "action": "solution-hint",
+      "success": false,
+      "hint": true,
+      "retries": 0,
+      "unaided": false
+    },
+    {
+      "challenge": 1,
+      "action": "chapter-start",
+      "success": false,
+      "hint": false,
+      "retries": 0,
+      "unaided": false
+    }
+  ]
+}

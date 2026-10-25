@@ -1,0 +1,222 @@
+{
+  "mode": "explore",
+  "chapter": 2,
+  "time": 49,
+  "paused": true,
+  "panel": "contradiction",
+  "objective": "נשיאה וקריאה: האם אחת הסתיימה לפני שהשנייה התחילה?",
+  "coordinateSystem": "x east/right; y up; z south/front; world floor y=0",
+  "player": {
+    "x": -5.68,
+    "z": 0.77
+  },
+  "selectedTarget": "vessel-AVI",
+  "targets": [
+    {
+      "id": "vessel-NOA",
+      "label": "מזוודה · NOA",
+      "x": 7.1,
+      "z": 2.4,
+      "screen": {
+        "x": 985.7191032167767,
+        "y": 615.7145317040678
+      }
+    },
+    {
+      "id": "vessel-AVI",
+      "label": "מזוודה · AVI",
+      "x": 5.3,
+      "z": 0.8,
+      "screen": {
+        "x": 935.8887206924192,
+        "y": 535.8566967123767
+      }
+    },
+    {
+      "id": "porter",
+      "label": "הסבל",
+      "x": -2.2,
+      "z": -0.8,
+      "screen": {
+        "x": 641.1949082150863,
+        "y": 388.1868906042351
+      }
+    },
+    {
+      "id": "visitor",
+      "label": "העדה בחדר ההמתנה",
+      "x": 0.3,
+      "z": -2,
+      "screen": {
+        "x": 777.5927732250391,
+        "y": 399.36721821377995
+      }
+    },
+    {
+      "id": "window",
+      "label": "תריס החצר",
+      "x": 5.2,
+      "z": -3.5,
+      "screen": {
+        "x": 1040.4539148767767,
+        "y": 438.52289269285944
+      }
+    },
+    {
+      "id": "door",
+      "label": "דלת הצד",
+      "x": -7,
+      "z": -3.5,
+      "screen": {
+        "x": 557.1087232283907,
+        "y": 299.18455465711935
+      }
+    },
+    {
+      "id": "object",
+      "label": "ציפור השעון",
+      "x": 6.5,
+      "z": -2.7,
+      "screen": {
+        "x": 1089.399462223767,
+        "y": 474.467265954923
+      }
+    },
+    {
+      "id": "clock",
+      "label": "שעון התחנה",
+      "x": 7.8,
+      "z": -1.5,
+      "screen": {
+        "x": 1134.8064424286426,
+        "y": 524.1146172693101
+      }
+    }
+  ],
+  "facts": [
+    "porter-account",
+    "visitor-account"
+  ],
+  "knownAccounts": [
+    {
+      "id": "porter-account",
+      "text": "I was carrying boxes from 00:08 to 00:28 while the visitor was reading. The bell rang before I put the boxes down."
+    },
+    {
+      "id": "visitor-account",
+      "text": "I was reading from 00:14 to 00:34. The bell rang at 00:24. The musician opened the window two seconds later. The bird fell into Avi’s suitcase."
+    }
+  ],
+  "hypothesis": {
+    "eventTime": 26,
+    "activity": "carrying boxes",
+    "readingStart": 28,
+    "readingEnd": 34,
+    "vessel": "AVI"
+  },
+  "validated": false,
+  "interventions": [],
+  "world": {
+    "time": 49,
+    "carrying": false,
+    "reading": false,
+    "opened": true,
+    "gust": true,
+    "object": "departed",
+    "vessel": "AVI",
+    "departed": true,
+    "latched": false,
+    "saved": false
+  },
+  "recovered": false,
+  "hasKey": false,
+  "attempts": 1,
+  "retries": 1,
+  "hints": 0,
+  "unaided": false,
+  "physicalSaves": 1,
+  "languageWins": 1,
+  "notice": "התווית AVI נרשמה בהשערה.",
+  "loadedModels": [],
+  "modelAnimations": {},
+  "fpsAverage": null,
+  "renderedFrames": 28,
+  "visiblePastTrails": 6,
+  "fpsScope": "active rendered frames over wall time, paused idle excluded",
+  "previousExposure": {
+    "attempted": true,
+    "hinted": false,
+    "completed": false
+  },
+  "roles": {
+    "primary": "porter",
+    "observer": "visitor",
+    "opener": "musician"
+  },
+  "localOnlyEvents": [
+    {
+      "challenge": 1,
+      "action": "intervene:latch-window",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 1,
+      "action": "recover",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 1,
+      "action": "chapter-complete",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 2,
+      "action": "chapter-start",
+      "success": false,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 2,
+      "action": "read:porter-account",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 2,
+      "action": "read:visitor-account",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 2,
+      "action": "mark:AVI",
+      "success": false,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 2,
+      "action": "test-reconstruction",
+      "success": false,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    }
+  ]
+}

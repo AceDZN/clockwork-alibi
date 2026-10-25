@@ -1,15 +1,34 @@
 {
   "status": "blocked",
-  "blocker": "mcp__cua_repl browser entry calls timed out and reset kernel without returning UI state",
+  "blocker": "Intermittent mcp__cua_repl connection: My Assets worked briefly, generation navigation and lighter browser binding then timed out/reset",
   "modelsAcquired": 0,
   "generationsSubmitted": 0,
   "creditsSpentByCrew": 0,
   "rigComplete": false,
   "requiredModels": [
-    { "path": "porter.glb", "status": "missing", "requiresTripoRig": true, "desiredClips": ["walk", "carry"] },
-    { "path": "clockwork-bird.glb", "status": "missing", "requiresTripoRig": false }
+    {
+      "path": "porter.glb",
+      "status": "missing",
+      "requiresTripoRig": true,
+      "desiredClips": [
+        "walk",
+        "carry"
+      ]
+    },
+    {
+      "path": "clockwork-bird.glb",
+      "status": "missing",
+      "requiresTripoRig": false
+    }
   ],
   "optionalModels": [
-    { "path": "station-clock.glb", "status": "missing", "requiresTripoRig": false }
-  ]
+    {
+      "path": "station-clock.glb",
+      "status": "missing",
+      "requiresTripoRig": false
+    }
+  ],
+  "lastObservedCreditBalance": 6835,
+  "lastObservedCreditBalanceDate": "2026-10-26",
+  "ownBrowserTabId": "512279088"
 }
