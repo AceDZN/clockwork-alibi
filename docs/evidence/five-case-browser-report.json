@@ -1,0 +1,14 @@
+{
+  "report": [
+    "Timeline scrubbing pauses deterministic time.",
+    "Keyboard movement works while investigation time is paused.",
+    "Full-page capture 01-wrong-identity exceeded60s under host load; stored actual canvas fallback.",
+    "Case1 wrong identity produces contradiction; edit + actual shutter latch + post-gust recovery wins.",
+    "Case2 rejects sequence-only reading and accepts corrected overlap; secure-object alternate route wins.",
+    "Case3 completed with changed vessel position and same-colour owner identity.",
+    "Case4 distinct questions, key pickup beside clock, shutter use and recovery succeed.",
+    "Transfer completed first attempt with changed side door, time13, ladder activity and CANVAS identity; no solution hint.",
+    "FAILED: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5202/\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at /Users/acedzn/dev/AceDZN-exp/clockwork-alibi/work/reviewer-browser.mjs:37:139"
+  ],
+  "errors": []
+}

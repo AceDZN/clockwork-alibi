@@ -49,3 +49,7 @@ These prompts are prepared and **have not been submitted**. Maximum three new mo
 Use the user's Chrome through current `mcp__cua_repl` documentation. Identify only the Clockwork Alibi tab or open a new own tab. Inspect owned assets at `https://studio.tripo3d.ai/assets`. If appropriate assets are absent, generate using the above prompts and existing credits, without purchases/upgrades/legal changes. Record displayed cost, task URL/id and ownership basis. Download through normal UI. Rig the chosen porter in Tripo with full-body walk/carry animation and export GLB.
 
 For each acquired GLB record original and optimized bytes plus SHA-256, mesh/triangle counts, bounds, clip names, license/ownership evidence and runtime path. Keep originals under `work/` (untracked); optimize runtime models to roughly 3 MB each and initial total under 20 MB where possible. Test actual animation playback in the browser before marking complete.
+
+## Original geometry and font
+
+Station architecture, temporary automata, bird/lantern and mechanical props are original procedural Three.js geometry in src/scene.ts. They are not acquired or rigged Tripo models. Heebo is bundled from @fontsource/heebo; its SIL Open Font License is included at public/fonts/Heebo-LICENSE.txt. No remote font or model is needed to run the current slice.

@@ -26,4 +26,4 @@ Hebrew explains controls and misconceptions. English supplies missing facts. Eng
 
 ## Verification status
 
-Pure fixture review completed. `npm test` passed all 32 checks, including the independent authored-oracle tests in `tests/reviewer-semantics.test.ts`. Browser success/mistake/transfer review pending. Automated checks can establish rule consistency and observed interaction outcomes; they cannot establish enjoyment or learning gains.
+Pure fixture review completed. `npm test` passed all 32 checks, including the independent authored-oracle tests in `tests/reviewer-semantics.test.ts`. Independent browser UI checks passed all five cases, wrong identity, sequence-only overlap, alternate securing, key pickup, and a first-attempt transfer run without solution hints. Completion/contradiction panel visibility needs focused visual verification after a rendering fix; mobile checks remain in progress. Automated checks can establish rule consistency and observed interaction outcomes; they cannot establish enjoyment or learning gains.

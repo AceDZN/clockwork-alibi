@@ -1,0 +1,300 @@
+{
+  "before": {
+    "mode": "explore",
+    "chapter": 1,
+    "time": 10.35,
+    "paused": false,
+    "panel": null,
+    "objective": "מי ראה את מה שקרה לציפור? חברו שתי עדויות ושנו את הלולאה.",
+    "coordinateSystem": "x east/right; y up; z south/front; world floor y=0",
+    "player": {
+      "x": -4,
+      "z": 3
+    },
+    "selectedTarget": null,
+    "targets": [
+      {
+        "id": "vessel-NOA",
+        "label": "מזוודה · NOA",
+        "x": 4,
+        "z": 0.8,
+        "screen": {
+          "x": 864.600375741078,
+          "y": 511.2502365343497
+        }
+      },
+      {
+        "id": "vessel-AVI",
+        "label": "מזוודה · AVI",
+        "x": 5.7,
+        "z": 2.4,
+        "screen": {
+          "x": 905.5846629307247,
+          "y": 585.862699830128
+        }
+      },
+      {
+        "id": "porter",
+        "label": "הסבל",
+        "x": -6.4,
+        "z": -0.8,
+        "screen": {
+          "x": 491.7180904033514,
+          "y": 340.1216369299114
+        }
+      },
+      {
+        "id": "visitor",
+        "label": "העדה בחדר ההמתנה",
+        "x": 0.3,
+        "z": -2,
+        "screen": {
+          "x": 777.5927732250391,
+          "y": 399.36721821377995
+        }
+      },
+      {
+        "id": "window",
+        "label": "תריס החצר",
+        "x": 5.2,
+        "z": -3.5,
+        "screen": {
+          "x": 1040.4539148767767,
+          "y": 438.52289269285944
+        }
+      },
+      {
+        "id": "door",
+        "label": "דלת הצד",
+        "x": -7,
+        "z": -3.5,
+        "screen": {
+          "x": 557.1087232283907,
+          "y": 299.18455465711935
+        }
+      },
+      {
+        "id": "object",
+        "label": "ציפור השעון",
+        "x": 6.5,
+        "z": -2.7,
+        "screen": {
+          "x": 1089.399462223767,
+          "y": 474.467265954923
+        }
+      },
+      {
+        "id": "clock",
+        "label": "שעון התחנה",
+        "x": 7.8,
+        "z": -1.5,
+        "screen": {
+          "x": 1134.8064424286426,
+          "y": 524.1146172693101
+        }
+      }
+    ],
+    "facts": [],
+    "knownAccounts": [],
+    "hypothesis": {
+      "eventTime": 30,
+      "activity": "reading",
+      "readingStart": 30,
+      "readingEnd": 48,
+      "vessel": ""
+    },
+    "validated": false,
+    "interventions": [],
+    "world": {
+      "time": 10.350000000000007,
+      "carrying": true,
+      "reading": false,
+      "opened": false,
+      "gust": false,
+      "object": "shelf",
+      "vessel": null,
+      "departed": false,
+      "latched": false,
+      "saved": false
+    },
+    "recovered": false,
+    "hasKey": false,
+    "attempts": 0,
+    "retries": 0,
+    "hints": 0,
+    "unaided": true,
+    "physicalSaves": 0,
+    "languageWins": 0,
+    "notice": "גשו לסבל. לחצו על דמות כדי ללכת אליה ולשמוע מה ראתה.",
+    "loadedModels": [],
+    "modelAnimations": {},
+    "fpsAverage": 1,
+    "localOnlyEvents": [
+      {
+        "challenge": 1,
+        "action": "start",
+        "success": false,
+        "hint": false,
+        "retries": 0,
+        "unaided": true
+      }
+    ]
+  },
+  "after": {
+    "mode": "explore",
+    "chapter": 1,
+    "time": 11.07,
+    "paused": true,
+    "panel": "dialogue",
+    "objective": "מי ראה את מה שקרה לציפור? חברו שתי עדויות ושנו את הלולאה.",
+    "coordinateSystem": "x east/right; y up; z south/front; world floor y=0",
+    "player": {
+      "x": -5.8,
+      "z": 0.77
+    },
+    "selectedTarget": "porter",
+    "targets": [
+      {
+        "id": "vessel-NOA",
+        "label": "מזוודה · NOA",
+        "x": 4,
+        "z": 0.8,
+        "screen": {
+          "x": 864.600375741078,
+          "y": 511.2502365343497
+        }
+      },
+      {
+        "id": "vessel-AVI",
+        "label": "מזוודה · AVI",
+        "x": 5.7,
+        "z": 2.4,
+        "screen": {
+          "x": 905.5846629307247,
+          "y": 585.862699830128
+        }
+      },
+      {
+        "id": "porter",
+        "label": "הסבל",
+        "x": -6.3,
+        "z": -0.8,
+        "screen": {
+          "x": 496.76515770782436,
+          "y": 341.74455460940345
+        }
+      },
+      {
+        "id": "visitor",
+        "label": "העדה בחדר ההמתנה",
+        "x": 0.3,
+        "z": -2,
+        "screen": {
+          "x": 777.5927732250391,
+          "y": 399.36721821377995
+        }
+      },
+      {
+        "id": "window",
+        "label": "תריס החצר",
+        "x": 5.2,
+        "z": -3.5,
+        "screen": {
+          "x": 1040.4539148767767,
+          "y": 438.52289269285944
+        }
+      },
+      {
+        "id": "door",
+        "label": "דלת הצד",
+        "x": -7,
+        "z": -3.5,
+        "screen": {
+          "x": 557.1087232283907,
+          "y": 299.18455465711935
+        }
+      },
+      {
+        "id": "object",
+        "label": "ציפור השעון",
+        "x": 6.5,
+        "z": -2.7,
+        "screen": {
+          "x": 1089.399462223767,
+          "y": 474.467265954923
+        }
+      },
+      {
+        "id": "clock",
+        "label": "שעון התחנה",
+        "x": 7.8,
+        "z": -1.5,
+        "screen": {
+          "x": 1134.8064424286426,
+          "y": 524.1146172693101
+        }
+      }
+    ],
+    "facts": [
+      "porter-account"
+    ],
+    "knownAccounts": [
+      {
+        "id": "porter-account",
+        "text": "While I was carrying boxes, the musician opened the window. I started at 00:10 and finished at 00:30."
+      }
+    ],
+    "hypothesis": {
+      "eventTime": 30,
+      "activity": "reading",
+      "readingStart": 30,
+      "readingEnd": 48,
+      "vessel": ""
+    },
+    "validated": false,
+    "interventions": [],
+    "world": {
+      "time": 11.066666666666709,
+      "carrying": true,
+      "reading": false,
+      "opened": false,
+      "gust": false,
+      "object": "shelf",
+      "vessel": null,
+      "departed": false,
+      "latched": false,
+      "saved": false
+    },
+    "recovered": false,
+    "hasKey": false,
+    "attempts": 0,
+    "retries": 0,
+    "hints": 0,
+    "unaided": true,
+    "physicalSaves": 0,
+    "languageWins": 0,
+    "notice": "גשו לסבל. לחצו על דמות כדי ללכת אליה ולשמוע מה ראתה.",
+    "loadedModels": [],
+    "modelAnimations": {},
+    "fpsAverage": 1,
+    "localOnlyEvents": [
+      {
+        "challenge": 1,
+        "action": "start",
+        "success": false,
+        "hint": false,
+        "retries": 0,
+        "unaided": true
+      },
+      {
+        "challenge": 1,
+        "action": "read:porter-account",
+        "success": true,
+        "hint": false,
+        "retries": 0,
+        "unaided": true
+      }
+    ]
+  },
+  "errors": []
+}

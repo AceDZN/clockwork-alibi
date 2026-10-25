@@ -87,3 +87,30 @@ Changed object, actor, opening, container, timing and vessel layout prevent reus
 `tests/reviewer-semantics.test.ts` uses an independent hard-coded authored oracle rather than generating expected answers from the implementation’s table. It checks five physical outcomes, two-viewpoint necessity, no retroactive effects, event/interval boundaries, overlap versus sequence, same-colour owner identity, distinct useful questions, `did + find` / `found`, and changed transfer route/time/identity.
 
 `npm test` passed all 32 tests (20 independent reviewer checks and 12 existing checks), with 0 failures. Runtime/browser review pending. These tests do not establish enjoyment or learning gains.
+
+## Independent visual inspection, 26 October 2026
+
+Opened `docs/evidence/gameplay-investigation.png`, `docs/evidence/gameplay-witness.png`, and `docs/visual-targets/target-01.png` directly. The actual scene is real 3D and visibly uses the intended elevated cutaway station, teal iron, ivory clock, copper details, and narrow bottom timeline. The witness account has explicit LTR English and readable contrast within the Hebrew shell. The compact notebook replaces the target’s single caption as a practical reading surface.
+
+The visual gap is material: the actual station has simple matte geometry and much less character/architectural detail than the generated target’s reflective mechanical theater. Required Tripo model/rig integration remains an external asset limitation, not a requirement these captures establish. Footer labels appear very small at 1440×900; mobile usability requires its own capture. This inspection does not establish frame rate, fun, or learning gains.
+
+Source-review corrections made by the lead before the independent browser chain: visitor explicitly anchors case1 opening at the bell; luggage canopy remains opaque so lid states do not become a visual identity shortcut; transfer route/object/vessels move to the side-door area; transfer painter receives a visible ladder and wind uses the side-door source. These corrections still need completed browser-chain evidence.
+
+## Independent browser gameplay results, 26 October 2026
+
+Used `work/reviewer-browser.mjs` with the web-game skill’s installed Playwright 1.61.1 and Chromium headless shell 1228. The repository’s pinned Playwright 1.56.1 expected an unavailable browser revision, so the existing skill runtime was used without changing packages. Actions invoked actual UI controls and form input handlers; only `advanceTime` stepped time, and `render_game_to_text` supplied assertions. No win-state injection or direct simulation-state mutation was used.
+
+Passed through actual UI:
+
+- Timeline scrubbing pauses time; arrow-key movement remains available while the investigation clock is paused.
+- Witness reading pauses time and uses LTR English; on-demand `while` vocabulary produces Hebrew support.
+- Case 1: selecting AVI produces an identity contradiction quoting the visitor’s English account; selecting NOA and correcting the reconstruction, then latching at17 and physically recovering at23 produces `won`, with `validated` and `recovered` true. Retry correctly clears the unaided flag.
+- Case 2: reading28–34 is rejected as a sequence-only reconstruction; changing to14–34 passes. Securing the object at10 and physically recovering at29 validates the alternate route.
+- Case 3: NOA identity in the changed vessel position, opening25, latch21 and recovery28 complete the case despite both cases being blue.
+- Case 4: all three complete questions reveal distinct answers. The known key becomes collectible beside the clock at24; collecting it, latching at27 and recovering at34 completes the case.
+- Transfer: moving-the-ladder activity, opening13 and CANVAS identity pass; side-door latch11 and recovery17 complete the changed incident on the first attempted reconstruction/intervention, with `hints:0`, `retries:0`, `unaided:true`. The hint control is disabled. This is an automated run flag, not a student-learning assessment.
+- The fifth case advances to the finite `finished` state.
+
+Evidence: paired stage JSON and real browser images are under `work/reviewer-browser/`. Captures include wrong identity, overlap mistake, cases1/3/4 recovery, transfer recovery and finish. State JSON is saved before screenshots. The first full-page screenshot exceeded60 seconds under host load, so an actual canvas image was used as fallback; another earlier run retained a visible full-UI contradiction capture.
+
+Visual limitation discovered by opening captures: several stage PNGs show the 3D scene but omit the expected panel while their paired JSON has `panel:win` or `panel:contradiction`. Decorative opacity entrance animation and continuous software rendering are plausible causes under the overloaded host. These images **do not establish visible completion/contradiction panels**. Lead will remove that opacity entrance and stop redundant paused rendering, then perform focused visual verification. Rule assertions above passed before those rendering-only changes. Mobile checks remain in progress at this entry.

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { type Case } from './content';
 import { worldAt, type Intervention } from './simulation';
@@ -9,7 +10,7 @@ export class Station {
   root=new THREE.Group(); actors=new THREE.Group(); player=new THREE.Group(); porter=new THREE.Group(); visitor=new THREE.Group(); musician=new THREE.Group();
   targets:Target[]=[]; ray=new THREE.Raycaster(); floor=new THREE.Plane(new THREE.Vector3(0,1,0),0); pointer=new THREE.Vector2();
   case!:Case; bird=new THREE.Group(); windowLeaf=new THREE.Group(); doorLeaf=new THREE.Group(); vesselGroups=new Map<string,THREE.Group>();
-  marker=new THREE.Group(); trails=new THREE.Group(); clockHand=new THREE.Group(); gears:THREE.Object3D[]=[]; carriedBoxes=new THREE.Group(); wind=new THREE.Group(); hiddenCanopy=new THREE.Group(); curtain=new THREE.Group();
+  marker=new THREE.Group(); trails=new THREE.Group(); clockHand=new THREE.Group(); gears:THREE.Object3D[]=[]; readingBook=new THREE.Group(); carriedBoxes=new THREE.Group(); carriedLadder=new THREE.Group(); transferPedestal=new THREE.Group(); wind=new THREE.Group(); hiddenCanopy=new THREE.Group(); curtain=new THREE.Group();
   playerDestination:THREE.Vector3|null=null; loadedModels:string[]=[]; modelClips:Record<string,string[]>={}; mixers:THREE.AnimationMixer[]=[]; elapsed=0; reduced=false;
   materials=new Map<string,THREE.MeshStandardMaterial>();
   constructor(canvas:HTMLCanvasElement){
@@ -17,16 +18,19 @@ export class Station {
     this.renderer.setPixelRatio(Math.min(devicePixelRatio,2));this.renderer.shadowMap.enabled=true;this.renderer.shadowMap.type=THREE.PCFSoftShadowMap;this.renderer.shadowMap.autoUpdate=false;this.renderer.shadowMap.needsUpdate=true;
     this.renderer.outputColorSpace=THREE.SRGBColorSpace;this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.25;
     this.scene.background=new THREE.Color(0x0d202c);this.scene.fog=new THREE.FogExp2(0x0d202c,0.018);
-    this.scene.add(this.root,this.actors,this.trails,this.marker);this.camera.position.set(17,17,23);this.camera.lookAt(0,0.5,-0.7);
+    this.scene.add(this.root,this.actors,this.trails,this.marker);this.camera.position.set(13.8,12.8,18);this.camera.lookAt(0,1,-.5);
     this.scene.add(new THREE.HemisphereLight(0xc9e3df,0x1c2234,2));
-    const sun=new THREE.DirectionalLight(0xffd99a,4);sun.position.set(-4,13,-5);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);sun.shadow.camera.left=-15;sun.shadow.camera.right=15;sun.shadow.camera.top=12;sun.shadow.camera.bottom=-12;sun.shadow.normalBias=.035;this.scene.add(sun);
+    const sun=new THREE.DirectionalLight(0xffd99a,4);sun.position.set(8,11,-6);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);sun.shadow.camera.left=-15;sun.shadow.camera.right=15;sun.shadow.camera.top=12;sun.shadow.camera.bottom=-12;sun.shadow.normalBias=.035;this.scene.add(sun);
     const fill=new THREE.DirectionalLight(0x8dc1dc,1.6);fill.position.set(7,9,12);this.scene.add(fill);
-    this.buildStation();
+    this.buildStation();this.mergeStaticArchitecture();
     this.automaton(this.player,0x354e65); this.player.position.set(-4,0,3);this.actors.add(this.player);
     this.automaton(this.porter,0x267779);this.automaton(this.visitor,0x967b51);this.automaton(this.musician,0x343c50);this.actors.add(this.porter,this.visitor,this.musician);
     const ring=new THREE.Mesh(new THREE.RingGeometry(.34,.39,48),new THREE.MeshBasicMaterial({color:0xe3bc74,transparent:true,opacity:.7,side:THREE.DoubleSide}));ring.rotation.x=-Math.PI/2;ring.position.y=.025;this.marker.add(ring);this.marker.visible=false;
     this.scene.add(this.bird,this.windowLeaf,this.doorLeaf,this.hiddenCanopy,this.curtain,this.wind);
-    this.box(this.carriedBoxes,0,.85,.42,.5,.45,.48,0x92744d);this.box(this.carriedBoxes,0,1.2,.42,.44,.25,.4,0x92744d);this.porter.add(this.carriedBoxes);
+    this.box(this.carriedBoxes,0,.85,.42,.5,.45,.48,0x92744d);this.box(this.carriedBoxes,0,1.2,.42,.44,.25,.4,0x92744d);this.porter.add(this.carriedBoxes,this.carriedLadder);
+    this.box(this.readingBook,0,.92,.32,.32,.045,.22,0xc9b68d);this.box(this.readingBook,0,.91,.32,.35,.03,.25,C.teal);this.visitor.add(this.readingBook);
+    for(const x of[-.35,.35])this.box(this.carriedLadder,x,1,.4,.07,2,.07,C.brass);for(let y=.2;y<2;y+=.28)this.box(this.carriedLadder,0,y,.4,.7,.05,.06,C.wood);
+    this.box(this.transferPedestal,-6.2,.6,-2.7,.85,1.2,.65,C.teal);this.scene.add(this.transferPedestal);
     for(let i=0;i<14;i++){const streak=new THREE.Mesh(new THREE.SphereGeometry(.025,5,4),new THREE.MeshBasicMaterial({color:0xd2e5c3,transparent:true,opacity:.6}));streak.scale.set(1,1,8);this.wind.add(streak);}
   }
   mat(color:number|string,metal=.2,rough=.65){const key=`${color}-${metal}-${rough}`;if(!this.materials.has(key))this.materials.set(key,new THREE.MeshStandardMaterial({color,metalness:metal,roughness:rough}));return this.materials.get(key)!;}
@@ -63,6 +67,8 @@ export class Station {
     this.box(this.root,5.2,1.8,-4.79,1.5,2.6,.1,0xd19b58);this.box(this.root,5.2,1.8,-4.65,1.28,2.4,.08,0xedd09a);
     for(const x of[4.45,5.95])this.box(this.root,x,1.8,-4.4,.12,2.8,.2,C.brass);
     this.box(this.root,5.2,3.2,-4.4,1.7,.15,.24,C.teal);this.box(this.root,5.2,.43,-4.4,1.8,.16,.5,C.brass);
+    const windowLight=new THREE.PointLight(0xffb452,18,8,2);windowLight.position.set(5.2,2,-3.9);this.root.add(windowLight);
+    const beam=new THREE.Mesh(new THREE.PlaneGeometry(1.5,5.8),new THREE.MeshBasicMaterial({color:0xe5b362,transparent:true,opacity:.12,depthWrite:false}));beam.rotation.x=-Math.PI/2;beam.rotation.z=.3;beam.position.set(4.4,.05,-1.2);this.root.add(beam);
     this.windowLeaf.position.set(4.5,1.8,-4.3);this.box(this.windowLeaf,.7,0,0,1.4,2.45,.07,C.teal);this.box(this.windowLeaf,.7,0,.05,1.15,2.2,.035,0xc0aa71);
     for(let i=0;i<3;i++)this.box(this.windowLeaf,.7,-.8+i*.8,.1,1.2,.035,.035,C.brass);this.box(this.windowLeaf,.7,0,.11,.035,2.1,.03,C.brass);
     this.box(this.root,6.6,1.1,-2.7,1.5,.14,.7,C.wood);this.box(this.root,6,0.5,-2.7,.12,1,.5,C.brass);this.box(this.root,7.2,.5,-2.7,.12,1,.5,C.brass);
@@ -80,8 +86,14 @@ export class Station {
     // Crates, planter and an opaque luggage canopy hide the offscreen destination.
     for(let i=0;i<4;i++){const x=-7.1+(i%2)*.75,z=-2+Math.floor(i/2)*.75;this.box(this.root,x,.42,z,.65,.8,.65,0x775b3a);this.box(this.root,x,.42,z+.34,.06,.8,.04,C.brass);}
     this.cyl(this.root,-1.8,.35,2.7,.35,.7,0x846246,.28);for(let i=0;i<9;i++){const leaf=this.sphere(this.root,-1.8+Math.sin(i*2)*.25,.9+Math.cos(i)*.2,2.7+Math.cos(i*2)*.25,.22,0x2b6157);leaf.scale.set(.4,1.8,.7);leaf.rotation.z=i*.7;}
-    this.box(this.hiddenCanopy,4.7,2.15,1.35,3.8,.12,3.5,C.teal);this.text(this.hiddenCanopy,'LUGGAGE · PRIVATE',4.7,1.98,3.14,3.2,.35);
+    this.box(this.hiddenCanopy,5.1,1.35,1.7,5.2,.12,4.2,C.teal);this.text(this.hiddenCanopy,'LUGGAGE · PRIVATE',4.7,1.15,3.84,3.2,.3);
     this.box(this.curtain,0,0,0,2.5,2.5,.12,0x6e4b41);this.curtain.position.set(6.8,1.4,-.2);this.curtain.visible=false;
+  }
+  mergeStaticArchitecture(){
+    this.root.updateMatrixWorld(true);const groups=new Map<THREE.Material,{geometries:THREE.BufferGeometry[];meshes:THREE.Mesh[]}>();
+    const dynamic=new Set<THREE.Object3D>([this.clockHand,...this.gears]);
+    this.root.traverse(o=>{if(!(o instanceof THREE.Mesh)||Array.isArray(o.material))return;let p:THREE.Object3D|null=o;while(p){if(dynamic.has(p))return;p=p.parent;}const row=groups.get(o.material)??{geometries:[],meshes:[]};row.geometries.push(o.geometry.clone().applyMatrix4(o.matrixWorld));row.meshes.push(o);groups.set(o.material,row);});
+    for(const [material,row]of groups){if(row.meshes.length<2)continue;const geometry=mergeGeometries(row.geometries,false);if(!geometry)continue;const mesh=new THREE.Mesh(geometry,material);mesh.castShadow=true;mesh.receiveShadow=true;row.meshes.forEach(m=>m.removeFromParent());this.root.add(mesh);}
   }
   automaton(g:THREE.Group,color:number){
     this.cyl(g,0,.83,0,.2,.5,color,.25);this.box(g,0,.92,0,.43,.3,.29,color);this.sphere(g,0,1.28,0,.19,C.ivory);this.cyl(g,0,1.46,0,.23,.08,color);
@@ -96,10 +108,10 @@ export class Station {
     const b=this.bird;if(c.object==='bird'){const body=this.sphere(b,0,.16,0,.17,C.brass);body.scale.set(1,1,1.5);this.sphere(b,0,.35,.13,.11,C.ivory);const beak=this.cyl(b,0,.33,.28,.04,.14,C.brass,0);beak.rotation.x=Math.PI/2;for(const side of[-1,1]){const wing=this.box(b,side*.17,.2,-.02,.26,.05,.3,C.brass);wing.rotation.z=side*.4;}}else{this.cyl(b,0,.25,0,.16,.45,C.brass);this.sphere(b,0,.25,0,.13,0xffd88b);this.cyl(b,0,.5,0,.2,.06,C.teal);}
     for(const v of c.vessels){const g=new THREE.Group();g.position.set(v.x,0,v.z);this.box(g,0,.3,0,1.1,.5,.75,v.color);for(const x of[-.4,.4])this.box(g,x,.31,.4,.06,.48,.035,C.brass);const lid=new THREE.Group();lid.name='lid';lid.position.set(0,.53,-.36);this.box(lid,0,0,.37,1.1,.08,.75,v.color);g.add(lid);const label=this.text(g,v.label,0,.34,.391,.6,.2,'#eee1bd','#254452');label.name='label';this.scene.add(g);this.vesselGroups.set(v.id,g);this.targets.push({id:`vessel-${v.id}`,label:`${c.id>=4?'עגלה':'מזוודה'} · ${v.label}`,position:g.position.clone(),mesh:g});}
     const target=(id:string,label:string,pos:THREE.Vector3,mesh:THREE.Object3D)=>this.targets.push({id,label,position:pos,mesh});
-    target('porter',c.actor==='painter'?'הציירת':'הסבל',new THREE.Vector3(-5,0,-1),this.porter);target('visitor','העדה בחדר ההמתנה',new THREE.Vector3(.3,0,-2),this.visitor);
+    target('porter',c.actor==='painter'?'הציירת':'הסבל',new THREE.Vector3(-5,0,-1),this.porter);target('visitor',c.observer==='attendant'?'עובדת התחנה':'העדה בחדר ההמתנה',new THREE.Vector3(.3,0,-2),this.visitor);
     target('window','תריס החצר',new THREE.Vector3(5.2,0,-3.5),this.windowLeaf);target('door','דלת הצד',new THREE.Vector3(-7,0,-3.5),this.doorLeaf);
-    target('object',c.object==='bird'?'ציפור השעון':'פנס הפסטיבל',new THREE.Vector3(6.5,0,-2.7),this.bird);target('clock','שעון התחנה',new THREE.Vector3(7.8,0,-1.5),this.clockHand);
-    this.visitor.position.set(.3,0,-2);this.musician.position.set(c.id===5?-6.8:5.2,0,-3.4);this.trails.clear();
+    target('object',c.object==='bird'?'ציפור השעון':'פנס הפסטיבל',new THREE.Vector3(c.transfer?-6.2:6.5,0,-2.7),this.bird);target('clock','שעון התחנה',new THREE.Vector3(7.8,0,-1.5),this.clockHand);
+    this.visitor.position.set(.3,0,-2);this.musician.position.set(c.id===5?-6.8:5.2,0,-3.4);this.trails.clear();this.hiddenCanopy.position.x=c.transfer?-10:0;this.transferPedestal.visible=c.transfer;
     const trailMaterial=new THREE.MeshBasicMaterial({color:0xc4d3bc,transparent:true,opacity:.15,depthWrite:false});for(let i=0;i<6;i++){const ghost=new THREE.Mesh(new THREE.CylinderGeometry(.18,.22,.8,10),trailMaterial);ghost.position.set(-6.5+i*.7,.65,-.8);this.trails.add(ghost);}
   }
   pick(clientX:number,clientY:number){const rect=this.renderer.domElement.getBoundingClientRect();this.pointer.set((clientX-rect.left)/rect.width*2-1,-(clientY-rect.top)/rect.height*2+1);this.ray.setFromCamera(this.pointer,this.camera);const hits=this.ray.intersectObjects(this.targets.map(t=>t.mesh),true);if(hits.length){let obj:THREE.Object3D|null=hits[0].object;while(obj){const t=this.targets.find(t=>t.mesh===obj);if(t)return{target:t,point:t.position.clone()};obj=obj.parent;}}const point=new THREE.Vector3();return this.ray.ray.intersectPlane(this.floor,point)?{point,target:null}:null;}
@@ -114,17 +126,17 @@ export class Station {
     animate(this.player,movement.lengthSq()>0,this.elapsed*9);
     const progress=THREE.MathUtils.clamp((time-c.carrying[0])/(c.carrying[1]-c.carrying[0]),0,1);this.porter.position.set(-6.5+progress*4.3,0,-.8);animate(this.porter,world.carrying,time*8);this.porter.rotation.y=Math.PI/2;this.targets.find(t=>t.id==='porter')!.position.copy(this.porter.position);
     this.windowLeaf.rotation.y=world.opened&&c.opening==='window'?-1.2:0;this.doorLeaf.rotation.y=world.opened&&c.opening==='door'?-1.2:0;
-    const localLuggage=this.player.position.x>2.5;this.hiddenCanopy.visible=!localLuggage;this.trails.visible=!this.reduced&&this.player.position.x<-1;
-    this.bird.visible=world.object==='shelf'||world.object==='secured'||(world.gust&&time<c.gust+.7);this.bird.position.set(6.6,1.28,-2.7);this.bird.rotation.y=this.reduced?0:Math.sin(time*2)*.15;
+    this.hiddenCanopy.visible=true;this.trails.visible=!this.reduced&&this.player.position.x<-1;
+    this.bird.visible=world.object==='shelf'||world.object==='secured'||(world.gust&&time<c.gust+.7);this.bird.position.set(c.transfer?-6.2:6.6,1.28,-2.7);this.bird.rotation.y=this.reduced?0:Math.sin(time*2)*.15;
     if(world.gust&&time<c.gust+.7){const u=(time-c.gust)/.7;this.bird.position.x-=u*.8;this.bird.position.z+=u*1.5;this.bird.position.y+=Math.sin(u*Math.PI)*.35;}
-    this.carriedBoxes.visible=world.carrying&&c.actor==='porter';
-    this.wind.visible=world.gust&&time<c.gust+2&&!this.reduced;this.wind.children.forEach((o,i)=>{const u=(time*1.5+i/14)%1;o.position.set(5.3+(i%3)*.25,1.2+(i%4)*.2,-3.9+u*4);});
-    this.curtain.visible=c.transfer&&time>=c.gust+2;
+    this.carriedBoxes.visible=c.actor==='porter';this.carriedBoxes.position.y=world.carrying?0:-.65;this.readingBook.visible=world.reading;this.carriedLadder.visible=c.actor==='painter';
+    this.wind.visible=world.gust&&time<c.gust+2&&!this.reduced;this.wind.children.forEach((o,i)=>{const u=(time*1.5+i/14)%1;o.position.set((c.transfer?-7:5.3)+(i%3)*.25,1.2+(i%4)*.2,-3.9+u*4);});
+    this.curtain.visible=c.transfer&&time>=c.gust+2;this.curtain.position.x=c.transfer?-5.9:6.8;
     for(const v of c.vessels){const g=this.vesselGroups.get(v.id)!;g.position.x=v.x+(world.departed?(time-c.depart)*.45:0);g.getObjectByName('lid')!.rotation.x=time>=v.openAt&&(!v.closeAt||time<v.closeAt)?-1.35:0;this.targets.find(t=>t.id===`vessel-${v.id}`)!.position.copy(g.position);}
     this.clockHand.rotation.z=-time*Math.PI/30;this.gears.forEach((g,i)=>g.rotation.z=(i%2?-1:1)*time*.12);
     if(this.renderer.domElement.clientWidth<650){const focus=new THREE.Vector3(this.player.position.x*.7,.5,this.player.position.z*.4);this.camera.position.copy(focus).add(new THREE.Vector3(12,16,19));this.camera.lookAt(focus);}
     this.mixers.forEach(m=>m.setTime(time));if(render)this.renderer.render(this.scene,this.camera);
   }
-  resize(w:number,h:number){this.renderer.setSize(w,h,false);this.renderer.shadowMap.needsUpdate=true;this.camera.aspect=w/h;this.camera.updateProjectionMatrix();this.camera.position.set(17,17,23);if(w/h<1.15)this.camera.position.multiplyScalar(1.22);this.camera.lookAt(0,.5,-.6);}
+  resize(w:number,h:number){this.renderer.setSize(w,h,false);this.renderer.shadowMap.needsUpdate=true;this.camera.aspect=w/h;this.camera.updateProjectionMatrix();this.camera.position.set(13.8,12.8,18);if(w/h<1.15)this.camera.position.multiplyScalar(1.22);this.camera.lookAt(0,1,-.5);}
   screen(p:THREE.Vector3){const v=p.clone().add(new THREE.Vector3(0,1.6,0)).project(this.camera);const r=this.renderer.domElement.getBoundingClientRect();return{x:(v.x+1)/2*r.width,y:(-v.y+1)/2*r.height};}
 }

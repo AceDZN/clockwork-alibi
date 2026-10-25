@@ -1,0 +1,214 @@
+{
+  "mode": "won",
+  "chapter": 5,
+  "time": 17,
+  "paused": true,
+  "panel": "win",
+  "objective": "מקרה חדש. פנס, ציירת ודלת צדדית. חקרו בלי רמז לפתרון.",
+  "coordinateSystem": "x east/right; y up; z south/front; world floor y=0",
+  "player": {
+    "x": -6.43,
+    "z": -1.96
+  },
+  "selectedTarget": "object",
+  "targets": [
+    {
+      "id": "vessel-STAGE",
+      "label": "עגלה · STAGE",
+      "x": -4,
+      "z": 2.8,
+      "screen": {
+        "x": 446.0033626105836,
+        "y": 427.8423701472441
+      }
+    },
+    {
+      "id": "vessel-CANVAS",
+      "label": "עגלה · CANVAS",
+      "x": -6,
+      "z": 0.6,
+      "screen": {
+        "x": 457.9438649048409,
+        "y": 365.3511310453113
+      }
+    },
+    {
+      "id": "porter",
+      "label": "הציירת",
+      "x": -2.2,
+      "z": -0.8,
+      "screen": {
+        "x": 641.1949082150863,
+        "y": 388.1868906042351
+      }
+    },
+    {
+      "id": "visitor",
+      "label": "העדה בחדר ההמתנה",
+      "x": 0.3,
+      "z": -2,
+      "screen": {
+        "x": 777.5927732250391,
+        "y": 399.36721821377995
+      }
+    },
+    {
+      "id": "window",
+      "label": "תריס החצר",
+      "x": 5.2,
+      "z": -3.5,
+      "screen": {
+        "x": 1040.4539148767767,
+        "y": 438.52289269285944
+      }
+    },
+    {
+      "id": "door",
+      "label": "דלת הצד",
+      "x": -7,
+      "z": -3.5,
+      "screen": {
+        "x": 557.1087232283907,
+        "y": 299.18455465711935
+      }
+    },
+    {
+      "id": "object",
+      "label": "פנס הפסטיבל",
+      "x": -6.2,
+      "z": -2.7,
+      "screen": {
+        "x": 558.9672837501303,
+        "y": 316.717609553192
+      }
+    },
+    {
+      "id": "clock",
+      "label": "שעון התחנה",
+      "x": 7.8,
+      "z": -1.5,
+      "screen": {
+        "x": 1134.8064424286426,
+        "y": 524.1146172693101
+      }
+    }
+  ],
+  "facts": [
+    "porter-account",
+    "visitor-account"
+  ],
+  "knownAccounts": [
+    {
+      "id": "porter-account",
+      "text": "While I was moving the ladder, the visitor opened the side door. I moved the ladder from 00:05 to 00:17."
+    },
+    {
+      "id": "visitor-account",
+      "text": "The visitor opened the side door at 00:13. The lantern fell into the CANVAS cart before the curtain closed at 00:18."
+    }
+  ],
+  "hypothesis": {
+    "eventTime": 13,
+    "activity": "moving the ladder",
+    "readingStart": 30,
+    "readingEnd": 48,
+    "vessel": "CANVAS"
+  },
+  "validated": true,
+  "interventions": [
+    {
+      "kind": "latch-door",
+      "time": 11
+    }
+  ],
+  "world": {
+    "time": 17,
+    "carrying": false,
+    "reading": true,
+    "opened": false,
+    "gust": false,
+    "object": "shelf",
+    "vessel": null,
+    "departed": false,
+    "latched": true,
+    "saved": true
+  },
+  "recovered": true,
+  "hasKey": false,
+  "attempts": 1,
+  "retries": 0,
+  "hints": 0,
+  "unaided": true,
+  "physicalSaves": 5,
+  "languageWins": 5,
+  "notice": "הבריח ננעל. קדמו את הזמן ובדקו מה קורה לרוח.",
+  "loadedModels": [],
+  "modelAnimations": {},
+  "fpsAverage": 0,
+  "localOnlyEvents": [
+    {
+      "challenge": 5,
+      "action": "read:porter-account",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 5,
+      "action": "read:visitor-account",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 5,
+      "action": "mark:CANVAS",
+      "success": false,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 5,
+      "action": "test-reconstruction",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 5,
+      "action": "replay",
+      "success": false,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 5,
+      "action": "intervene:latch-door",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 5,
+      "action": "recover",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 5,
+      "action": "chapter-complete",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    }
+  ]
+}

@@ -36,3 +36,7 @@ The initial imagegen design target was generated and inspected before implementa
 Vite uses `base: './'`; `npm run build` produces `dist/`. For a future Vercel deployment choose framework Vite, build command `npm run build`, output directory `dist`, and no environment variables. Production deployment is intentionally left for the user.
 
 See `CURRICULUM.md`, `GAME_IDENTITY.md`, `ASSETS.md`, `PLAYTEST.md`, `VISUAL_REVIEW.md` and `progress.md` for verified scope, evidence and limitations. This is a learning-game prototype, not a validated assessment of English proficiency.
+
+For the optional reproducible browser chain, start the dev server, install Playwright’s matching browser with `npx playwright install chromium`, then run `node scripts/browser-check.mjs`. It interacts with normal controls and the deterministic time hook; it never injects a winning state. `GAME_URL`, `BROWSER_EVIDENCE_DIR`, and `PLAYWRIGHT_EXECUTABLE_PATH` may override the URL, capture folder, or installed browser executable. Browser captures default to untracked work/.
+
+First-decision exposure (attempts, hints and completions) also persists locally across restarting and replaying a case, so a repeated completion cannot be described as a first unaided decision.
