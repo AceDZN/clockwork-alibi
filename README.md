@@ -13,6 +13,8 @@ Play http://localhost:5202. Built preview: http://localhost:4202 after `npm run 
 
 ## Play
 
+The opening case starts paused. Follow the **next-step strip**: its button walks to the relevant witness or object. Read both English accounts, deliberately save the activity, choose the labelled container and mark the opening time. The clock checks your reconstruction. After a successful check, change the past, view the result and collect the rescued object. **איך משחקים?** reopens the short three-stage explanation. Wrong choices stay editable; the guide returns to the relevant field.
+
 Click a target/floor to walk, or use arrows/WASD. E performs the contextual interaction; Space pauses/resumes; F toggles fullscreen; Escape exits fullscreen/closes reading and pauses. Touch uses world targets,44px arrows and the nearby action button. Reading pauses time; dotted English words offer Hebrew meaning. Optional local English speech uses an installed system voice. Options include mute, reduced motion and restart.
 
 Record the ongoing activity in a witness account. Use the bottom timeline to choose a moment and mark it beside the window/door or station clock. Inspect a suitcase/cart to mark its identity. In case2, record the visitor's reading bounds from the timeline. The station clock tests the reconstruction with a short segment of **original history** around your chosen moment. Then start/change the replay: latch the appropriate closed opening at a viable time, or secure the object before the wind; advance past the gust and collect it. Both supported reconstruction and physical recovery are required. The notebook is a quote recap; optional detailed editing remains available for accessibility.
