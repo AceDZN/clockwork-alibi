@@ -1,0 +1,13 @@
+{
+  "site": "https://english-games.workbook.co.il",
+  "report": [
+    "Public home → game page → case4: catalog card, all three lesson mappings, real same-origin iframe models/ready and three witness questions passed.",
+    "Public390×844 player: actual touch navigation, readable LTR English, activity save and next-step transition passed without a rotate/loading blocker."
+  ],
+  "gameErrors": [],
+  "parentErrors": [
+    "Failed to load resource: the server responded with a status of 403 ()",
+    "Failed to load resource: the server responded with a status of 403 ()"
+  ],
+  "httpErrors": []
+}

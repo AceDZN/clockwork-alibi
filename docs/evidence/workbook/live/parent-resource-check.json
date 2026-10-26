@@ -1,0 +1,12 @@
+[
+  {
+    "page": "/rule-rascals",
+    "status": 403,
+    "resource": "https://clerk.workbook.co.il/v1/client"
+  },
+  {
+    "page": "/clockwork-alibi",
+    "status": 403,
+    "resource": "https://clerk.workbook.co.il/v1/client"
+  }
+]

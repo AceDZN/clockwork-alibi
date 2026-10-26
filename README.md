@@ -2,6 +2,8 @@
 
 A real3D browser time-loop mystery for Hebrew-speaking grade8 English learners. Explore a miniature railway station, combine partial English witness accounts, scrub intersecting past activities and physically change a replay. Five finite cases end with a changed lantern/side-door incident.
 
+[Play on Workbook English Games](https://english-games.workbook.co.il/clockwork-alibi) · five cases with direct lesson links. Release details and verification: [docs/WORKBOOK_RELEASE.md](docs/WORKBOOK_RELEASE.md).
+
 ## Run
 
 ```sh
@@ -9,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-Play http://localhost:5202. Built preview: http://localhost:4202 after `npm run build` and `npm run preview`. Both ports are strict. No backend, authentication, runtime AI, analytics or keys. Models and Hebrew fonts are local.
+Play http://localhost:5202. Built preview: http://localhost:4202 after `npm run build` and `npm run preview`. Both ports are strict. Standalone play has no backend, authentication, runtime AI, remote analytics or keys. Models and Hebrew fonts are bundled. The Workbook player uses the network's existing consent-aware analytics for its bridge events.
 
 ## Play
 
