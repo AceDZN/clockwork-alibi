@@ -119,7 +119,9 @@ export class Station {
       }
       return clean;
     });
-    parent.clear();parent.add(fit);
+    // A lesson may open the lantern case before the bird download finishes.
+    // Cache that prefab without replacing the current case's lantern.
+    if(key!=='bird'||this.case.object==='bird'){parent.clear();parent.add(fit);}
     if(key==='porter'){
       parent.add(this.carriedBoxes,this.carriedLadder);
       this.player.clear();const playerModel=cloneSkeleton(fit);this.player.add(playerModel);

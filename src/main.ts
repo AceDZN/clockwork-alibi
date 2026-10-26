@@ -7,6 +7,14 @@ import {checkReconstruction,newHypothesis,worldAt,interventionWorks,type Interve
 import {Station,type Target} from './scene';
 import {firstDecision,recordExposure,type ExposureLedger} from './exposure';
 import {emptyRecords,nextStep,type GuideStep} from './guidance';
+import {initHost,parseLevelParam,postToHost,type HostMessage} from './host';
+
+initHost('clockwork-alibi');
+let hostReady=false,levelStartedAt=performance.now(),levelCompleted=false;
+const hostQueue:HostMessage[]=[];
+function toHost(message:HostMessage){if(hostReady)postToHost(message);else hostQueue.push(message);}
+function hostLevelStart(){levelStartedAt=performance.now();levelCompleted=false;toHost({type:'level-start',level:chapter+1});}
+function markHostReady(){hostReady=true;postToHost({type:'ready'});for(const message of hostQueue.splice(0))postToHost(message);}
 
 declare global {interface Window {render_game_to_text:()=>string;advanceTime:(ms:number)=>void;}}
 const $=<T extends HTMLElement=HTMLElement>(s:string)=>document.querySelector<T>(s)!;
@@ -103,8 +111,8 @@ function finishTrial(){
   else{if(result.kind==='activity')recorded.activity=false;if(result.kind==='time')recorded.moment=false;if(result.kind==='identity')recorded.vessel=false;if(result.kind==='overlap'){recorded.readingStart=false;recorded.readingEnd=false;}retries++;unaided=false;sound('fail');const evidence=known.find(e=>e.id===result.fact)??known[0];showPanel(`<div class="eyebrow" dir="ltr">THE REPLAY CONTRADICTS A FACT</div><h2>הסיפור עדיין לא מתחבר</h2><p>${result.message}</p><p class="english" lang="en" dir="ltr">“${esc(evidence?.text??'')}”</p><p>כל עד ראה חלק. אפשר לחזור לרגע אחר ולבדוק שוב.</p><div class="panel-actions"><button id="retry-world" class="primary">לחזור לחקירה ↶</button><button id="edit-again">לעיין בעדויות</button></div>`,'contradiction');$('#edit-again').onclick=showNotebook;$('#retry-world').onclick=()=>{closePanel();time=hypothesis.eventTime;sync();};}
   sync();
 }
-function win(){expose('complete');mode='won';paused=true;sound('success');log('chapter-complete',true);showPanel(`<div class="eyebrow" dir="ltr">LOOP REWRITTEN · CASE ${c.id}/5</div><h2>${c.object==='bird'?'הציפור חזרה לפסטיבל':'האור חזר לתחנה'} ✦</h2><p>${c.feedback}</p><div class="result-line"><span>פעולה במרחב <b>✓</b></span><span>חיבור עדויות <b>✓</b></span></div><p>${unaided&&retries===0&&hints===0?'נפתר בלי רמז לפתרון או ניסיון שגוי.':'נפתר בעזרת בדיקה חוזרת. הידע נשאר ללולאה הבאה.'}</p><button id="next-case" class="primary">${chapter===4?'לסיים את המסע':'למקרה הבא'} ←</button>`,'win');$('#next-case').onclick=()=>{closePanel();if(chapter<4){chapter++;setup();notify(c.objective,8);}else{mode='finished';showPanel(`<div class="eyebrow" dir="ltr">THE STATION REMEMBERS</div><h2>חמישה מקרים. עולם אחד השתנה.</h2><p>חיברתם נקודות מבט באנגלית, בדקתם מה חפף ומה הושלם, ושיניתם את התוצאה בתוך התחנה.</p><p>האירועים נשמרים במכשיר הזה בלבד. הביצוע במשחק אינו מדידה של רמת אנגלית.</p><button id="play-again" class="primary">מסע חדש ↻</button>`,'finish');$('#play-again').onclick=()=>{chapter=0;closePanel();setup();};}};}
-function setup(){trial=null;c=CASES[chapter];mode='explore';time=10;paused=true;facts=[];known=[];hypothesis=newHypothesis(c);recorded=emptyRecords();validated=false;interventions=[];recovered=false;hasKey=false;attempts=0;retries=0;hints=0;unaided=firstDecision(exposure,c.id);selected=null;pending=null;loop=1;station.configure(c);station.reduced=reduced;sync();log('chapter-start');}
+function win(){if(levelCompleted)return;levelCompleted=true;toHost({type:'level-complete',level:c.id,durationMs:Math.max(0,Math.round(performance.now()-levelStartedAt))});expose('complete');mode='won';paused=true;sound('success');log('chapter-complete',true);showPanel(`<div class="eyebrow" dir="ltr">LOOP REWRITTEN · CASE ${c.id}/5</div><h2>${c.object==='bird'?'הציפור חזרה לפסטיבל':'האור חזר לתחנה'} ✦</h2><p>${c.feedback}</p><div class="result-line"><span>פעולה במרחב <b>✓</b></span><span>חיבור עדויות <b>✓</b></span></div><p>${unaided&&retries===0&&hints===0?'נפתר בלי רמז לפתרון או ניסיון שגוי.':'נפתר בעזרת בדיקה חוזרת. הידע נשאר ללולאה הבאה.'}</p><button id="next-case" class="primary">${chapter===4?'לסיים את המסע':'למקרה הבא'} ←</button>`,'win');$('#next-case').onclick=()=>{closePanel();if(chapter<4){chapter++;setup();notify(c.objective,8);}else{mode='finished';showPanel(`<div class="eyebrow" dir="ltr">THE STATION REMEMBERS</div><h2>חמישה מקרים. עולם אחד השתנה.</h2><p>חיברתם נקודות מבט באנגלית, בדקתם מה חפף ומה הושלם, ושיניתם את התוצאה בתוך התחנה.</p><p>האירועים נשמרים במכשיר הזה בלבד. הביצוע במשחק אינו מדידה של רמת אנגלית.</p><button id="play-again" class="primary">מסע חדש ↻</button>`,'finish');$('#play-again').onclick=()=>{chapter=0;closePanel();setup();};}};}
+function setup(){trial=null;c=CASES[chapter];mode='explore';time=10;paused=true;facts=[];known=[];hypothesis=newHypothesis(c);recorded=emptyRecords();validated=false;interventions=[];recovered=false;hasKey=false;attempts=0;retries=0;hints=0;unaided=firstDecision(exposure,c.id);selected=null;pending=null;loop=1;station.configure(c);station.reduced=reduced;sync();log('chapter-start');hostLevelStart();}
 function sync(){
   needsRender=true;
   document.querySelectorAll<HTMLElement>('[data-current-time]').forEach(el=>el.textContent=stamp(time));
@@ -177,7 +185,7 @@ function drawHotspots(){
   if(!near){near=document.createElement('button');near.id='interact-near';near.onclick=()=>{const target=station.targets.find(t=>t.id===near!.dataset.target);if(!target)return;if(mode==='replay'&&['window','door','object'].includes(target.id)){selected=target.id;act(target.id);}else go(target);};nearRoot.appendChild(near);}
   near.dataset.target=n.id;near.textContent=`E · ${interactionLabel(n)}`;
 }
-$('#start').onclick=()=>{if(mode!=='intro')return;$('#intro').hidden=true;$('#start').blur();$('#world').focus();mode='explore';paused=true;sound('bell');log('start');notify('הזמן עצור. התחילו בכפתור ״ללכת אל הסבל״ — הוא יוביל אתכם לעדות הראשונה.',8);sync();};
+$('#start').onclick=()=>{if(mode!=='intro')return;$('#intro').hidden=true;$('#start').blur();$('#world').focus();mode='explore';paused=true;sound('bell');log('start');hostLevelStart();notify('הזמן עצור. התחילו בכפתור ״ללכת אל הסבל״ — הוא יוביל אתכם לעדות הראשונה.',8);sync();};
 $('#play').onclick=()=>{if(mode==='intro'||panel)return;paused=!paused;log(paused?'pause':'resume');sync();};
 $('#timeline').oninput=()=>{if(mode==='intro')return;paused=true;time=+($('#timeline')as HTMLInputElement).value;interventions=interventions.filter(i=>i.time<=time);if(time<c.gust)recovered=false;sync();};
 $('#rewind').onclick=()=>{if(mode==='intro')return;closePanel();if(mode==='replay')beginReplay();else{time=0;paused=true;loop++;sync();}};
@@ -234,5 +242,16 @@ function frame(now:number){
 window.advanceTime=(ms:number)=>{const n=Math.max(1,Math.ceil(ms/16.6667));for(let i=0;i<n;i++)update(ms/n/1000,false);station.renderer.render(station.scene,station.camera);renderedFrames++;sync();needsRender=false;drawHotspots();};
 window.render_game_to_text=()=>JSON.stringify({mode,chapter:c.id,time:Math.round(time*100)/100,paused,panel,objective:c.objective,coordinateSystem:'x east/right; y up; z south/front; world floor y=0',player:{x:+station.player.position.x.toFixed(2),z:+station.player.position.z.toFixed(2)},selectedTarget:selected,guidance:guide,recordedClues:recorded,targets:station.targets.map(t=>({id:t.id,label:t.label,x:+t.position.x.toFixed(1),z:+t.position.z.toFixed(1),screen:station.screen(t.position)})),facts,knownAccounts:known.map(e=>({id:e.id,text:e.text})),hypothesis,validated,interventions,world:worldAt(c,time,mode==='testing'?[]:interventions),testing:trial?{end:trial.end,chosenMoment:hypothesis.eventTime}:null,recovered,hasKey,attempts,retries,hints,unaided,physicalSaves,languageWins,notice:noticeText,loadedModels:station.loadedModels,modelAnimations:station.modelClips,modelDetails:station.modelDetails,liveModels:station.modelState(),fpsAverage:fpsSamples.length?Math.round(fpsSamples.reduce((a,b)=>a+b,0)/fpsSamples.length):null,renderedFrames,visiblePastTrails:station.trails.visible?station.trails.children.filter(o=>o.visible).length:0,fpsScope:'active rendered frames over wall time, paused idle excluded',previousExposure:exposure[c.id]??null,roles:{primary:c.actor,observer:c.observer,opener:c.opener},localOnlyEvents:events.slice(-8)});
 unaided=firstDecision(exposure,c.id);station.configure(c);resize();sync();requestAnimationFrame(frame);
-// Local assets are loaded only if the art handoff provides acquired files; no network dependency at runtime.
-void fetch(import.meta.env.BASE_URL+'models/asset-status.json').then(r=>r.ok?r.json():null).then(manifest=>{if(manifest?.runtime?.porter)void station.loadAsset(manifest.runtime.porter,station.porter,1.8,'porter').then(()=>sync()).catch(e=>console.error('Porter asset failed',e));if(manifest?.runtime?.bird)void station.loadAsset(manifest.runtime.bird,station.bird,.6,'bird').then(()=>sync()).catch(e=>console.error('Bird asset failed',e));}).catch(()=>{});
+const requestedLevel=parseLevelParam(location.search,CASES.length);
+if(requestedLevel!==null){chapter=requestedLevel;$('#intro').hidden=true;setup();$('#world').focus();}
+// Tell the network player we are ready only after both local models mount.
+void fetch(import.meta.env.BASE_URL+'models/asset-status.json').then(async response=>{
+  if(!response.ok)throw new Error('Asset manifest unavailable');
+  const manifest=await response.json();
+  if(!manifest?.runtime?.porter||!manifest?.runtime?.bird)throw new Error('Asset manifest incomplete');
+  await Promise.all([
+    station.loadAsset(manifest.runtime.porter,station.porter,1.8,'porter'),
+    station.loadAsset(manifest.runtime.bird,station.bird,.6,'bird')
+  ]);
+  sync();markHostReady();
+}).catch(error=>{console.error('Station asset loading failed',error);postToHost({type:'error',message:'The station models did not load. Reload the game to try again.'});});

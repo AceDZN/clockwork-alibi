@@ -1,0 +1,12 @@
+{
+  "report": [
+    "Embedded ?level=1: correct paused case, mounted models, one ready followed by one level-start.",
+    "Embedded ?level=2: correct paused case, mounted models, one ready followed by one level-start.",
+    "Embedded ?level=3: correct paused case, mounted models, one ready followed by one level-start.",
+    "Embedded ?level=4: correct paused case, mounted models, one ready followed by one level-start.",
+    "Embedded ?level=5: correct paused case, mounted models, one ready followed by one level-start.",
+    "Actual embedded case1 English reconstruction and physical recovery emit exactly one completion with duration, then Next starts case2; no invented score/stars.",
+    "Standalone URL keeps the guided title opening."
+  ],
+  "errors": []
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "source": "workbook-game",
+    "version": 1,
+    "slug": "clockwork-alibi",
+    "type": "ready"
+  },
+  {
+    "source": "workbook-game",
+    "version": 1,
+    "slug": "clockwork-alibi",
+    "type": "level-start",
+    "level": 1
+  },
+  {
+    "source": "workbook-game",
+    "version": 1,
+    "slug": "clockwork-alibi",
+    "type": "level-complete",
+    "level": 1,
+    "durationMs": 23051
+  },
+  {
+    "source": "workbook-game",
+    "version": 1,
+    "slug": "clockwork-alibi",
+    "type": "level-start",
+    "level": 2
+  }
+]

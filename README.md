@@ -29,7 +29,7 @@ The required **original Tripo porter and bird are acquired and local**. The port
 
 Runtime models total3,341,956bytes: porter2,021,208 and bird1,320,748. Two model generations, auto-rig and custom-motion processing spent100crewcredits; no purchase/upgrade. ASSETS.md records ownership basis, exact prompts/job URLs, source/export hashes and the custom clip's approximate grip limitation. Earlier browser outages are historical and resolved.
 
-## Verify and deploy later
+## Verify and publish to Workbook
 
 ```sh
 npm test
@@ -40,4 +40,6 @@ Tests cover authored truth, English semantics, independent expected solutions, e
 
 For browser reproduction install the matching browser using `npx playwright install chromium`; then run scripts/browser-check.mjs and scripts/browser-controls.mjs. The integrated harness accepts REVIEWER_URL, REVIEWER_OUTPUT_DIR, REVIEWER_PLAYWRIGHT_MODULE, REVIEWER_BROWSER_PATH, REVIEWER_CHANNEL and REVIEWER_ANGLE. The controls harness also accepts GAME_URL and BROWSER_EVIDENCE_DIR. Work captures are untracked. Current model-integrated harness details are recorded in PLAYTEST.md.
 
-Vite uses relative base. Future Vercel settings: framework Vite; build `npm run build`; output `dist`; no environment variables. Production deployment was not performed.
+Vite uses relative base and runs inside the Workbook English Games player. `?level=1` through `?level=5` opens the requested case directly, paused, with its guide. The host receives `ready` after both local models mount, `level-start` for each case/attempt and `level-complete` only after the English reconstruction and physical rescue succeed. Messages use the Workbook bridge contract and an explicit allowed parent origin. Standalone play retains the title opening and collects no remote analytics by itself.
+
+The network release uses `pnpm games:release` in `AceDZN/acedzn-tools`, uploading `dist/` and the actual-gameplay poster in `workbook/poster.png` to an immutable R2 folder. The shared catalog supplies the English Games page, five case links and three Grade 8 lesson mappings. No separate Vercel project or runtime keys are required for this game. The catalog commit records the exact game commit used to build each release.
