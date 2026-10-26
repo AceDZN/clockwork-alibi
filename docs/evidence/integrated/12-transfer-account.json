@@ -1,0 +1,472 @@
+{
+  "mode": "explore",
+  "chapter": 5,
+  "time": 10,
+  "paused": true,
+  "panel": "dialogue",
+  "objective": "מקרה חדש. פנס, ציירת ודלת צדדית. חקרו בלי רמז לפתרון.",
+  "coordinateSystem": "x east/right; y up; z south/front; world floor y=0",
+  "player": {
+    "x": -1.1,
+    "z": -1.13
+  },
+  "selectedTarget": "visitor",
+  "targets": [
+    {
+      "id": "vessel-STAGE",
+      "label": "עגלה · STAGE",
+      "x": -4,
+      "z": 2.8,
+      "screen": {
+        "x": 483.30049540236064,
+        "y": 429.0116782189684
+      }
+    },
+    {
+      "id": "vessel-CANVAS",
+      "label": "עגלה · CANVAS",
+      "x": -6,
+      "z": 0.6,
+      "screen": {
+        "x": 496.169141802965,
+        "y": 357.6953324992087
+      }
+    },
+    {
+      "id": "porter",
+      "label": "הציירת",
+      "x": -4.7,
+      "z": -0.8,
+      "screen": {
+        "x": 600.9352037073553,
+        "y": 348.9672834955226
+      }
+    },
+    {
+      "id": "visitor",
+      "label": "עובדת התחנה",
+      "x": 0.3,
+      "z": -2,
+      "screen": {
+        "x": 863.808168320971,
+        "y": 391.22214661853315
+      }
+    },
+    {
+      "id": "window",
+      "label": "תריס החצר",
+      "x": 5.2,
+      "z": -3.5,
+      "screen": {
+        "x": 1167.8845300169814,
+        "y": 431.5119018868299
+      }
+    },
+    {
+      "id": "door",
+      "label": "דלת הצד",
+      "x": -7,
+      "z": -3.5,
+      "screen": {
+        "x": 607.0767628453084,
+        "y": 283.28008358290424
+      }
+    },
+    {
+      "id": "object",
+      "label": "פנס הפסטיבל",
+      "x": -6.2,
+      "z": -2.7,
+      "screen": {
+        "x": 609.8914066397545,
+        "y": 302.38727736969327
+      }
+    },
+    {
+      "id": "clock",
+      "label": "שעון התחנה",
+      "x": 7.8,
+      "z": -1.5,
+      "screen": {
+        "x": 1291.279600808628,
+        "y": 529.2841512099636
+      }
+    }
+  ],
+  "facts": [
+    "porter-account",
+    "visitor-account"
+  ],
+  "knownAccounts": [
+    {
+      "id": "porter-account",
+      "text": "While I was moving the ladder, the visitor opened the side door. I moved the ladder from 00:05 to 00:17."
+    },
+    {
+      "id": "visitor-account",
+      "text": "The visitor opened the side door at 00:13. The lantern fell into the CANVAS cart before the curtain closed at 00:18."
+    }
+  ],
+  "hypothesis": {
+    "eventTime": 30,
+    "activity": "moving the ladder",
+    "readingStart": 30,
+    "readingEnd": 48,
+    "vessel": ""
+  },
+  "validated": false,
+  "interventions": [],
+  "world": {
+    "time": 10,
+    "carrying": true,
+    "reading": true,
+    "opened": false,
+    "gust": false,
+    "object": "shelf",
+    "vessel": null,
+    "departed": false,
+    "latched": false,
+    "saved": false
+  },
+  "testing": null,
+  "recovered": false,
+  "hasKey": false,
+  "attempts": 0,
+  "retries": 0,
+  "hints": 0,
+  "unaided": true,
+  "physicalSaves": 4,
+  "languageWins": 4,
+  "notice": "פעולת הרקע נוספה. אפשר לסמן את רגע הפתיחה ליד החלון, הדלת או השעון.",
+  "loadedModels": [
+    "porter",
+    "bird"
+  ],
+  "modelAnimations": {
+    "porter": [
+      "walk",
+      "carry",
+      "idle"
+    ],
+    "bird": []
+  },
+  "modelDetails": {
+    "porter": {
+      "path": "models/porter.glb",
+      "skins": 1,
+      "clips": [
+        "walk",
+        "carry",
+        "idle"
+      ]
+    },
+    "bird": {
+      "path": "models/clockwork-bird.glb",
+      "skins": 0,
+      "clips": []
+    }
+  },
+  "liveModels": {
+    "porter": {
+      "meshes": 18,
+      "skins": 1,
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "q": [
+            -0.07798,
+            -0.69896,
+            0.10408,
+            0.70323
+          ]
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "q": [
+            -0.98183,
+            0.10398,
+            0.12266,
+            0.10071
+          ]
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "q": [
+            -0.00581,
+            -0.00709,
+            0.11615,
+            0.99319
+          ]
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "q": [
+            0.97376,
+            -0.12497,
+            0.14236,
+            0.12609
+          ]
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "q": [
+            0.0298,
+            -0.01379,
+            0.15366,
+            0.98758
+          ]
+        },
+        {
+          "name": "mixamorigSpine",
+          "q": [
+            -0.00367,
+            -0.00099,
+            0.08805,
+            0.99611
+          ]
+        },
+        {
+          "name": "mixamorigSpine1",
+          "q": [
+            -0.0163,
+            0.05574,
+            0.13593,
+            0.98901
+          ]
+        },
+        {
+          "name": "mixamorigSpine2",
+          "q": [
+            0.02909,
+            -0.04492,
+            -0.13966,
+            0.98875
+          ]
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "q": [
+            -0.44538,
+            -0.14584,
+            -0.08265,
+            0.87951
+          ]
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "q": [
+            0.00406,
+            0.00218,
+            -0.18309,
+            0.98309
+          ]
+        }
+      ],
+      "assets": [
+        "porter"
+      ]
+    },
+    "player": {
+      "meshes": 2,
+      "skins": 1,
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "q": [
+            -0.0185,
+            -0.72709,
+            -0.02418,
+            0.68587
+          ]
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "q": [
+            -0.97678,
+            -0.18224,
+            -0.10348,
+            0.0445
+          ]
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "q": [
+            -0.02385,
+            0.11592,
+            0.31538,
+            0.94156
+          ]
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "q": [
+            -0.99481,
+            -0.04178,
+            -0.05351,
+            0.07583
+          ]
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "q": [
+            0.00474,
+            -0.01508,
+            0.07545,
+            0.99702
+          ]
+        },
+        {
+          "name": "mixamorigSpine",
+          "q": [
+            0.0096,
+            0.00881,
+            -0.01242,
+            0.99984
+          ]
+        },
+        {
+          "name": "mixamorigSpine1",
+          "q": [
+            0.00728,
+            0.06759,
+            0.04662,
+            0.9966
+          ]
+        },
+        {
+          "name": "mixamorigSpine2",
+          "q": [
+            0.01125,
+            -0.00748,
+            -0.02961,
+            0.99947
+          ]
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "q": [
+            -0.51639,
+            -0.05027,
+            0.16793,
+            0.83822
+          ]
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "q": [
+            0.05814,
+            0.18269,
+            -0.23327,
+            0.95333
+          ]
+        }
+      ],
+      "assets": [
+        "porter"
+      ]
+    },
+    "object": {
+      "meshes": 3,
+      "skins": 0,
+      "bones": [],
+      "assets": []
+    },
+    "objectKind": "lantern",
+    "independentSkeletons": true,
+    "propsAttached": true,
+    "clips": [
+      {
+        "role": "player",
+        "name": "walk",
+        "time": 10,
+        "weight": 0,
+        "idleName": "idle",
+        "idleWeight": 1
+      },
+      {
+        "role": "porter",
+        "name": "carry",
+        "time": 5,
+        "weight": 1,
+        "idleName": "idle",
+        "idleWeight": 0
+      }
+    ]
+  },
+  "fpsAverage": null,
+  "renderedFrames": 349,
+  "visiblePastTrails": 3,
+  "fpsScope": "active rendered frames over wall time, paused idle excluded",
+  "previousExposure": null,
+  "roles": {
+    "primary": "painter",
+    "observer": "attendant",
+    "opener": "visitor"
+  },
+  "localOnlyEvents": [
+    {
+      "challenge": 4,
+      "action": "take-key",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 4,
+      "action": "intervene:latch-window",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 4,
+      "action": "recover",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 4,
+      "action": "chapter-complete",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 5,
+      "action": "chapter-start",
+      "success": false,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 5,
+      "action": "read:porter-account",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 5,
+      "action": "record-background",
+      "success": false,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    },
+    {
+      "challenge": 5,
+      "action": "read:visitor-account",
+      "success": true,
+      "hint": false,
+      "retries": 0,
+      "unaided": true
+    }
+  ]
+}

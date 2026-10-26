@@ -3,3 +3,5 @@
 #intro,#panel{animation:none}
 @media(max-width:800px){#dpad{width:140px;grid-template-columns:repeat(3,44px)}#dpad button{min-height:44px}.world-label{min-height:40px;min-width:40px}.time-actions button{font-size:11px;min-height:36px}.time-actions{gap:2px}}
 .record-tools{border-top:1px solid #607367;margin-top:14px;padding-top:4px}.record-tools select{font-size:16px}.record-tools button{font-size:12px}.record-tools p{margin:6px 0}.world-record{display:flex;align-items:center;gap:12px;margin:14px 0}.world-record>b{font:25px Georgia,serif;color:#e4c787}.world-record button{flex:1;font-size:12px}#panel[data-kind=clock],#panel[data-kind=interact]{top:auto;bottom:155px;width:310px;padding:22px}#panel[data-kind=clock] p,#panel[data-kind=interact] p{font-size:12px}.hypothesis-summary{border-block:1px solid #607367;padding:12px 0}details{margin-top:20px}summary{font-size:12px;cursor:pointer;padding:8px 0;color:#b5bdab}#detailed-edit>small{display:block}#go-clock{width:100%}@media(max-width:520px){#panel[data-kind=clock],#panel[data-kind=interact]{bottom:175px;width:92%}.record-tools .panel-actions{margin-top:8px}}
+
+#panel:not([hidden]) ~ #dpad{display:none}

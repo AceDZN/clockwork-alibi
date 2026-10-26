@@ -1,0 +1,483 @@
+{
+  "mode": "won",
+  "chapter": 2,
+  "time": 29,
+  "paused": true,
+  "panel": "win",
+  "objective": "נשיאה וקריאה: האם אחת הסתיימה לפני שהשנייה התחילה?",
+  "coordinateSystem": "x east/right; y up; z south/front; world floor y=0",
+  "player": {
+    "x": 6.31,
+    "z": -1.1
+  },
+  "selectedTarget": "object",
+  "targets": [
+    {
+      "id": "vessel-NOA",
+      "label": "מזוודה · NOA",
+      "x": 5.7,
+      "z": 2.4,
+      "screen": {
+        "x": 1034.5688659605116,
+        "y": 608.2477245211154
+      }
+    },
+    {
+      "id": "vessel-AVI",
+      "label": "מזוודה · AVI",
+      "x": 4,
+      "z": 0.8,
+      "screen": {
+        "x": 976.5320665731153,
+        "y": 519.1773257333632
+      }
+    },
+    {
+      "id": "porter",
+      "label": "הסבל",
+      "x": -2.2,
+      "z": -0.8,
+      "screen": {
+        "x": 707.1616909761813,
+        "y": 380.67641944921513
+      }
+    },
+    {
+      "id": "visitor",
+      "label": "העדה בחדר ההמתנה",
+      "x": 0.3,
+      "z": -2,
+      "screen": {
+        "x": 863.808168320971,
+        "y": 391.22214661853315
+      }
+    },
+    {
+      "id": "window",
+      "label": "תריס החצר",
+      "x": 5.2,
+      "z": -3.5,
+      "screen": {
+        "x": 1167.8845300169814,
+        "y": 431.5119018868299
+      }
+    },
+    {
+      "id": "door",
+      "label": "דלת הצד",
+      "x": -7,
+      "z": -3.5,
+      "screen": {
+        "x": 607.0767628453084,
+        "y": 283.28008358290424
+      }
+    },
+    {
+      "id": "object",
+      "label": "ציפור השעון",
+      "x": 6.5,
+      "z": -2.7,
+      "screen": {
+        "x": 1229.8338731344095,
+        "y": 472.0052369930792
+      }
+    },
+    {
+      "id": "clock",
+      "label": "שעון התחנה",
+      "x": 7.8,
+      "z": -1.5,
+      "screen": {
+        "x": 1291.279600808628,
+        "y": 529.2841512099636
+      }
+    }
+  ],
+  "facts": [
+    "porter-account",
+    "visitor-account"
+  ],
+  "knownAccounts": [
+    {
+      "id": "porter-account",
+      "text": "I was carrying boxes from 00:08 to 00:28 while the visitor was reading. The bell rang before I put the boxes down."
+    },
+    {
+      "id": "visitor-account",
+      "text": "I was reading from 00:14 to 00:34. The bell rang at 00:24. The musician opened the window two seconds later. The bird fell into Avi’s suitcase."
+    }
+  ],
+  "hypothesis": {
+    "eventTime": 26,
+    "activity": "carrying boxes",
+    "readingStart": 14,
+    "readingEnd": 34,
+    "vessel": "AVI"
+  },
+  "validated": true,
+  "interventions": [
+    {
+      "kind": "secure",
+      "time": 10
+    }
+  ],
+  "world": {
+    "time": 29,
+    "carrying": false,
+    "reading": true,
+    "opened": true,
+    "gust": false,
+    "object": "secured",
+    "vessel": null,
+    "departed": false,
+    "latched": false,
+    "saved": true
+  },
+  "testing": null,
+  "recovered": true,
+  "hasKey": false,
+  "attempts": 2,
+  "retries": 1,
+  "hints": 0,
+  "unaided": false,
+  "physicalSaves": 2,
+  "languageWins": 2,
+  "notice": "החפץ קובע למדף. קדמו את הזמן ובדקו את השינוי.",
+  "loadedModels": [
+    "porter",
+    "bird"
+  ],
+  "modelAnimations": {
+    "porter": [
+      "walk",
+      "carry",
+      "idle"
+    ],
+    "bird": []
+  },
+  "modelDetails": {
+    "porter": {
+      "path": "models/porter.glb",
+      "skins": 1,
+      "clips": [
+        "walk",
+        "carry",
+        "idle"
+      ]
+    },
+    "bird": {
+      "path": "models/clockwork-bird.glb",
+      "skins": 0,
+      "clips": []
+    }
+  },
+  "liveModels": {
+    "porter": {
+      "meshes": 18,
+      "skins": 1,
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "q": [
+            0.00287,
+            -0.695,
+            -0.01329,
+            0.71888
+          ]
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "q": [
+            -0.99611,
+            -0.07323,
+            0.04292,
+            0.02375
+          ]
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "q": [
+            0.00737,
+            0.00505,
+            0.11,
+            0.99389
+          ]
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "q": [
+            0.99739,
+            0.03759,
+            0.03698,
+            0.04938
+          ]
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "q": [
+            0.00438,
+            -0.01454,
+            0.07145,
+            0.99733
+          ]
+        },
+        {
+          "name": "mixamorigSpine",
+          "q": [
+            -0.00061,
+            0.00586,
+            -0.00875,
+            0.99994
+          ]
+        },
+        {
+          "name": "mixamorigSpine1",
+          "q": [
+            -0.00454,
+            0.06426,
+            0.04954,
+            0.99669
+          ]
+        },
+        {
+          "name": "mixamorigSpine2",
+          "q": [
+            0.00001,
+            -0.01273,
+            -0.02719,
+            0.99955
+          ]
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "q": [
+            -0.51321,
+            -0.07128,
+            0.10453,
+            0.84889
+          ]
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "q": [
+            0.05206,
+            0.16795,
+            -0.2445,
+            0.95357
+          ]
+        }
+      ],
+      "assets": [
+        "porter"
+      ]
+    },
+    "player": {
+      "meshes": 2,
+      "skins": 1,
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "q": [
+            0.00287,
+            -0.695,
+            -0.01329,
+            0.71888
+          ]
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "q": [
+            -0.99611,
+            -0.07323,
+            0.04292,
+            0.02375
+          ]
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "q": [
+            0.00737,
+            0.00505,
+            0.11,
+            0.99389
+          ]
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "q": [
+            0.99739,
+            0.03759,
+            0.03698,
+            0.04938
+          ]
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "q": [
+            0.00438,
+            -0.01454,
+            0.07145,
+            0.99733
+          ]
+        },
+        {
+          "name": "mixamorigSpine",
+          "q": [
+            -0.00061,
+            0.00586,
+            -0.00875,
+            0.99994
+          ]
+        },
+        {
+          "name": "mixamorigSpine1",
+          "q": [
+            -0.00454,
+            0.06426,
+            0.04954,
+            0.99669
+          ]
+        },
+        {
+          "name": "mixamorigSpine2",
+          "q": [
+            0.00001,
+            -0.01273,
+            -0.02719,
+            0.99955
+          ]
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "q": [
+            -0.51321,
+            -0.07128,
+            0.10453,
+            0.84889
+          ]
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "q": [
+            0.05206,
+            0.16795,
+            -0.2445,
+            0.95357
+          ]
+        }
+      ],
+      "assets": [
+        "porter"
+      ]
+    },
+    "object": {
+      "meshes": 1,
+      "skins": 0,
+      "bones": [],
+      "assets": [
+        "bird"
+      ]
+    },
+    "objectKind": "bird",
+    "independentSkeletons": true,
+    "propsAttached": true,
+    "clips": [
+      {
+        "role": "player",
+        "name": "walk",
+        "time": 29,
+        "weight": 0,
+        "idleName": "idle",
+        "idleWeight": 1
+      },
+      {
+        "role": "porter",
+        "name": "carry",
+        "time": 29,
+        "weight": 0,
+        "idleName": "idle",
+        "idleWeight": 1
+      }
+    ]
+  },
+  "fpsAverage": null,
+  "renderedFrames": 203,
+  "visiblePastTrails": 0,
+  "fpsScope": "active rendered frames over wall time, paused idle excluded",
+  "previousExposure": {
+    "attempted": true,
+    "hinted": false,
+    "completed": true
+  },
+  "roles": {
+    "primary": "porter",
+    "observer": "visitor",
+    "opener": "musician"
+  },
+  "localOnlyEvents": [
+    {
+      "challenge": 2,
+      "action": "record:readingEnd",
+      "success": false,
+      "hint": false,
+      "retries": 1,
+      "unaided": false
+    },
+    {
+      "challenge": 2,
+      "action": "test-reconstruction",
+      "success": true,
+      "hint": false,
+      "retries": 1,
+      "unaided": false
+    },
+    {
+      "challenge": 2,
+      "action": "pause",
+      "success": false,
+      "hint": false,
+      "retries": 1,
+      "unaided": false
+    },
+    {
+      "challenge": 2,
+      "action": "resume",
+      "success": false,
+      "hint": false,
+      "retries": 1,
+      "unaided": false
+    },
+    {
+      "challenge": 2,
+      "action": "replay",
+      "success": false,
+      "hint": false,
+      "retries": 1,
+      "unaided": false
+    },
+    {
+      "challenge": 2,
+      "action": "intervene:secure",
+      "success": true,
+      "hint": false,
+      "retries": 1,
+      "unaided": false
+    },
+    {
+      "challenge": 2,
+      "action": "recover",
+      "success": true,
+      "hint": false,
+      "retries": 1,
+      "unaided": false
+    },
+    {
+      "challenge": 2,
+      "action": "chapter-complete",
+      "success": true,
+      "hint": false,
+      "retries": 1,
+      "unaided": false
+    }
+  ]
+}

@@ -26,3 +26,7 @@ The lighter binding failed as well, so the documented screenshot surface could n
 ## Native Chrome recovery — 26 October
 
 Following renewed commissioning and the new recovery handoff, `cua.getApp('com.google.Chrome')` returned native AX state in 1.023 seconds. The crew acquired `/Users/acedzn/dev/AceDZN-exp/.english-tripo-ui-lock` atomically before native Chrome work and released it while generation processing ran. Opened a new own native tab, inspected owned models, then submitted porter and bird originals through normal UI. Displayed costs were 30 each, and balance changed 6,815 → 6,785 → 6,755. Two model tasks are processing; no download or rig is complete at this milestone. `docs/asset-generation-submitted.png` preserves visible UI evidence. This resolves the old extension-only availability boundary for generation submission, while actual acquisition remains unfinished.
+
+## Resolved acquisition milestone
+
+Required bird and Mixamo-rigged porter GLBs were acquired through normal UI downloads. Porter final export contains walk, custom carrying walk and idle. Total crew-attributed spend was 100 displayed credits; two new model generations were used. Tab-scoped extension access recovered after native submission. Completed own Tripo tabs were closed and the native UI lock released. The earlier timeout history remains useful evidence, but is no longer an open missing-asset blocker. See `ASSETS.md` and `docs/asset-gltf-metadata.json` for final hashes and provenance.

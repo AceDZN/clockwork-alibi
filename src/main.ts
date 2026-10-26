@@ -93,7 +93,7 @@ function testReconstruction(){
   if(attempts>0)unaided=false;attempts++;expose('attempt');log('test-reconstruction',result.ok);closePanel();
   trial={end:Math.min(60,hypothesis.eventTime+4),result,returnMode:mode==='replay'?'replay':'explore'};
   mode='testing';time=Math.max(0,hypothesis.eventTime-3);paused=false;
-  notify(`בודקים את הרגע שסימנתם: ${stamp(hypothesis.eventTime)}. צפו במרחב ובפעולות שחופפות לו.`,8);sync();
+  notify(`הקלטת הלולאה המקורית · הרגע שסימנתם: ${stamp(hypothesis.eventTime)}. צפו במרחב ובפעולות שחופפות לו.`,8);sync();
 }
 function finishTrial(){
   if(!trial)return;const {result,returnMode}=trial;trial=null;mode=returnMode;paused=true;
@@ -109,16 +109,44 @@ function sync(){
   $('#chapter').textContent=`CASE ${c.id} / 5 · ${c.englishTitle}`;$('#case-title').textContent=c.title;$('#objective').textContent=c.objective;
   $('#time').innerHTML=`${stamp(time)}<small>LOOP ${loop.toString().padStart(2,'0')}</small>`;($('#timeline')as HTMLInputElement).value=String(Math.floor(time));$('#play').textContent=paused?'▶':'Ⅱ';$('#play').setAttribute('aria-label',paused?'להפעיל זמן':'לעצור זמן');
   $('#fact-count').textContent=`${(facts.some(f=>f.startsWith('porter-'))?1:0)+(facts.includes('visitor-account')?1:0)}/2`;
-  $('#mode-label').textContent=mode==='replay'?(validated?'שחזור עקבי · משנים את הלולאה':'שינוי פיזי · השחזור עדיין חסר'):mode==='testing'?'בדיקת הרגע שסימנתם':mode==='won'?'הלולאה השתנתה':'חקירת העבר';
+  $('#mode-label').textContent=mode==='replay'?(validated?'שחזור עקבי · משנים את הלולאה':'שינוי פיזי · השחזור עדיין חסר'):mode==='testing'?'הקלטת הלולאה המקורית':mode==='won'?'הלולאה השתנתה':'חקירת העבר';
   const p=$('#porter-track');p.style.left=`${c.carrying[0]/60*100}%`;p.style.width=`${(c.carrying[1]-c.carrying[0])/60*100}%`;p.style.opacity=facts.some(f=>f.startsWith('porter-'))?'1':'0';
   const v=$('#visitor-track');v.style.left=`${c.reading[0]/60*100}%`;v.style.width=`${(c.reading[1]-c.reading[0])/60*100}%`;v.style.opacity=c.id===2&&facts.includes('visitor-account')?'1':'0';
   const completed=mode==='won'||mode==='finished'||mode==='testing';$('#skip-test').hidden=mode!=='testing';for(const id of ['play','timeline','rewind','notebook','replay','settings'])$('#'+id).toggleAttribute('disabled',completed&&(id!=='play'||mode!=='testing'));$('#hint').toggleAttribute('disabled',completed||c.transfer);$('#hint').title=c.transfer?'מקרה העברה ללא רמז לפתרון':'רמז לפתרון';
 }
-function go(t:Target){if(panel||mode==='intro'||mode==='won'||mode==='finished'||mode==='testing')return;selected=t.id;if(station.player.position.distanceTo(t.position)<1.65){targetPanel(t);return;}pending=t.id;station.moveTo(t.position.clone().add(new THREE.Vector3(0,0,.8)));}
-function nearest(){return station.targets.filter(t=>!(t.id==='object'&&!station.bird.visible)).sort((a,b)=>station.player.position.distanceTo(a.position)-station.player.position.distanceTo(b.position))[0];}
-function drawHotspots(){const el=$('#hotspots');if(mode==='intro'||panel||mode==='won'||mode==='finished'||mode==='testing'){el.innerHTML='';$('#nearest').innerHTML='';return;}
-  el.innerHTML=station.targets.filter(t=>(t.id==='porter'||t.id==='visitor'||t.id==='window'||t.id==='door'||t.id==='clock'||t.id.startsWith('vessel-')||t.id==='object'&&station.bird.visible)).map(t=>{const p=station.screen(t.position);if(p.x<10||p.x>innerWidth-10||p.y<70||p.y>innerHeight-140)return'';const close=station.player.position.distanceTo(t.position)<1.7;return`<button class="world-label ${close?'near':''}" data-target="${t.id}" style="left:${p.x}px;top:${p.y}px" aria-label="בדיקת ${esc(t.label)}"><span>◇</span>${close||t.id==='porter'||t.id==='visitor'?t.label:''}</button>`;}).join('');
-  el.querySelectorAll<HTMLButtonElement>('[data-target]').forEach(b=>b.onclick=()=>go(station.targets.find(t=>t.id===b.dataset.target)!));const n=nearest();$('#nearest').innerHTML=n&&station.player.position.distanceTo(n.position)<1.8?`<button id="interact-near">E · ${esc(n.label)}</button>`:'';if($('#interact-near'))$('#interact-near').onclick=()=>go(n);
+function go(t:Target){if(panel||mode==='intro'||mode==='won'||mode==='finished'||mode==='testing')return;selected=t.id;if(station.player.position.distanceTo(t.position)<(t.id.startsWith('vessel-')?2.35:1.65)){targetPanel(t);return;}pending=t.id;station.moveTo(station.approach(t));}
+function nearest(){
+  const available=station.targets.filter(t=>!(t.id==='object'&&!station.bird.visible));
+  const focused=available.find(t=>t.id===selected);
+  if(focused&&station.player.position.distanceTo(focused.position)<(focused.id.startsWith('vessel-')?2.35:1.8))return focused;
+  return available.sort((a,b)=>station.player.position.distanceTo(a.position)-station.player.position.distanceTo(b.position))[0];
+}
+function interactionLabel(t:Target){
+  if(mode!=='replay')return t.label;
+  if(t.id==='window'||t.id==='door')return 'לנעול את הבריח';
+  if(t.id==='object'){const w=worldAt(c,time,interventions);return w.saved&&time>=c.gust?'לאסוף ולהחזיר':'לקבע למדף';}
+  return t.label;
+}
+function drawHotspots(){
+  const el=$('#hotspots'),nearRoot=$('#nearest');
+  if(mode==='intro'||panel||mode==='won'||mode==='finished'||mode==='testing'){el.replaceChildren();nearRoot.replaceChildren();return;}
+  const visible=new Set<string>();
+  for(const t of station.targets){
+    if(t.id==='object'&&!station.bird.visible)continue;
+    const p=station.screen(t.position);if(p.x<10||p.x>innerWidth-10||p.y<70||p.y>innerHeight-140)continue;
+    visible.add(t.id);let button=el.querySelector<HTMLButtonElement>(`[data-target="${t.id}"]`);
+    if(!button){button=document.createElement('button');button.className='world-label';button.dataset.target=t.id;button.onclick=()=>{const target=station.targets.find(v=>v.id===t.id);if(target)go(target);};el.appendChild(button);}
+    const close=station.player.position.distanceTo(t.position)<(t.id.startsWith('vessel-')?2.35:1.7);
+    button.classList.toggle('near',close);button.style.left=`${p.x}px`;button.style.top=`${p.y}px`;button.setAttribute('aria-label',`בדיקת ${t.label}`);
+    const label=close||t.id==='porter'||t.id==='visitor'?t.label:'';
+    if(button.dataset.label!==label){button.dataset.label=label;button.innerHTML=`<span>◇</span>${esc(label)}`;}
+  }
+  el.querySelectorAll<HTMLButtonElement>('[data-target]').forEach(b=>{if(!visible.has(b.dataset.target!))b.remove();});
+  const n=nearest();
+  if(!n||station.player.position.distanceTo(n.position)>=(n.id.startsWith('vessel-')?2.35:1.8)){nearRoot.replaceChildren();return;}
+  let near=nearRoot.querySelector<HTMLButtonElement>('button');
+  if(!near){near=document.createElement('button');near.id='interact-near';near.onclick=()=>{const target=station.targets.find(t=>t.id===near!.dataset.target);if(!target)return;if(mode==='replay'&&['window','door','object'].includes(target.id)){selected=target.id;act(target.id);}else go(target);};nearRoot.appendChild(near);}
+  near.dataset.target=n.id;near.textContent=`E · ${interactionLabel(n)}`;
 }
 $('#start').onclick=()=>{if(mode!=='intro')return;$('#intro').hidden=true;$('#start').blur();$('#world').focus();mode='explore';paused=false;sound('bell');log('start');notify('גשו לסבל. לחצו על דמות כדי ללכת אליה ולשמוע מה ראתה.',8);sync();};
 $('#play').onclick=()=>{if(mode==='intro'||panel)return;paused=!paused;log(paused?'pause':'resume');sync();};
@@ -129,7 +157,7 @@ $('#skip-test').onclick=()=>{if(trial){time=trial.end;finishTrial();}};
 $('#hint').onclick=()=>{if(mode==='intro'||c.transfer)return;hints++;unaided=false;expose('hint');paused=true;notify(c.hint,12);log('solution-hint');};
 $('#settings').onclick=()=>showPanel(`<div class="eyebrow" dir="ltr">PAUSE · OPTIONS</div><h2>רגע לנשום</h2><button id="toggle-mute">${muted?'להפעיל':'להשתיק'} צלילים</button><button id="toggle-motion">${reduced?'להפעיל תנועה מלאה':'להפחית תנועה'}</button><button id="restart-case">להתחיל את המקרה מחדש</button><p>חצים / WASD לתנועה · E לבדיקה<br>רווח להפעלה ועצירה · R למחברת · F למסך מלא<br>בטלפון: לחצו על יעד או השתמשו בחצים.</p>`,'settings');
 $('#panel').addEventListener('click',e=>{const id=(e.target as HTMLElement).id;if(id==='toggle-mute'){muted=!muted;(e.target as HTMLElement).textContent=muted?'להפעיל צלילים':'להשתיק צלילים';}if(id==='toggle-motion'){reduced=!reduced;station.reduced=reduced;(e.target as HTMLElement).textContent=reduced?'להפעיל תנועה מלאה':'להפחית תנועה';}if(id==='restart-case'){closePanel();setup();}});
-$('#world').addEventListener('pointerdown',e=>{if(panel||mode==='intro')return;const pick=station.pick(e.clientX,e.clientY);if(pick?.target)go(pick.target);else if(pick){pending=null;station.moveTo(pick.point);}});
+$('#world').addEventListener('pointerdown',e=>{if(panel||mode==='intro')return;const pick=station.pick(e.clientX,e.clientY);if(pick?.target)go(pick.target);else if(pick){pending=null;selected=null;station.moveTo(pick.point);}});
 window.addEventListener('keydown',e=>{
   const target=e.target as HTMLElement;
   const completed=mode==='won'||mode==='finished';
@@ -150,8 +178,8 @@ window.addEventListener('keydown',e=>{
   if(e.code==='KeyR'){panel?closePanel():showNotebook();return;}
   if(panel)return;
   if(e.code==='Space'){paused=!paused;sync();}
-  else if(e.code==='KeyE'){const n=nearest();if(n&&station.player.position.distanceTo(n.position)<1.8){if(mode==='replay'&&['window','door','object'].includes(n.id)){selected=n.id;act(n.id);}else go(n);}}
-  else keys.add(e.code);
+  else if(e.code==='KeyE'){const n=nearest();if(n&&station.player.position.distanceTo(n.position)<(n.id.startsWith('vessel-')?2.35:1.8)){if(mode==='replay'&&['window','door','object'].includes(n.id)){selected=n.id;act(n.id);}else go(n);}}
+  else{if(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))selected=null;keys.add(e.code);}
 });
 window.addEventListener('keyup',e=>keys.delete(e.code));window.addEventListener('blur',()=>{paused=true;keys.clear();sync();});document.addEventListener('visibilitychange',()=>{if(document.hidden){paused=true;keys.clear();sync();}});
 document.querySelectorAll<HTMLButtonElement>('[data-key]').forEach(b=>{b.onpointerdown=e=>{e.preventDefault();keys.add(b.dataset.key!);b.setPointerCapture(e.pointerId);};b.onpointerup=b.onpointercancel=()=>keys.delete(b.dataset.key!);});
@@ -160,7 +188,7 @@ let lastHotspot=0;
 function update(dt:number,render=true){
   if(!paused&&!panel&&mode!=='intro'&&mode!=='won'&&mode!=='finished'){const before=time;time=Math.min(60,time+dt*(mode==='testing'?2:1));if(Math.floor(time)!==Math.floor(before)){sync();if(Math.floor(time)===c.bell)sound('bell');}if(trial&&time>=trial.end){time=trial.end;finishTrial();}else if(time>=60){paused=true;notify(worldAt(c,time,interventions).saved?'השינוי עבד. חזרו למדף לאסוף את החפץ.':'העגלה יצאה. אפשר לגרור את הזמן לאחור ולנסות לולאה חדשה.');sync();}}
   station.update(dt,time,mode==='testing'?[]:interventions,keys,!panel&&mode!=='intro'&&mode!=='won'&&mode!=='finished'&&mode!=='testing',render);if(recovered&&mode!=='testing')station.bird.visible=false;
-  if(pending&&!panel){const t=station.targets.find(t=>t.id===pending);if(t&&station.player.position.distanceTo(t.position)<1.7){pending=null;station.playerDestination=null;targetPanel(t);}}
+  if(pending&&!panel){const t=station.targets.find(t=>t.id===pending);if(t&&station.player.position.distanceTo(t.position)<(t.id.startsWith('vessel-')?2.35:1.7)){pending=null;station.playerDestination=null;targetPanel(t);}}
 }
 function frame(now:number){
   const rawDt=Math.max(0,(now-last)/1000);last=now;

@@ -1,0 +1,491 @@
+{
+  "report": [
+    "Actual carry/walk/idle weights, changing carry pose, deterministic scrub and independent player rig passed.",
+    "Wrong recorded31 remains31, consumes an attempt; pause/Space and Skip work; restart preserves assisted exposure and models.",
+    "Case1 world route passed without notebook editing; touch latch/recovery work and original trial restores stored intervention.",
+    "Case2 world-recorded reading28–34 fails; corrected14–34 and alternate securing recover successfully.",
+    "Case3 rejects wrong AVI identity despite same colour, then NOA/latch/recovery wins.",
+    "Case4 distinct questions, found-key event, physical key/latch and recovery passed; models persist across bird chapters.",
+    "Transfer uses distinct attendant, changed CANVAS/door13/ladder, navigable object approach and lantern only; first attempt/no solution hint passed.",
+    "Finite finish and PlayAgain restore mounted bird, preserve rigs/props, and keep repeated completion assisted."
+  ],
+  "errors": [],
+  "httpErrors": [],
+  "navigation": [
+    {
+      "chapter": 1,
+      "target": "porter",
+      "simulatedMs": 1000,
+      "wallMs": 142,
+      "player": {
+        "x": -5.81,
+        "z": 0.69
+      }
+    },
+    {
+      "chapter": 1,
+      "target": "visitor",
+      "simulatedMs": 1500,
+      "wallMs": 275,
+      "player": {
+        "x": -0.9,
+        "z": -0.83
+      }
+    },
+    {
+      "chapter": 1,
+      "target": "vessel-NOA",
+      "simulatedMs": 1000,
+      "wallMs": 249,
+      "player": {
+        "x": 1.69,
+        "z": 0.54
+      }
+    },
+    {
+      "chapter": 1,
+      "target": "window",
+      "simulatedMs": 1000,
+      "wallMs": 89,
+      "player": {
+        "x": 4.34,
+        "z": -2.1
+      }
+    },
+    {
+      "chapter": 1,
+      "target": "clock",
+      "simulatedMs": 500,
+      "wallMs": 127,
+      "player": {
+        "x": 6.13,
+        "z": -1.38
+      }
+    },
+    {
+      "chapter": 1,
+      "target": "porter",
+      "simulatedMs": 1000,
+      "wallMs": 251,
+      "player": {
+        "x": -5.81,
+        "z": 0.69
+      }
+    },
+    {
+      "chapter": 1,
+      "target": "visitor",
+      "simulatedMs": 1500,
+      "wallMs": 229,
+      "player": {
+        "x": -0.9,
+        "z": -0.83
+      }
+    },
+    {
+      "chapter": 1,
+      "target": "vessel-NOA",
+      "simulatedMs": 1000,
+      "wallMs": 181,
+      "player": {
+        "x": 1.69,
+        "z": 0.54
+      }
+    },
+    {
+      "chapter": 1,
+      "target": "window",
+      "simulatedMs": 1000,
+      "wallMs": 235,
+      "player": {
+        "x": 4.34,
+        "z": -2.1
+      }
+    },
+    {
+      "chapter": 1,
+      "target": "window",
+      "simulatedMs": 0,
+      "wallMs": 29,
+      "player": {
+        "x": 4.34,
+        "z": -2.1
+      }
+    },
+    {
+      "chapter": 1,
+      "target": "clock",
+      "simulatedMs": 500,
+      "wallMs": 43,
+      "player": {
+        "x": 6.13,
+        "z": -1.38
+      }
+    },
+    {
+      "chapter": 1,
+      "target": "object",
+      "simulatedMs": 0,
+      "wallMs": 24,
+      "player": {
+        "x": 6.13,
+        "z": -1.38
+      }
+    },
+    {
+      "chapter": 2,
+      "target": "porter",
+      "simulatedMs": 1000,
+      "wallMs": 97,
+      "player": {
+        "x": -5.51,
+        "z": 0.81
+      }
+    },
+    {
+      "chapter": 2,
+      "target": "visitor",
+      "simulatedMs": 1500,
+      "wallMs": 169,
+      "player": {
+        "x": -0.85,
+        "z": -0.8
+      }
+    },
+    {
+      "chapter": 2,
+      "target": "vessel-AVI",
+      "simulatedMs": 1000,
+      "wallMs": 157,
+      "player": {
+        "x": 1.68,
+        "z": 0.54
+      }
+    },
+    {
+      "chapter": 2,
+      "target": "window",
+      "simulatedMs": 1000,
+      "wallMs": 50,
+      "player": {
+        "x": 4.34,
+        "z": -2.11
+      }
+    },
+    {
+      "chapter": 2,
+      "target": "clock",
+      "simulatedMs": 500,
+      "wallMs": 210,
+      "player": {
+        "x": 6.13,
+        "z": -1.38
+      }
+    },
+    {
+      "chapter": 2,
+      "target": "visitor",
+      "simulatedMs": 1500,
+      "wallMs": 299,
+      "player": {
+        "x": 1.8,
+        "z": -1.25
+      }
+    },
+    {
+      "chapter": 2,
+      "target": "clock",
+      "simulatedMs": 1500,
+      "wallMs": 277,
+      "player": {
+        "x": 6.25,
+        "z": -0.84
+      }
+    },
+    {
+      "chapter": 2,
+      "target": "object",
+      "simulatedMs": 500,
+      "wallMs": 37,
+      "player": {
+        "x": 6.29,
+        "z": -1.04
+      }
+    },
+    {
+      "chapter": 2,
+      "target": "object",
+      "simulatedMs": 500,
+      "wallMs": 40,
+      "player": {
+        "x": 6.31,
+        "z": -1.1
+      }
+    },
+    {
+      "chapter": 3,
+      "target": "porter",
+      "simulatedMs": 1000,
+      "wallMs": 53,
+      "player": {
+        "x": -5.71,
+        "z": 0.78
+      }
+    },
+    {
+      "chapter": 3,
+      "target": "visitor",
+      "simulatedMs": 1500,
+      "wallMs": 640,
+      "player": {
+        "x": -0.9,
+        "z": -0.8
+      }
+    },
+    {
+      "chapter": 3,
+      "target": "vessel-AVI",
+      "simulatedMs": 500,
+      "wallMs": 775,
+      "player": {
+        "x": 1.7,
+        "z": 0.55
+      }
+    },
+    {
+      "chapter": 3,
+      "target": "window",
+      "simulatedMs": 1000,
+      "wallMs": 322,
+      "player": {
+        "x": 4.33,
+        "z": -2.1
+      }
+    },
+    {
+      "chapter": 3,
+      "target": "clock",
+      "simulatedMs": 500,
+      "wallMs": 146,
+      "player": {
+        "x": 6.13,
+        "z": -1.38
+      }
+    },
+    {
+      "chapter": 3,
+      "target": "vessel-NOA",
+      "simulatedMs": 1000,
+      "wallMs": 269,
+      "player": {
+        "x": 7.96,
+        "z": 1.77
+      }
+    },
+    {
+      "chapter": 3,
+      "target": "clock",
+      "simulatedMs": 500,
+      "wallMs": 125,
+      "player": {
+        "x": 7.96,
+        "z": 0.17
+      }
+    },
+    {
+      "chapter": 3,
+      "target": "window",
+      "simulatedMs": 1000,
+      "wallMs": 116,
+      "player": {
+        "x": 5.82,
+        "z": -1.95
+      }
+    },
+    {
+      "chapter": 3,
+      "target": "object",
+      "simulatedMs": 0,
+      "wallMs": 32,
+      "player": {
+        "x": 5.82,
+        "z": -1.95
+      }
+    },
+    {
+      "chapter": 4,
+      "target": "porter",
+      "simulatedMs": 1000,
+      "wallMs": 151,
+      "player": {
+        "x": -5.81,
+        "z": 0.69
+      }
+    },
+    {
+      "chapter": 4,
+      "target": "porter",
+      "simulatedMs": 0,
+      "wallMs": 230,
+      "player": {
+        "x": -5.81,
+        "z": 0.69
+      }
+    },
+    {
+      "chapter": 4,
+      "target": "porter",
+      "simulatedMs": 0,
+      "wallMs": 217,
+      "player": {
+        "x": -5.81,
+        "z": 0.69
+      }
+    },
+    {
+      "chapter": 4,
+      "target": "visitor",
+      "simulatedMs": 1500,
+      "wallMs": 281,
+      "player": {
+        "x": -0.9,
+        "z": -0.83
+      }
+    },
+    {
+      "chapter": 4,
+      "target": "vessel-STAGE",
+      "simulatedMs": 2000,
+      "wallMs": 309,
+      "player": {
+        "x": 4.29,
+        "z": 4.26
+      }
+    },
+    {
+      "chapter": 4,
+      "target": "window",
+      "simulatedMs": 2000,
+      "wallMs": 786,
+      "player": {
+        "x": 4.29,
+        "z": -2.07
+      }
+    },
+    {
+      "chapter": 4,
+      "target": "clock",
+      "simulatedMs": 500,
+      "wallMs": 334,
+      "player": {
+        "x": 6.15,
+        "z": -1.34
+      }
+    },
+    {
+      "chapter": 4,
+      "target": "clock",
+      "simulatedMs": 500,
+      "wallMs": 74,
+      "player": {
+        "x": 6.21,
+        "z": -1.32
+      }
+    },
+    {
+      "chapter": 4,
+      "target": "window",
+      "simulatedMs": 500,
+      "wallMs": 99,
+      "player": {
+        "x": 5.78,
+        "z": -1.91
+      }
+    },
+    {
+      "chapter": 4,
+      "target": "object",
+      "simulatedMs": 0,
+      "wallMs": 66,
+      "player": {
+        "x": 5.78,
+        "z": -1.91
+      }
+    },
+    {
+      "chapter": 5,
+      "target": "porter",
+      "simulatedMs": 1500,
+      "wallMs": 109,
+      "player": {
+        "x": -3.04,
+        "z": -1.03
+      }
+    },
+    {
+      "chapter": 5,
+      "target": "visitor",
+      "simulatedMs": 500,
+      "wallMs": 124,
+      "player": {
+        "x": -1.1,
+        "z": -1.13
+      }
+    },
+    {
+      "chapter": 5,
+      "target": "vessel-CANVAS",
+      "simulatedMs": 2000,
+      "wallMs": 415,
+      "player": {
+        "x": -7.85,
+        "z": -0.82
+      }
+    },
+    {
+      "chapter": 5,
+      "target": "door",
+      "simulatedMs": 500,
+      "wallMs": 84,
+      "player": {
+        "x": -7.74,
+        "z": -2.01
+      }
+    },
+    {
+      "chapter": 5,
+      "target": "clock",
+      "simulatedMs": 3500,
+      "wallMs": 438,
+      "player": {
+        "x": 6.21,
+        "z": -0.93
+      }
+    },
+    {
+      "chapter": 5,
+      "target": "door",
+      "simulatedMs": 3000,
+      "wallMs": 325,
+      "player": {
+        "x": -5.6,
+        "z": -2.6
+      }
+    },
+    {
+      "chapter": 5,
+      "target": "object",
+      "simulatedMs": 0,
+      "wallMs": 50,
+      "player": {
+        "x": -5.6,
+        "z": -2.6
+      }
+    }
+  ],
+  "diagnosticRecoveries": [],
+  "wallSeconds": 24.54,
+  "viewport": "1600×900 and390×844",
+  "channel": "chrome",
+  "angle": "metal"
+}

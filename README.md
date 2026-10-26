@@ -1,44 +1,41 @@
 # Clockwork Alibi · תעלומת שעון התחנה
 
-A finite real-3D browser time-loop mystery for Hebrew-speaking grade-8 English learners. Explore a miniature station, combine partial English witness accounts, scrub a sixty-second loop, test an editable reconstruction and physically change the replay. Five short cases end with a changed lantern/side-door transfer incident.
+A real3D browser time-loop mystery for Hebrew-speaking grade8 English learners. Explore a miniature railway station, combine partial English witness accounts, scrub intersecting past activities and physically change a replay. Five finite cases end with a changed lantern/side-door incident.
 
-## Play locally
+## Run
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open http://localhost:5202. Dev uses strict port 5202; static preview uses strict port 4202. No backend, authentication, keys or runtime AI. Dependencies and Hebrew fonts bundle locally.
+Play http://localhost:5202. Built preview: http://localhost:4202 after `npm run build` and `npm run preview`. Both ports are strict. No backend, authentication, runtime AI, analytics or keys. Models and Hebrew fonts are local.
 
-Click the floor or a world label to walk. Arrow keys / WASD move; E inspects the nearest target; Space pauses time; R opens the notebook; F toggles fullscreen; Escape closes reading and pauses. Touch uses world labels or the on-screen arrows. Witness reading pauses time. Words with dotted underlines give Hebrew vocabulary help; replayable speech uses an available local English system voice, with text always present. Sound and reduced motion are in options.
+## Play
 
-The bottom timeline scrubs the historical loop. `לנסות לשנות` starts an interactive replay. Investigate both viewpoints, inspect a suitcase/cart label, then record activity, opening instant and identity in the notebook. A failed reconstruction remains editable. In a replay, physically latch the relevant closed opening while its mechanism is available, or secure the object before the gust; advance past the gust and return to collect it. Chapter completion requires both supported reconstruction and physical recovery. Reading/pausing does not consume an unaided attempt; solution hints and consequential mistakes do. The final case has no solution hint.
+Click a target/floor to walk, or use arrows/WASD. E performs the contextual interaction; Space pauses/resumes; F toggles fullscreen; Escape exits fullscreen/closes reading and pauses. Touch uses world targets,44px arrows and the nearby action button. Reading pauses time; dotted English words offer Hebrew meaning. Optional local English speech uses an installed system voice. Options include mute, reduced motion and restart.
 
-## Build and verify
+Record the ongoing activity in a witness account. Use the bottom timeline to choose a moment and mark it beside the window/door or station clock. Inspect a suitcase/cart to mark its identity. In case2, record the visitor's reading bounds from the timeline. The station clock tests the reconstruction with a short segment of **original history** around your chosen moment. Then start/change the replay: latch the appropriate closed opening at a viable time, or secure the object before the wind; advance past the gust and collect it. Both supported reconstruction and physical recovery are required. The notebook is a quote recap; optional detailed editing remains available for accessibility.
+
+Wrong reconstructions remain editable and consume an attempt. Hints, attempts and prior completions persist locally across restart/play-again, so repeated success cannot be labelled first unaided. No personal student information is collected. Final transfer has no solution hint.
+
+## Art and assets
+
+Built-in imagegen target and exact prompt preceded implementation; see docs/visual-targets. It is a generated design target, not a game capture.
+
+The required **original Tripo porter and bird are acquired and local**. The porter has a65-joint Mixamo rig and exported walk, idle and custom carrying-walk animations. The player uses an independent rig clone; the porter follows deterministic authored paths and timeline phases. Two handled boxes follow real hand sockets. The bird persists through cases1–4; transfer uses a lantern, then replay restores the bird. Source architecture and collision rules are independent of mesh details.
+
+Runtime models total3,341,956bytes: porter2,021,208 and bird1,320,748. Two model generations, auto-rig and custom-motion processing spent100crewcredits; no purchase/upgrade. ASSETS.md records ownership basis, exact prompts/job URLs, source/export hashes and the custom clip's approximate grip limitation. Earlier browser outages are historical and resolved.
+
+## Verify and deploy later
 
 ```sh
 npm test
 npm run build
-npm run preview
 ```
 
-Pure truth and sentence fixtures live in `src/content.ts` and `src/simulation.ts`. Tests include an independent authored oracle for all five cases. `window.render_game_to_text()` reports state for browser verification; `window.advanceTime(ms)` deterministically steps controls and time while respecting time pause. Events stay in localStorage on this device; no student identities or remote analytics are collected.
+Tests cover authored truth, English semantics, independent expected solutions, exposure history, real GLB skin/animation contracts and navigation reachability. Browser harnesses use ordinary UI and deterministic `window.advanceTime(ms)`, never injected wins. `window.render_game_to_text()` exposes current state and read-only actual model/pose diagnostics. See PLAYTEST.md for observed scope/results and VISUAL_REVIEW.md for actual-versus-target images and remaining limits.
 
-## Asset status — important
+For browser reproduction install the matching browser using `npx playwright install chromium`; then run scripts/browser-check.mjs and scripts/browser-controls.mjs. The integrated harness accepts REVIEWER_URL, REVIEWER_OUTPUT_DIR, REVIEWER_PLAYWRIGHT_MODULE, REVIEWER_BROWSER_PATH, REVIEWER_CHANNEL and REVIEWER_ANGLE. The controls harness also accepts GAME_URL and BROWSER_EVIDENCE_DIR. Work captures are untracked. Current model-integrated harness details are recorded in PLAYTEST.md.
 
-The initial imagegen design target was generated and inspected before implementation; exact prompt and image are in `docs/visual-targets`. It is a design target, not an actual screenshot.
-
-**Required Tripo GLBs and the porter rig are blocked.** Chrome control timed out repeatedly, briefly recovered to inspect owned assets, then failed again before any submission. No generation, download, rig or credit spend was initiated. Current automata and bird are original procedural temporary geometry; they do not meet the requested Tripo asset requirement. `ASSETS.md` records the blocker and prepared prompts. A local GLTFLoader entry point exists; model scale, rig playback and chapter transitions still require testing when files arrive. No missing models are silently fetched at runtime. The geometry is independent from authoritative temporal/collision rules.
-
-## Static deployment preparation
-
-Vite uses `base: './'`; `npm run build` produces `dist/`. For a future Vercel deployment choose framework Vite, build command `npm run build`, output directory `dist`, and no environment variables. Production deployment is intentionally left for the user.
-
-See `CURRICULUM.md`, `GAME_IDENTITY.md`, `ASSETS.md`, `PLAYTEST.md`, `VISUAL_REVIEW.md` and `progress.md` for verified scope, evidence and limitations. This is a learning-game prototype, not a validated assessment of English proficiency.
-
-For the optional reproducible browser chain, start the dev server, install Playwright’s matching browser with `npx playwright install chromium`, then run `node scripts/browser-check.mjs`. It interacts with normal controls and the deterministic time hook; it never injects a winning state. `GAME_URL`, `BROWSER_EVIDENCE_DIR`, and `PLAYWRIGHT_EXECUTABLE_PATH` may override the URL, capture folder, or installed browser executable. Browser captures default to untracked work/.
-
-First-decision exposure (attempts, hints and completions) also persists locally across restarting and replaying a case, so a repeated completion cannot be described as a first unaided decision.
-
-`node scripts/browser-controls.mjs` separately verifies start/pause focus, notebook Escape, completed-case toolbar guards, fullscreen entry/exit and Next through a legitimate solved case.
+Vite uses relative base. Future Vercel settings: framework Vite; build `npm run build`; output `dist`; no environment variables. Production deployment was not performed.

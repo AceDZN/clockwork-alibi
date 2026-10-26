@@ -4,6 +4,7 @@ import { clone as cloneSkeleton } from 'three/addons/utils/SkeletonUtils.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { type Case } from './content';
+import { route,stationObstacles,contains,FLOOR,interactionApproach,stepRoute } from './navigation';
 import { worldAt, type Intervention } from './simulation';
 export type Target = {id:string;label:string;position:THREE.Vector3;mesh:THREE.Object3D};
 const C={teal:0x164c52,tealLight:0x347677,brass:0xb58b4d,ivory:0xf0dfb6,stone:0x263c4c,wood:0x453a32,dark:0x112833};
@@ -12,8 +13,8 @@ export class Station {
   root=new THREE.Group(); actors=new THREE.Group(); player=new THREE.Group(); porter=new THREE.Group(); visitor=new THREE.Group(); musician=new THREE.Group();
   targets:Target[]=[]; ray=new THREE.Raycaster(); floor=new THREE.Plane(new THREE.Vector3(0,1,0),0); pointer=new THREE.Vector2();
   case!:Case; bird=new THREE.Group(); windowLeaf=new THREE.Group(); doorLeaf=new THREE.Group(); vesselGroups=new Map<string,THREE.Group>();
-  marker=new THREE.Group(); trails=new THREE.Group(); clockHand=new THREE.Group(); gears:THREE.Object3D[]=[]; readingBook=new THREE.Group(); carriedBoxes=new THREE.Group(); carriedLadder=new THREE.Group(); transferPedestal=new THREE.Group(); wind=new THREE.Group(); hiddenCanopy=new THREE.Group(); curtain=new THREE.Group();
-  playerDestination:THREE.Vector3|null=null; loadedModels:string[]=[]; modelClips:Record<string,string[]>={}; mixers:{mixer:THREE.AnimationMixer;role:string;walk:THREE.AnimationAction;idle?:THREE.AnimationAction}[]=[]; birdPrefab:THREE.Object3D|null=null; modelDetails:Record<string,{path:string;skins:number;clips:string[]}>={}; elapsed=0; reduced=false;
+  marker=new THREE.Group(); trails=new THREE.Group(); clockHand=new THREE.Group(); gears:THREE.Object3D[]=[]; carryLeft=new THREE.Group();carryRight=new THREE.Group();windowBolt?:THREE.Mesh;doorBolt?:THREE.Mesh;readingBook=new THREE.Group(); carriedBoxes=new THREE.Group(); carriedLadder=new THREE.Group(); transferPedestal=new THREE.Group(); wind=new THREE.Group(); hiddenCanopy=new THREE.Group(); curtain=new THREE.Group();
+  playerDestination:THREE.Vector3|null=null;private waypoints:THREE.Vector3[]=[]; loadedModels:string[]=[]; modelClips:Record<string,string[]>={}; mixers:{mixer:THREE.AnimationMixer;role:string;walk:THREE.AnimationAction;idle?:THREE.AnimationAction}[]=[]; birdPrefab:THREE.Object3D|null=null; modelDetails:Record<string,{path:string;skins:number;clips:string[]}>={}; elapsed=0; reduced=false;
   materials=new Map<string,THREE.MeshStandardMaterial>();
   constructor(canvas:HTMLCanvasElement){
     this.renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance',preserveDrawingBuffer:true});
@@ -30,7 +31,7 @@ export class Station {
     this.automaton(this.porter,0x267779);this.automaton(this.visitor,0x967b51);this.automaton(this.musician,0x343c50);this.actors.add(this.porter,this.visitor,this.musician);
     const ring=new THREE.Mesh(new THREE.RingGeometry(.34,.39,48),new THREE.MeshBasicMaterial({color:0xe3bc74,transparent:true,opacity:.7,side:THREE.DoubleSide}));ring.rotation.x=-Math.PI/2;ring.position.y=.025;this.marker.add(ring);this.marker.visible=false;
     this.scene.add(this.bird,this.windowLeaf,this.doorLeaf,this.hiddenCanopy,this.curtain,this.wind);
-    this.box(this.carriedBoxes,0,.85,.42,.5,.45,.48,0x92744d);this.box(this.carriedBoxes,0,1.2,.42,.44,.25,.4,0x92744d);this.porter.add(this.carriedBoxes,this.carriedLadder);
+    for(const g of [this.carryLeft,this.carryRight]){this.box(g,0,-.26,0,.42,.42,.4,0x92744d);for(const x of[-.15,.15])this.box(g,x,-.02,0,.035,.12,.035,C.brass);this.box(g,0,.04,0,.33,.025,.035,C.brass);this.carriedBoxes.add(g);}this.porter.add(this.carriedBoxes,this.carriedLadder);
     this.box(this.readingBook,0,.92,.32,.32,.045,.22,0xc9b68d);this.box(this.readingBook,0,.91,.32,.35,.03,.25,C.teal);this.visitor.add(this.readingBook);
     for(const x of[-.35,.35])this.box(this.carriedLadder,x,1,.4,.07,2,.07,C.brass);for(let y=.2;y<2;y+=.28)this.box(this.carriedLadder,0,y,.4,.7,.05,.06,C.wood);
     this.box(this.transferPedestal,-6.2,.6,-2.7,.85,1.2,.65,C.teal);this.scene.add(this.transferPedestal);
@@ -73,9 +74,9 @@ export class Station {
     const windowLight=new THREE.PointLight(0xffb452,18,8,2);windowLight.position.set(5.2,2,-3.9);this.root.add(windowLight);
     const beam=new THREE.Mesh(new THREE.PlaneGeometry(1.5,5.8),new THREE.MeshBasicMaterial({color:0xe5b362,transparent:true,opacity:.12,depthWrite:false}));beam.rotation.x=-Math.PI/2;beam.rotation.z=.3;beam.position.set(4.4,.05,-1.2);this.root.add(beam);
     this.windowLeaf.position.set(4.5,1.8,-4.3);this.box(this.windowLeaf,.7,0,0,1.4,2.45,.07,C.teal);this.box(this.windowLeaf,.7,0,.05,1.15,2.2,.035,0xc0aa71);
-    for(let i=0;i<3;i++)this.box(this.windowLeaf,.7,-.8+i*.8,.1,1.2,.035,.035,C.brass);this.box(this.windowLeaf,.7,0,.11,.035,2.1,.03,C.brass);
+    for(let i=0;i<3;i++)this.box(this.windowLeaf,.7,-.8+i*.8,.1,1.2,.035,.035,C.brass);this.box(this.windowLeaf,.7,0,.11,.035,2.1,.03,C.brass);this.windowBolt=this.box(this.windowLeaf,.7,0,.18,.65,.08,.1,C.brass);
     this.box(this.root,6.6,1.1,-2.7,1.5,.14,.7,C.wood);this.box(this.root,6,0.5,-2.7,.12,1,.5,C.brass);this.box(this.root,7.2,.5,-2.7,.12,1,.5,C.brass);
-    this.doorLeaf.position.set(-7.8,1.2,-4.65);this.box(this.doorLeaf,.7,0,0,1.35,2.4,.13,C.teal);this.text(this.doorLeaf,'SIDE',.7,.3,.08,.9,.4);
+    this.doorLeaf.position.set(-7.8,1.2,-4.65);this.box(this.doorLeaf,.7,0,0,1.35,2.4,.13,C.teal);this.text(this.doorLeaf,'SIDE',.7,.3,.08,.9,.4);this.doorBolt=this.box(this.doorLeaf,.7,-.25,.18,.65,.08,.1,C.brass);
     // Clock tower, dial and visible machinery.
     this.box(this.root,8.3,2.8,-2.6,.6,5.5,.7,C.teal);this.box(this.root,8.3,5.6,-2.6,2.4,.2,1.1,C.teal);
     const clockCanvas=document.createElement('canvas');clockCanvas.width=512;clockCanvas.height=512;const ctx=clockCanvas.getContext('2d')!;ctx.fillStyle='#e5d5ae';ctx.beginPath();ctx.arc(256,256,250,0,7);ctx.fill();ctx.strokeStyle='#3a3932';ctx.lineWidth=14;ctx.stroke();ctx.font='38px Georgia';ctx.textAlign='center';ctx.textBaseline='middle';for(let i=1;i<=12;i++){const a=i*Math.PI/6;ctx.fillStyle='#333a3b';ctx.fillText(['XII','I','II','III','IV','V','VI','VII','VIII','IX','X','XI'][i%12],256+Math.sin(a)*195,256-Math.cos(a)*195);}const tex=new THREE.CanvasTexture(clockCanvas);tex.colorSpace=THREE.SRGBColorSpace;
@@ -112,7 +113,7 @@ export class Station {
     fit.position.set(-center.x,-fitted.min.y,-center.z);
     let skins=0;fit.traverse(o=>{if(o instanceof THREE.Mesh){o.castShadow=true;o.receiveShadow=true;}if(o instanceof THREE.SkinnedMesh)skins++;});
     const clips=gltf.animations.map(clip=>{
-      const clean=clip.clone();
+      const clean=clip.clone();if(/Clockwork Alibi porter/i.test(clean.name))clean.name='carry';
       for(const track of clean.tracks)if(/(?:hips|pelvis|root|armature).*\.position$/i.test(track.name)){
         const v=track.values;for(let i=0;i<v.length;i+=3){v[i]=v[0];v[i+2]=v[2];}
       }
@@ -122,7 +123,7 @@ export class Station {
     if(key==='porter'){
       parent.add(this.carriedBoxes,this.carriedLadder);
       this.player.clear();const playerModel=cloneSkeleton(fit);this.player.add(playerModel);
-      const badge=this.cyl(this.player,0,1.8,0,.12,.08,C.ivory);badge.name='player-badge';
+      const ring=new THREE.Mesh(new THREE.RingGeometry(.28,.34,32),new THREE.MeshBasicMaterial({color:C.ivory,side:THREE.DoubleSide,transparent:true,opacity:.8}));ring.rotation.x=-Math.PI/2;ring.position.y=.025;this.player.add(ring);
       this.attachClips(playerModel,clips,'player');
     }
     if(key==='bird')this.birdPrefab=fit.clone(true);
@@ -132,7 +133,7 @@ export class Station {
   }
   attachClips(root:THREE.Object3D,clips:THREE.AnimationClip[],role:string){
     this.mixers=this.mixers.filter(m=>m.role!==role);if(!clips.length)return;
-    const mixer=new THREE.AnimationMixer(root),walking=clips.find(c=>/walk|carry|run/i.test(c.name))??clips[0];
+    const mixer=new THREE.AnimationMixer(root),walking=(role==='porter'?clips.find(c=>c.name==='carry'):clips.find(c=>c.name==='walk'))??clips.find(c=>/walk|carry|run/i.test(c.name))??clips[0];
     const walk=mixer.clipAction(walking);walk.play();const idleClip=clips.find(c=>/idle/i.test(c.name));
     const idle=idleClip?mixer.clipAction(idleClip):undefined;if(idle)idle.play();this.mixers.push({mixer,role,walk,idle});
   }
@@ -147,10 +148,10 @@ export class Station {
     return {porter:inspect(this.porter),player:inspect(this.player),object:inspect(this.bird),objectKind:this.case.object,
       independentSkeletons:!!porterSkin&&!!playerSkin&&porterSkin.skeleton!==playerSkin.skeleton,
       propsAttached:this.carriedBoxes.parent===this.porter&&this.carriedLadder.parent===this.porter,
-      clips:this.mixers.map(m=>({role:m.role,name:m.walk.getClip().name,time:+m.mixer.time.toFixed(4),weight:m.walk.getEffectiveWeight()}))};
+      clips:this.mixers.map(m=>({role:m.role,name:m.walk.getClip().name,time:+m.mixer.time.toFixed(4),weight:m.walk.getEffectiveWeight(),idleName:m.idle?.getClip().name??null,idleWeight:m.idle?.getEffectiveWeight()??0}))};
   }
   configure(c:Case){
-    this.renderer.shadowMap.needsUpdate=true;this.case=c;this.player.position.set(-4,0,3);this.playerDestination=null;this.bird.clear();this.vesselGroups.forEach(g=>this.scene.remove(g));this.vesselGroups.clear();this.targets=[];
+    this.renderer.shadowMap.needsUpdate=true;this.case=c;this.player.position.set(c.transfer?-1:-4,0,3);this.playerDestination=null;this.bird.clear();this.vesselGroups.forEach(g=>this.scene.remove(g));this.vesselGroups.clear();this.targets=[];
     const b=this.bird;if(c.object==='bird'&&this.birdPrefab){b.add(this.birdPrefab.clone(true));}else if(c.object==='bird'){const body=this.sphere(b,0,.16,0,.17,C.brass);body.scale.set(1,1,1.5);this.sphere(b,0,.35,.13,.11,C.ivory);const beak=this.cyl(b,0,.33,.28,.04,.14,C.brass,0);beak.rotation.x=Math.PI/2;for(const side of[-1,1]){const wing=this.box(b,side*.17,.2,-.02,.26,.05,.3,C.brass);wing.rotation.z=side*.4;}}else{this.cyl(b,0,.25,0,.16,.45,C.brass);this.sphere(b,0,.25,0,.13,0xffd88b);this.cyl(b,0,.5,0,.2,.06,C.teal);}
     for(const v of c.vessels){const g=new THREE.Group();g.position.set(v.x,0,v.z);this.box(g,0,.3,0,1.1,.5,.75,v.color);for(const x of[-.4,.4])this.box(g,x,.31,.4,.06,.48,.035,C.brass);const lid=new THREE.Group();lid.name='lid';lid.position.set(0,.53,-.36);this.box(lid,0,0,.37,1.1,.08,.75,v.color);g.add(lid);const label=this.text(g,v.label,0,.34,.391,.6,.2,'#eee1bd','#254452');label.name='label';this.scene.add(g);this.vesselGroups.set(v.id,g);this.targets.push({id:`vessel-${v.id}`,label:`${c.id>=4?'עגלה':'מזוודה'} · ${v.label}`,position:g.position.clone(),mesh:g});}
     const target=(id:string,label:string,pos:THREE.Vector3,mesh:THREE.Object3D)=>this.targets.push({id,label,position:pos,mesh});
@@ -161,12 +162,29 @@ export class Station {
     const trailMaterial=new THREE.MeshBasicMaterial({color:0xc4d3bc,transparent:true,opacity:.15,depthWrite:false});for(let i=0;i<6;i++){const ghost=new THREE.Mesh(new THREE.CylinderGeometry(.18,.22,.8,10),trailMaterial);ghost.position.set(-6.5+i*.7,.65,-.8);this.trails.add(ghost);}
   }
   pick(clientX:number,clientY:number){const rect=this.renderer.domElement.getBoundingClientRect();this.pointer.set((clientX-rect.left)/rect.width*2-1,-(clientY-rect.top)/rect.height*2+1);this.ray.setFromCamera(this.pointer,this.camera);const hits=this.ray.intersectObjects(this.targets.map(t=>t.mesh),true);if(hits.length){let obj:THREE.Object3D|null=hits[0].object;while(obj){const t=this.targets.find(t=>t.mesh===obj);if(t)return{target:t,point:t.position.clone()};obj=obj.parent;}}const point=new THREE.Vector3();return this.ray.ray.intersectPlane(this.floor,point)?{point,target:null}:null;}
-  moveTo(p:THREE.Vector3){this.playerDestination=new THREE.Vector3(Math.max(-7.8,Math.min(7.5,p.x)),0,Math.max(-4,Math.min(4,p.z)));this.marker.position.copy(this.playerDestination);this.marker.visible=true;}
+  approach(t:Target){const p=interactionApproach(t.id,t.position,this.case.transfer);return new THREE.Vector3(p.x,0,p.z);}
+  moveTo(p:THREE.Vector3){
+    this.waypoints=route(this.player.position,p,stationObstacles(this.case.transfer)).map(v=>new THREE.Vector3(v.x,0,v.z));
+    this.playerDestination=this.waypoints.at(-1)?.clone()??null;this.marker.position.copy(this.playerDestination??this.player.position);this.marker.visible=!!this.playerDestination;
+  }
   update(dt:number,time:number,interventions:Intervention[],keys:Set<string>,canMove:boolean,render=true){
     this.elapsed+=dt;const c=this.case;if(!c)return;const world=worldAt(c,time,interventions);let movement=new THREE.Vector3();
-    if(canMove){if(keys.has('KeyW')||keys.has('ArrowUp'))movement.z-=1;if(keys.has('KeyS')||keys.has('ArrowDown'))movement.z+=1;if(keys.has('KeyA')||keys.has('ArrowLeft'))movement.x-=1;if(keys.has('KeyD')||keys.has('ArrowRight'))movement.x+=1;
-      if(movement.lengthSq()){this.playerDestination=null;movement.normalize();}else if(this.playerDestination){movement.subVectors(this.playerDestination,this.player.position);if(movement.length()<.12){this.playerDestination=null;this.marker.visible=false;movement.set(0,0,0);}else movement.normalize();}
-      if(movement.lengthSq()){this.player.position.addScaledVector(movement,dt*4);this.player.position.x=THREE.MathUtils.clamp(this.player.position.x,-7.8,7.5);this.player.position.z=THREE.MathUtils.clamp(this.player.position.z,-4,4);this.player.rotation.y=Math.atan2(movement.x,movement.z);}
+    if(canMove){
+      if(keys.has('KeyW')||keys.has('ArrowUp'))movement.z-=1;if(keys.has('KeyS')||keys.has('ArrowDown'))movement.z+=1;
+      if(keys.has('KeyA')||keys.has('ArrowLeft'))movement.x-=1;if(keys.has('KeyD')||keys.has('ArrowRight'))movement.x+=1;
+      const obstacles=stationObstacles(c.transfer);
+      if(movement.lengthSq()){
+        this.playerDestination=null;this.waypoints=[];movement.normalize();
+        const next=this.player.position.clone().addScaledVector(movement,dt*4);
+        if(!obstacles.some(r=>contains(next,r)))this.player.position.copy(next);
+      }else if(this.playerDestination){
+        const before=this.player.position.clone(),step=stepRoute(this.player.position,this.waypoints,dt*4,obstacles);
+        this.player.position.set(step.position.x,0,step.position.z);this.waypoints=step.remaining.map(p=>new THREE.Vector3(p.x,0,p.z));
+        movement.subVectors(this.player.position,before);if(movement.lengthSq())movement.normalize();
+        if(!this.waypoints.length){this.playerDestination=null;this.marker.visible=false;}
+      }
+      this.player.position.x=THREE.MathUtils.clamp(this.player.position.x,FLOOR.minX,FLOOR.maxX);this.player.position.z=THREE.MathUtils.clamp(this.player.position.z,FLOOR.minZ,FLOOR.maxZ);
+      if(movement.lengthSq())this.player.rotation.y=Math.atan2(movement.x,movement.z);
     }
     const animate=(g:THREE.Group,walk:boolean,phase:number)=>{for(const [name,sgn]of[['rightLeg',1],['leftLeg',-1],['rightArm',-1],['leftArm',1]]as const){const part=g.getObjectByName(name);if(part)part.rotation.x=walk&&!this.reduced?Math.sin(phase)*.4*sgn:0;}};
     if(!this.loadedModels.includes('porter'))animate(this.player,movement.lengthSq()>0,this.elapsed*9);
@@ -176,7 +194,7 @@ export class Station {
     this.trails.children.forEach((ghost,i)=>{const fraction=i/Math.max(1,this.trails.children.length-1);ghost.position.x=-6.5+fraction*4.3;ghost.visible=time>=c.carrying[0]+fraction*(c.carrying[1]-c.carrying[0]);});
     this.bird.visible=world.object==='shelf'||world.object==='secured'||(world.gust&&time<c.gust+.7);this.bird.position.set(c.transfer?-6.2:6.6,1.28,-2.7);this.bird.rotation.y=this.reduced?0:Math.sin(time*2)*.15;
     if(world.gust&&time<c.gust+.7){const u=(time-c.gust)/.7;this.bird.position.x-=u*.8;this.bird.position.z+=u*1.5;this.bird.position.y+=Math.sin(u*Math.PI)*.35;}
-    this.carriedBoxes.visible=c.actor==='porter';this.carriedBoxes.position.y=world.carrying?0:-.65;this.readingBook.visible=world.reading;this.carriedLadder.visible=c.actor==='painter';
+    this.carriedBoxes.visible=c.actor==='porter';this.carriedBoxes.position.y=0;this.readingBook.visible=world.reading;this.carriedLadder.visible=c.actor==='painter';
     this.wind.visible=world.gust&&time<c.gust+2&&!this.reduced;this.wind.children.forEach((o,i)=>{const u=(time*1.5+i/14)%1;o.position.set((c.transfer?-7:5.3)+(i%3)*.25,1.2+(i%4)*.2,-3.9+u*4);});
     this.curtain.visible=c.transfer&&time>=c.gust+2;this.curtain.position.x=c.transfer?-5.9:6.8;
     for(const v of c.vessels){const g=this.vesselGroups.get(v.id)!;g.position.x=v.x+(world.departed?(time-c.depart)*.45:0);g.getObjectByName('lid')!.rotation.x=time>=v.openAt&&(!v.closeAt||time<v.closeAt)?-1.35:0;this.targets.find(t=>t.id===`vessel-${v.id}`)!.position.copy(g.position);}
@@ -185,8 +203,14 @@ export class Station {
     this.mixers.forEach(({mixer,role,walk,idle})=>{
       const walking=role==='player'?movement.lengthSq()>0:world.carrying;
       walk.setEffectiveWeight(walking||!idle?1:0);if(idle)idle.setEffectiveWeight(walking?0:1);
-      mixer.setTime(this.reduced?0:walking?(role==='player'?this.elapsed:Math.max(0,time-c.carrying[0])):0);
-    });if(render)this.renderer.render(this.scene,this.camera);
+      mixer.setTime(this.reduced?0:walking?(role==='player'?this.elapsed:Math.max(0,time-c.carrying[0])):idle?time:0);
+    });
+    this.porter.updateMatrixWorld(true);
+    for(const [prop,name,side]of [[this.carryLeft,'mixamorigLeftHand',-1],[this.carryRight,'mixamorigRightHand',1]]as const){
+      const hand=this.porter.getObjectByName(name);if(world.carrying&&hand){prop.position.copy(this.porter.worldToLocal(hand.getWorldPosition(new THREE.Vector3())));}else prop.position.set(side*.34,.48,.25);
+    }
+    if(this.windowBolt)this.windowBolt.visible=world.latched&&c.opening==='window';if(this.doorBolt)this.doorBolt.visible=world.latched&&c.opening==='door';
+    if(render)this.renderer.render(this.scene,this.camera);
   }
   resize(w:number,h:number){this.renderer.setSize(w,h,false);this.renderer.shadowMap.needsUpdate=true;this.camera.aspect=w/h;this.camera.updateProjectionMatrix();this.camera.position.set(11.5,11.3,16);if(w/h<1.15)this.camera.position.multiplyScalar(1.22);this.camera.lookAt(0,1,-.5);}
   screen(p:THREE.Vector3){const v=p.clone().add(new THREE.Vector3(0,1.6,0)).project(this.camera);const r=this.renderer.domElement.getBoundingClientRect();return{x:(v.x+1)/2*r.width,y:(-v.y+1)/2*r.height};}

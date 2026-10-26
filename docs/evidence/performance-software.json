@@ -1,0 +1,9 @@
+{
+  "viewport": "1600x900",
+  "driver": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+  "wallMs": 8019.323958000001,
+  "renderedFrames": 4,
+  "measuredFps": 0.4987951629026831,
+  "simulationSeconds": 2.0299999999999994,
+  "fpsHook": 1
+}

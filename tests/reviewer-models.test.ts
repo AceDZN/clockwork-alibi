@@ -34,7 +34,11 @@ test('runtime porter is a bound skeletal asset with multi-joint animation, not t
   const bound=(gltf.nodes??[]).filter((n:any)=>n.skin!==undefined&&n.mesh!==undefined);
   assert.ok(bound.length>0,'skin is bound to a rendered mesh');
   assert.ok(bound.some((n:any)=>gltf.meshes[n.mesh].primitives.some((p:any)=>p.attributes.JOINTS_0!==undefined&&p.attributes.WEIGHTS_0!==undefined)),'mesh has joint indices and weights');
-  assert.ok((gltf.animations??[]).some((a:any)=>new Set(a.channels.filter((c:any)=>joints.has(c.target?.node)&&['rotation','translation'].includes(c.target?.path)).map((c:any)=>c.target.node)).size>=4),'animation targets multiple body joints');
+  const clips=gltf.animations??[];
+  assert.ok(clips.some((a:any)=>a.name==='walk'),'player walking clip survives export');
+  assert.ok(clips.some((a:any)=>a.name==='idle'),'stationary clip survives export');
+  assert.ok(clips.some((a:any)=>a.name!=='walk'&&a.name!=='idle'),'dedicated authored carrying clip survives export');
+  for(const clip of clips)assert.ok(new Set(clip.channels.filter((c:any)=>joints.has(c.target?.node)&&['rotation','translation'].includes(c.target?.path)).map((c:any)=>c.target.node)).size>=4,`${clip.name} animates multiple body joints`);
 });
 
 test('runtime clockwork bird is real local geometry with available resources',()=>{

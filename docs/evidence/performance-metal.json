@@ -1,0 +1,9 @@
+{
+  "viewport": "1600x900",
+  "driver": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
+  "wallMs": 8007.754333000001,
+  "renderedFrames": 483,
+  "measuredFps": 60.316535687109464,
+  "simulationSeconds": 8.030000000000001,
+  "fpsHook": 56
+}

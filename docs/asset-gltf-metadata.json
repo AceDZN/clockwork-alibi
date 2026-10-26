@@ -1,5 +1,28 @@
 {
-  "porter.glb": {
+  "clockwork-bird.glb": {
+    "bytes": 1320748,
+    "sha256": "fffa44835dda7e830c66ed243861c16fba4a2c3a4617d36883f49a3d9028fb6f",
+    "meshes": 1,
+    "nodes": 1,
+    "extensionsUsed": [],
+    "skins": [],
+    "clips": [],
+    "positionAccessorBounds": [
+      {
+        "min": [
+          -0.4994507431983948,
+          0,
+          -0.3174743950366974
+        ],
+        "max": [
+          0.4994507431983948,
+          1,
+          0.3174743950366974
+        ]
+      }
+    ]
+  },
+  "work/model-originals/porter-walk.glb": {
     "bytes": 1577744,
     "sha256": "1b58332793b866aa3213c84eb51cbc4bea9ddc759047354de5484fe1939ee28e",
     "meshes": 1,
@@ -33,30 +56,54 @@
       }
     ]
   },
-  "clockwork-bird.glb": {
-    "bytes": 1320748,
-    "sha256": "fffa44835dda7e830c66ed243861c16fba4a2c3a4617d36883f49a3d9028fb6f",
+  "porter.glb": {
+    "bytes": 2021208,
+    "sha256": "2923e98d6526c3944c081796f319402f78ab1bc1c0dbe8316be7f43671011c56",
     "meshes": 1,
-    "nodes": 1,
+    "nodes": 67,
     "extensionsUsed": [],
-    "skins": [],
-    "clips": [],
+    "skins": [
+      {
+        "name": "Armature",
+        "jointCount": 65
+      }
+    ],
+    "clips": [
+      {
+        "name": "walk",
+        "channelCount": 195,
+        "duration": 2.3333333333333335
+      },
+      {
+        "name": "Clockwork Alibi porter walks slowly in place while carefully ca",
+        "channelCount": 195,
+        "duration": 4.958333333333333
+      },
+      {
+        "name": "idle",
+        "channelCount": 195,
+        "duration": 15.333333333333334
+      }
+    ],
     "positionAccessorBounds": [
       {
         "min": [
-          -0.4994507431983948,
-          0,
-          -0.3174743950366974
+          -0.4999999403953552,
+          -1.2720639119834232e-07,
+          -0.121131531894207
         ],
         "max": [
-          0.4994507431983948,
-          1,
-          0.3174743950366974
+          0.49999988079071045,
+          0.9771120548248291,
+          0.12113199383020401
         ]
       }
-    ]
+    ],
+    "runtimeAnimationAliases": {
+      "Clockwork Alibi porter walks slowly in place while carefully ca": "carry"
+    }
   },
-  "porter-base.glb": {
+  "work/model-originals/porter-base.glb": {
     "bytes": 1244004,
     "sha256": "eb03eb0ab4ec98dccdf06d6c9f581dddddad81703c845403772146af9d38fb24",
     "meshes": 1,
