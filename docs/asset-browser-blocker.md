@@ -22,3 +22,7 @@ Chrome inventory recovered in 13.746 seconds. A new own My Assets tab opened in 
 | Lighter Chrome-only binding without page AX | 35.934 s timeout; kernel reset |
 
 The lighter binding failed as well, so the documented screenshot surface could not be reached. Stop further retries until availability changes. No generation or rig was submitted; no credits spent by this crew; no model downloaded. The observed balance is historical and is not a budget reservation. The own tab may be closed automatically by session cleanup or remain open if cleanup failed; do not claim or modify other crews' tabs.
+
+## Native Chrome recovery — 26 October
+
+Following renewed commissioning and the new recovery handoff, `cua.getApp('com.google.Chrome')` returned native AX state in 1.023 seconds. The crew acquired `/Users/acedzn/dev/AceDZN-exp/.english-tripo-ui-lock` atomically before native Chrome work and released it while generation processing ran. Opened a new own native tab, inspected owned models, then submitted porter and bird originals through normal UI. Displayed costs were 30 each, and balance changed 6,815 → 6,785 → 6,755. Two model tasks are processing; no download or rig is complete at this milestone. `docs/asset-generation-submitted.png` preserves visible UI evidence. This resolves the old extension-only availability boundary for generation submission, while actual acquisition remains unfinished.

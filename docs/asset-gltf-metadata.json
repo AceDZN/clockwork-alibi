@@ -1,0 +1,82 @@
+{
+  "porter.glb": {
+    "bytes": 1577744,
+    "sha256": "1b58332793b866aa3213c84eb51cbc4bea9ddc759047354de5484fe1939ee28e",
+    "meshes": 1,
+    "nodes": 67,
+    "extensionsUsed": [],
+    "skins": [
+      {
+        "name": "Armature",
+        "jointCount": 65
+      }
+    ],
+    "clips": [
+      {
+        "name": "walk",
+        "channelCount": 195,
+        "duration": 2.3333333333333335
+      }
+    ],
+    "positionAccessorBounds": [
+      {
+        "min": [
+          -0.4999999403953552,
+          -1.2720639119834232e-07,
+          -0.121131531894207
+        ],
+        "max": [
+          0.49999988079071045,
+          0.9771120548248291,
+          0.12113199383020401
+        ]
+      }
+    ]
+  },
+  "clockwork-bird.glb": {
+    "bytes": 1320748,
+    "sha256": "fffa44835dda7e830c66ed243861c16fba4a2c3a4617d36883f49a3d9028fb6f",
+    "meshes": 1,
+    "nodes": 1,
+    "extensionsUsed": [],
+    "skins": [],
+    "clips": [],
+    "positionAccessorBounds": [
+      {
+        "min": [
+          -0.4994507431983948,
+          0,
+          -0.3174743950366974
+        ],
+        "max": [
+          0.4994507431983948,
+          1,
+          0.3174743950366974
+        ]
+      }
+    ]
+  },
+  "porter-base.glb": {
+    "bytes": 1244004,
+    "sha256": "eb03eb0ab4ec98dccdf06d6c9f581dddddad81703c845403772146af9d38fb24",
+    "meshes": 1,
+    "nodes": 1,
+    "extensionsUsed": [],
+    "skins": [],
+    "clips": [],
+    "positionAccessorBounds": [
+      {
+        "min": [
+          -0.5000000596046448,
+          0,
+          -0.12113194912672043
+        ],
+        "max": [
+          0.5000000596046448,
+          0.97711181640625,
+          0.12113194912672043
+        ]
+      }
+    ]
+  }
+}

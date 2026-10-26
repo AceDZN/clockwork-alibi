@@ -1,14 +1,14 @@
 {
-  "status": "blocked",
-  "blocker": "Intermittent mcp__cua_repl connection: My Assets worked briefly, generation navigation and lighter browser binding then timed out/reset",
-  "modelsAcquired": 0,
-  "generationsSubmitted": 0,
-  "creditsSpentByCrew": 0,
-  "rigComplete": false,
+  "status": "acquired",
+  "blocker": null,
+  "modelsAcquired": 2,
+  "generationsSubmitted": 2,
+  "creditsSpentByCrew": 80,
+  "rigComplete": true,
   "requiredModels": [
     {
       "path": "porter.glb",
-      "status": "missing",
+      "status": "acquired",
       "requiresTripoRig": true,
       "desiredClips": [
         "walk",
@@ -17,7 +17,7 @@
     },
     {
       "path": "clockwork-bird.glb",
-      "status": "missing",
+      "status": "acquired",
       "requiresTripoRig": false
     }
   ],
@@ -28,7 +28,24 @@
       "requiresTripoRig": false
     }
   ],
-  "lastObservedCreditBalance": 6835,
+  "lastObservedCreditBalance": 6735,
   "lastObservedCreditBalanceDate": "2026-10-26",
-  "ownBrowserTabId": "512279088"
+  "ownBrowserTabId": "512279088",
+  "acquisitionSurface": "native Chrome via mcp__cua_repl",
+  "jobs": {
+    "porter": "de9faa4f-3704-4fc7-9519-dc5919794331",
+    "bird": "4a15e747-79c9-468b-859e-bd1d24b62175"
+  },
+  "runtime": {
+    "porter": "models/porter.glb",
+    "bird": "models/clockwork-bird.glb"
+  },
+  "rigProcessing": false,
+  "animationProcessing": false,
+  "animationStatus": "Tripo Mixamo rig complete; in-place walk clip exported",
+  "animations": {
+    "porter": [
+      "walk"
+    ]
+  }
 }

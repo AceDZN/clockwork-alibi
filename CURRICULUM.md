@@ -27,3 +27,10 @@ Hebrew explains controls and misconceptions. English supplies missing facts. Eng
 ## Verification status
 
 Pure fixture review completed. `npm test` passed all 35 checks, including the independent authored-oracle tests in `tests/reviewer-semantics.test.ts`. Independent browser UI checks passed all five cases, wrong identity, sequence-only overlap, alternate securing, key pickup, and a first-attempt transfer run without solution hints. Focused verification confirmed opaque readable completion/contradiction panels and usable 390×844 mobile witness/notebook/movement controls after the rendering fix. Hint exposure remains assisted after restart. Play Again also preserves completed exposure and the assisted/repeated flag. The transfer attendant is explicitly distinct from the visitor who opens the door. Completion guarding, start/Space, notebook Escape, fullscreen F/Escape and Next navigation also passed actual browser checks. Automated checks can establish rule consistency and observed interaction outcomes; they cannot establish enjoyment or learning gains.
+
+
+## Renewed interaction pass — verification pending
+
+The resumed commission retains the original five English fixtures and truth table. Proposed world controls move recording/testing toward the clock, window/door and visitor; the notebook becomes quote review with a detailed accessibility fallback. These controls must record the player’s candidate rather than infer the correct answer. A short chosen-moment replay and direct physical actions should preserve overlap versus sequence, limited viewpoints, no motive inference and separate action/comprehension outcomes.
+
+The earlier 35-test and browser results above describe the pre-asset baseline. Fresh current-build inspection at commit `e93fa65` confirmed physical recovery can precede reconstruction without bypassing the final two-viewpoint requirement. Model-integrated success/mistake/restart/transfer/touch verification remains pending. See the renewed section in `docs/ENGLISH_REVIEW.md`.

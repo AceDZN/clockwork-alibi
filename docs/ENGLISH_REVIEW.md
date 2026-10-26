@@ -1,5 +1,7 @@
 # Independent English and gameplay review
 
+**Renewed pass, 26 October 2026:** the earlier results below describe the pre-asset baseline. Fresh inspection of commit `e93fa65` is recorded in the resume section at the end. Model-integrated and world-control verification is pending; prior screenshots do not establish that new milestone.
+
 Reviewed the implemented content, pure simulation and actual browser UI on 25–26 October 2026. All five case chains, mistake/recovery paths, mobile reading/controls, exposure tracking and completion/fullscreen controls passed. All scenario sentences are original. Required Tripo assets/rigs remain an external blocker; this review does not establish learning gains or enjoyment.
 
 ## Semantic guardrails
@@ -134,3 +136,34 @@ The overloaded host caused initial loading/screenshot delays and one earlier mob
 `work/reviewer-overlap.mjs` completed through normal case 1 → Next → case 2 UI with exit 0 and no page/console errors. Both accounts were read, AVI was selected, and the player walked west. At t=0 the trail hook returned 0. At t=24 it returned 5 enabled samples, corresponding to source times 8,12,16,20,24; the future sample at 28 was hidden. The current-time sample at 24 is included, so this is a ≤ current time rule. Both ongoing-world activity flags were true at 24.
 
 Opened and inspected the actual full-page `work/reviewer-overlap/tracks-at24.png` and `overlap.png`. The former shows two visible, spatially overlapping timeline tracks at 24. The latter shows the opaque contradiction panel after proposing reading 28–34, with the English witness account and both historical tracks visible. DOM checks confirmed opacity 1 for both tracks and the contradiction, plus positive pixel overlap between the tracks. These replace the earlier canvas-only case 2 evidence.
+
+
+## Renewed gameplay review — current baseline e93fa65
+
+Read the 26 October resume handoff, common contract, scoped brief, existing asset status and generated target/prompt. Reopened the generated target. Started the unchanged dev command on 5202 because no server responded; no implementation file was changed. No native Chrome or Tripo controls were used by this reviewer.
+
+`work/reviewer-resume.mjs` inspected the actual 1280×720 build through UI handlers and deterministic stepping. It completed case 1 by reading both witnesses, physically marking NOA, latching at 17 and recovering at 23 **before** validating the notebook. The current build correctly reported physical recovery while retaining `validated:false` and `mode:replay`; supplying the supported reconstruction afterward completed the case. Exit 0, no page/console errors. Actual images `03-current-notebook.png`, `04-before-physical-action.png` and `05-world-success-before-form.png` were opened directly.
+
+The world-first route already exists, but the interface presents the notebook as the primary place to choose the English activity, enter opening time and run the test. At 1280×720 the notebook covers approximately one third of the width, reaches the footer and hides the intervention area. The lever action opens a second large panel for a single confirmation. A minimal case route cycles through at least seven account/label/reconstruction/action/completion panels. This interrupts the station’s most distinctive verbs even though its underlying time and physical rules work.
+
+### Three bounded changes recommended to the lead
+
+1. **Record the hypothesis in the station.** Let the player scrub and stamp the chosen opening moment at the window/door or clock. Keep an explicit English activity/source choice; record case 2’s reading start/end from the player’s selected times at the visitor. Put Test at the physical clock. Make the notebook mainly a quote recap, with its existing detailed controls collapsed as an accessible alternative. The record action must use the player’s current candidate, never snap to the correct case time or fill the activity/identity from hidden truth. A wrong candidate must remain editable and can still fail the unchanged pure checker.
+
+2. **Show the consequential seconds.** Play a short local segment around the player’s chosen moment when testing, instead of jumping immediately to departure+3. At a contradiction, quote the relevant English account and keep pause/edit available. Use the same authoritative world table and preserve the opaque luggage destination; do not show a complete bird-to-labelled-container trajectory. This makes overlapping activity and a completed event visible together without turning `while` into a cause or attributing intention. A failed test still records an attempt and clears first-unaided status. Transfer receives no pre-attempt solution hint or automatic correct timestamp.
+
+3. **Act directly after reading.** In replay, E and a compact nearby touch/pointer action should operate latch/secure/recover after any necessary explanation, rather than reopening a large modal for every physical action. Reuse the existing `act` rules, key requirement, timing boundaries and exposure accounting. A clunk, stopped gust and visible recovery can supply payoff. Wrong or early action remains consequential and recoverable. Witness/vocabulary reading stays fully pausable; shortcuts must not fire through a reading/input panel or strand completion.
+
+These changes preserve the original five cases and English semantics. They are reasoned improvements based on observed friction, not a claim of demonstrated fun or learning gains. No new game chapter, grammar gate, omniscient CCTV view, automatic answer inference or runtime AI is needed.
+
+### Required next verification
+
+After model and control integration, repeat actual UI success, a recoverable mistake, restart after assistance, altered transfer and touch. Specifically verify: world-recorded candidates can be wrong; two independent English viewpoints remain required; case 2 tracks can overlap without sequence; wrong attempts/repeated completion remain assisted; hidden container identity remains English-dependent; imported porter animation preserves authored prop/role positions; Hebrew/LTR reading and pause behavior survive the smaller controls. Keep the existing 35 pure tests passing and add only meaningful checks justified by changed behavior.
+
+Current loader risks to resolve during integration: `Station.loadAsset(..., porter)` clears the parent, detaching authored carried-box/ladder groups unless they are reattached or given a separate model root. `configure()` clears the bird group on every chapter, so a once-loaded bird GLB would be replaced after case 1 while the load-status array could remain positive. Actual scene presence and prop/clip behavior must be checked across chapter transitions and restart; a positive `loadedModels` string alone is insufficient evidence.
+
+### Model verification prepared during processing
+
+Read-only `liveModels` data now reports actual mounted meshes/skins, bone quaternions, asset markers, independent skeletons, attached props and mixer roles/times/weights. The prepared `work/reviewer-model-checks.mjs` checks those live properties, not merely load-status strings. It will sample fractional times 11.137, 11.431, 11.733 through Play→deterministic step→Pause UI in one browser task, then return to 11.137. This avoids falsely rejecting a valid one-second looping walk because integer samples coincide. It checks pose variation, exact scrub repeatability, the authored porter path, and independent player animation with the clock paused.
+
+The chapter-flow review will additionally verify mounted bird assets through cases 1–4 and restart, a lantern without the bird in transfer, and bird restoration on Play Again. Current interim porter-base and bird exports are real local mesh GLBs with embedded resources, but both presently have zero skins/animation clips; they are not evidence of fulfilled rig animation. Animated-export and actual-pixel checks remain pending while processing/implementation continues.
