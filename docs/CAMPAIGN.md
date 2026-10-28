@@ -60,7 +60,7 @@ open-container evidence, all 50 deep-link values and progress persistence.
 record controls, physical target navigation, conclusion selections, clock
 trials and recovery. It also checks a wrong advanced inference, an action
 before the clamp releases, the key/latch route, the last-level ending,
-reload/resume, the all-open map and touch reading. The harness uses the
+reload/resume, the all-open map and touch reading. The public network check also verifies all 50 catalog links, level-50 readiness, the unrestricted map and level-46 touch reading. The harness uses the
 ordinary DOM controls and deterministic movement/time stepping; it does not
 write game state or inject victories.
 
