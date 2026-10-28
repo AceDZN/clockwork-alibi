@@ -10,14 +10,14 @@ for (const c of CASES) {
   assert.equal(worldAt(c,59,[{kind:'secure',time:c.gust}]).object,'departed');
  });
  test(`case ${c.id}: two viewpoints and correct temporal identity required`,()=>{
-  const h={eventTime:c.open,activity:c.activity,readingStart:c.reading[0],readingEnd:c.reading[1],vessel:c.target};
-  const facts=[...evidenceFor(c,'porter'),...evidenceFor(c,'visitor')].map(e=>e.id);
+  const h={eventTime:c.open,activity:c.activity,readingStart:c.reading[0],readingEnd:c.reading[1],vessel:c.target,deductions:Object.fromEntries((c.deductions??[]).map(q=>[q.id,q.answer]))};
+  const facts=[...evidenceFor(c,'porter'),...evidenceFor(c,'visitor'),...(c.accounts?.records??[])].map(e=>e.id);
   assert.equal(checkReconstruction(c,h,facts).ok,true);
   assert.equal(checkReconstruction(c,h,facts.filter(x=>x!=='visitor-account')).ok,false);
   assert.equal(checkReconstruction(c,h,['visitor-account']).ok,false);
   assert.equal(checkReconstruction(c,{...h,vessel:c.vessels.find(v=>v.id!==c.target)!.id},facts).ok,false);
   assert.equal(checkReconstruction(c,{...h,eventTime:c.carrying[1]},facts).ok,false);
-  assert.ok(evidenceFor(c,'visitor')[0].text.includes(c.target==='NOA'?'Noa':c.target==='AVI'?'Avi':c.target));
+  assert.ok([...evidenceFor(c,'visitor'),...(c.accounts?.records??[])].some(e=>e.text.includes(c.target==='NOA'?'Noa':c.target==='AVI'?'Avi':c.target)));
  });
 }
 test('overlap is not sequence and interval end is excluded',()=>{

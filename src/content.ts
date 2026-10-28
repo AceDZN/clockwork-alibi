@@ -1,10 +1,17 @@
+import {extendedCases} from './campaign';
+export {SCENES} from './campaign';
 export type Interval = readonly [number, number];
+export type ObjectKind = 'bird'|'lantern'|'vase'|'compass'|'parcel'|'violin'|'trophy'|'seed';
+export const OBJECT_NAMES:Record<ObjectKind,string>={bird:'ציפור השעון',lantern:'פנס הפסטיבל',vase:'אגרטל הזכוכית',compass:'מצפן הפליז',parcel:'החבילה החתומה',violin:'הכינור הזעיר',trophy:'גביע התערוכה',seed:'כמוסת הזרעים'};
+export type Deduction={id:string;prompt:string;choices:{id:string;text:string}[];answer:string;explanation:string;fact:string};
 export type Vessel = { id: string; label: string; color: string; x: number; z: number; openAt: number; closeAt?: number };
 export type Case = {
   id: number; title: string; englishTitle: string; objective: string; actor: 'porter'|'painter';
   observer:'visitor'|'attendant';opener:'musician'|'visitor';activity: string; carrying: Interval; reading: Interval; bell: number; open: number; gust: number; depart: number;
-  latchFrom: number; opening: 'window'|'door'; object: 'bird'|'lantern'; target: string; vessels: Vessel[];
+  latchFrom: number; opening: 'window'|'door'; object: ObjectKind; target: string; vessels: Vessel[];
   hint: string; feedback: string; transfer: boolean;
+  scene?:number;tier?:number;skill?:string;actorName?:string;observerName?:string;requiresReading?:boolean;requiresKey?:boolean;secureFrom?:number;
+  accounts?:{porter:Evidence[];visitor:Evidence[];records:Evidence[]};deductions?:Deduction[];
 };
 export const CASES: Case[] = [
   {id:1,title:'רגע בתוך תנועה',englishTitle:'THE MISSING BIRD',objective:'מי ראה את מה שקרה לציפור? חברו שתי עדויות ושנו את הלולאה.',actor:'porter',observer:'visitor',opener:'musician',activity:'carrying boxes',carrying:[10,30],reading:[15,35],bell:20,open:20,gust:22,depart:40,latchFrom:15,opening:'window',object:'bird',target:'NOA',vessels:[{id:'NOA',label:'NOA',color:'#214e76',x:4,z:0.8,openAt:0},{id:'AVI',label:'AVI',color:'#315578',x:5.7,z:2.4,openAt:99}],hint:'בדקו מתי נפתח החלון, ומה שם הבעלים של המזוודה. אפשר לנעול את התריס לפני הפתיחה או לקבע את הציפור לפני הרוח.',feedback:'was carrying מתאר פעולה שהייתה בעיצומה בזמן שהחלון נפתח.',transfer:false},
@@ -12,11 +19,13 @@ export const CASES: Case[] = [
   {id:3,title:'אותו צבע, סיפור אחר',englishTitle:'TWO BLUE SUITCASES',objective:'שתי מזוודות כחולות. עקבו אחרי השמות ואחרי סדר האירועים.',actor:'porter',observer:'visitor',opener:'musician',activity:'carrying boxes',carrying:[9,32],reading:[15,36],bell:25,open:25,gust:27,depart:42,latchFrom:19,opening:'window',object:'bird',target:'NOA',vessels:[{id:'AVI',label:'AVI',color:'#214e76',x:4,z:0.8,openAt:0,closeAt:12},{id:'NOA',label:'NOA',color:'#214e76',x:5.7,z:2.4,openAt:19}],hint:'הצבע לבדו אינו מספיק. מי סגר ומי פתח? השוו before ו־after עם תוויות השם.',feedback:'before ו־after מסדרים אירועים. צבע משותף אינו מוכיח שזה אותו חפץ.',transfer:false},
   {id:4,title:'השאלה שחסרה',englishTitle:'ASK THE RIGHT PERSON',objective:'שאלות שונות חושפות פרטים שונים. שאלו, מצאו את המפתח ושנו את העבר.',actor:'porter',observer:'visitor',opener:'musician',activity:'carrying boxes',carrying:[11,33],reading:[16,38],bell:23,open:31,gust:33,depart:48,latchFrom:24,opening:'window',object:'bird',target:'STAGE',vessels:[{id:'MAIL',label:'MAIL',color:'#745640',x:4,z:0.8,openAt:0},{id:'STAGE',label:'STAGE',color:'#745640',x:5.7,z:2.4,openAt:0}],hint:'השאלה על הפתיחה נותנת זמן; השאלה על המציאה חושפת מפתח. העדה השנייה מכירה את העגלה.',feedback:'שאלה משלימה מידע חסר. found הוא העבר של find; אחרי did משתמשים ב־find.',transfer:false},
   {id:5,title:'האור שמאחורי הווילון',englishTitle:'THE TRAVELLING LANTERN',objective:'מקרה חדש. פנס, ציירת ודלת צדדית. חקרו בלי רמז לפתרון.',actor:'painter',observer:'attendant',opener:'visitor',activity:'moving the ladder',carrying:[5,17],reading:[8,24],bell:13,open:13,gust:16,depart:34,latchFrom:9,opening:'door',object:'lantern',target:'CANVAS',vessels:[{id:'STAGE',label:'STAGE',color:'#745640',x:-4,z:2.8,openAt:0},{id:'CANVAS',label:'CANVAS',color:'#745640',x:-6,z:0.6,openAt:0}],hint:'',feedback:'חיברתם פעילות מתמשכת, אירוע ופרט זיהוי גם בסיפור חדש.',transfer:true}
+ ,...extendedCases()
 ];
 export const stamp = (t:number) => `00:${Math.floor(t).toString().padStart(2,'0')}`;
 export type Evidence = {id:string;speaker:string;question?:string;text:string};
 // All times, subjects, locations and labels below come from the same table as the simulation.
 export function evidenceFor(c:Case, witness:'porter'|'visitor'):Evidence[] {
+  if(c.accounts)return c.accounts[witness];
   const vessel=c.vessels.find(v=>v.id===c.target)!;
   if(witness==='visitor') {
     const text = c.id===5

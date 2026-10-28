@@ -17,7 +17,7 @@ test('reading a witness does not silently count as saving every clue',()=>{
   assert.equal(nextStep(CASES[0],s).id,'test');
 });
 test('guide offers a trial without revealing whether saved choices are correct',()=>{
-  for(const c of CASES){const s=ready();if(c.id===4)s.facts.push('porter-window');const step=nextStep(c,s);assert.equal(step.id,'test');assert.equal(step.target,'clock');assert.equal(JSON.stringify(step).includes(c.target),false);assert.doesNotMatch(step.detail,/00:\d/);}
+  for(const c of CASES){const s={...ready(),facts:[...ready().facts,...(c.accounts?.porter??[]).map(e=>e.id),...(c.accounts?.records??[]).map(e=>e.id)],deductions:Object.fromEntries((c.deductions??[]).map(q=>[q.id,q.answer]))};if(c.id===4)s.facts.push('porter-window');const step=nextStep(c,s);assert.equal(step.id,'test');assert.equal(step.target,'clock');assert.equal(JSON.stringify(step).includes(c.target),false);assert.doesNotMatch(step.detail,/00:\d/);}
 });
 test('the overlapping-activity case requires both deliberately marked bounds',()=>{
   const s=ready();s.recorded.readingStart=false;s.recorded.readingEnd=false;

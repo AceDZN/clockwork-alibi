@@ -75,3 +75,8 @@ The lead opened the final intro, next-step, witness, clock, result-view and succ
 ## Workbook production integration · 2026-10-26
 
 Opened the actual public game-detail page, case4 player and390×844 witness PNGs in `docs/evidence/workbook/live/`. The detail page shows the actual gameplay poster, five cases and all three lesson mappings in English Games' pink theme. The live player preserves the station art inside the existing header and slim player toolbar. Portrait English remains readable with a scrollable panel; real touch selection/save/continue succeeded at the reduced iframe height. These captures establish visible integration, not a new art-fidelity or student-device performance claim.
+
+
+## 2026-10-28 campaign expansion
+
+Actual final-run captures are under docs/evidence/campaign. Opened and inspected: desktop map, gallery and workshop scenes, level-50 conclusions, campaign ending, 390×844 completed map, advanced mobile account, and the action client’s vault canvas. Ten themes reuse the station architecture with distinct signs, scene backgrounds, props and recovered objects; these are not claimed as ten separately modelled worlds. The map remains above the timeline on portrait screens, every level stays selectable, and the reading panel scrolls to its record controls.

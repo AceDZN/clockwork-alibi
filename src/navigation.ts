@@ -33,7 +33,7 @@ export function route(start:Point,goal:Point,obstacles:Rect[]):Point[]{
  if(previous[1]<0)return[];const result:Point[]=[];for(let i=1;i!==0;i=previous[i])result.unshift(points[i]);return result;
 }
 export function interactionApproach(id:string,p:Point,transfer:boolean):Point{
- if(id.startsWith('vessel-'))return p.z>2?{x:p.x,z:4.4}:{x:transfer?-7.98:2.18,z:p.z};
+ if(id.startsWith('vessel-'))return p.z>2?{x:p.x,z:4.4}:{x:transfer?(p.x<-5?-7.98:-1.98):(p.x>5?8.02:2.18),z:p.z};
  if(id==='object'&&transfer)return{x:p.x,z:-3.05};
  if(id==='porter'&&transfer)return p.x<-5.55?{x:-5.3,z:-.8}:{x:p.x,z:-1.65};
  return{x:p.x,z:p.z+.8};

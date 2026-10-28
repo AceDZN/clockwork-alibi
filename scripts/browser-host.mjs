@@ -18,7 +18,7 @@ const step=ms=>game.evaluate(ms=>window.advanceTime(ms),ms);
 async function click(selector){await game.locator(selector).click();await step(1);}
 async function follow(id){assert.equal((await state()).guidance.id,id);await click('#guide-action');for(let i=0;i<16&&!(await state()).panel;i++)await step(500);assert.ok((await state()).panel,`reachable ${id}`);}
 try{
- for(let level=1;level<=5;level++){
+ for(const level of [1,4,5,6,16,26,36,50]){
   await page.goto(`${root}/__workbook-host-check?level=${level}`,{waitUntil:'domcontentloaded',timeout:120000});
   await page.waitForFunction(()=>window.hostMessages.some(m=>m.type==='level-start'),{},{timeout:120000});
   game=await (await page.locator('iframe').elementHandle()).contentFrame();

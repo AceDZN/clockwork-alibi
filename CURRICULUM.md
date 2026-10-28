@@ -1,6 +1,6 @@
 # Curriculum mapping
 
-Clockwork Alibi is an original English mystery for Hebrew-speaking Israeli grade-8 students. Its scope follows saved Workbook grade-8 chapter-2 snapshots. Scenario sentences are original. This is not a claim of Ministry approval or evidence of learning gains. The broader reference is the 2020 junior-high action-oriented framework; A2 is the junior-high exit level, not a measured outcome of this slice.
+Clockwork Alibi now has a 50-level campaign for Hebrew-speaking English learners, progressing by level rather than a selected grade. The opening five cases follow saved Workbook grade-8 chapter-2 snapshots. Later chapters add connected reading, reported speech, passive voice, conditionals and advanced synthesis; see [the campaign map and scope](docs/CAMPAIGN.md). Scenario sentences are original. This is not a claim of Ministry approval or evidence of learning gains. The broader reference is the 2020 junior-high action-oriented framework; A2 is the junior-high exit level, not a measured outcome of this slice.
 
 Primary sources:
 
@@ -8,7 +8,7 @@ Primary sources:
 - [Events and Past Questions](https://english.workbook.co.il/grade-8/chapter-2/events-and-past-questions)
 - [Feelings, Motives, and Sequence](https://english.workbook.co.il/grade-8/chapter-2/feelings-motives-and-sequence)
 
-This table matches `src/content.ts` and the pure simulation reviewed on 25 October 2026. Detailed fixtures, timing and adversarial checks are in [docs/ENGLISH_REVIEW.md](docs/ENGLISH_REVIEW.md).
+This table describes the original five cases in `src/content.ts` and the pure simulation reviewed on 25 October 2026. Detailed fixtures, timing and adversarial checks are in [docs/ENGLISH_REVIEW.md](docs/ENGLISH_REVIEW.md).
 
 | Chapter | Exact Workbook source | Intended skill | Original task-bearing fixture | World outcome | Misconception to expose |
 |---|---|---|---|---|---|

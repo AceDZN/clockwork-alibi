@@ -7,9 +7,9 @@ test('a floor click inside the private bay does not walk the player under its ro
 test('straight unobstructed aisle remains direct and bounded',()=>{assert.deepEqual(route({x:-4,z:0},{x:1,z:0},stationObstacles(false)),[{x:1,z:0}]);});
 import{interactionApproach}from'../src/navigation.ts';import{CASES}from'../src/content.ts';
 for(const c of CASES)test(`case${c.id}: every intervention/witness/label has a reachable external approach`,()=>{
- const start={x:c.transfer?-1:-4,z:3},obstacles=stationObstacles(c.transfer);
- const targets=[{id:'object',x:c.transfer?-6.2:6.5,z:-2.7},{id:'door',x:-7,z:-3.5},{id:'window',x:5.2,z:-3.5},{id:'clock',x:7.8,z:-1.5},{id:'visitor',x:.3,z:-2},...[-6.5,-4.3,-2.2].map(x=>({id:'porter',x,z:-.8})),...c.vessels.map(v=>({id:'vessel-'+v.id,x:v.x,z:v.z}))];
- for(const t of targets){const goal=interactionApproach(t.id,t,c.transfer);assert.equal(obstacles.some(r=>contains(goal,r)),false,t.id+' goal blocked');assert.ok(route(start,goal,obstacles).length>0,t.id+' unreachable');}
+ const start={x:(c.opening==='door')?-1:-4,z:3},obstacles=stationObstacles((c.opening==='door'));
+ const targets=[{id:'object',x:(c.opening==='door')?-6.2:6.5,z:-2.7},{id:'door',x:-7,z:-3.5},{id:'window',x:5.2,z:-3.5},{id:'clock',x:7.8,z:-1.5},{id:'visitor',x:.3,z:-2},...[-6.5,-4.3,-2.2].map(x=>({id:'porter',x,z:-.8})),...(c.accounts?.records??[]).map((e,i)=>({id:e.id,x:.8+i,z:2})),...c.vessels.map(v=>({id:'vessel-'+v.id,x:v.x,z:v.z}))];
+ for(const t of targets){const goal=interactionApproach(t.id,t,(c.opening==='door'));assert.equal(obstacles.some(r=>contains(goal,r)),false,t.id+' goal blocked');assert.ok(route(start,goal,obstacles).length>0,t.id+' unreachable');assert.ok(Math.hypot(goal.x-t.x,goal.z-t.z)<(t.id.startsWith('vessel-')?2.35:1.65),t.id+' outside interaction radius');}
 });
 import{stepRoute}from'../src/navigation.ts';
 for(const transfer of[false,true])test(`stepped ${transfer?'west':'east'} corner route reaches every waypoint without cutting turns`,()=>{

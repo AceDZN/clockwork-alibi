@@ -1,0 +1,356 @@
+{
+  "report": [
+    {
+      "level": 1,
+      "scene": "MERIDIAN STATION",
+      "sources": 2,
+      "conclusions": 0,
+      "complete": true
+    },
+    {
+      "level": 2,
+      "scene": "MERIDIAN STATION",
+      "sources": 2,
+      "conclusions": 0,
+      "complete": true
+    },
+    {
+      "level": 3,
+      "scene": "MERIDIAN STATION",
+      "sources": 2,
+      "conclusions": 0,
+      "complete": true
+    },
+    {
+      "level": 4,
+      "scene": "MERIDIAN STATION",
+      "sources": 4,
+      "conclusions": 0,
+      "complete": true
+    },
+    {
+      "level": 5,
+      "scene": "MERIDIAN STATION",
+      "sources": 2,
+      "conclusions": 0,
+      "complete": true
+    },
+    {
+      "level": 6,
+      "scene": "BOTANICAL HOUSE",
+      "sources": 2,
+      "conclusions": 1,
+      "complete": true
+    },
+    {
+      "level": 7,
+      "scene": "BOTANICAL HOUSE",
+      "sources": 2,
+      "conclusions": 1,
+      "complete": true
+    },
+    {
+      "level": 8,
+      "scene": "BOTANICAL HOUSE",
+      "sources": 2,
+      "conclusions": 1,
+      "complete": true
+    },
+    {
+      "level": 9,
+      "scene": "BOTANICAL HOUSE",
+      "sources": 2,
+      "conclusions": 1,
+      "complete": true
+    },
+    {
+      "level": 10,
+      "scene": "BOTANICAL HOUSE",
+      "sources": 2,
+      "conclusions": 1,
+      "complete": true
+    },
+    {
+      "level": 11,
+      "scene": "NIGHT GALLERY",
+      "sources": 2,
+      "conclusions": 1,
+      "complete": true
+    },
+    {
+      "level": 12,
+      "scene": "NIGHT GALLERY",
+      "sources": 2,
+      "conclusions": 1,
+      "complete": true
+    },
+    {
+      "level": 13,
+      "scene": "NIGHT GALLERY",
+      "sources": 2,
+      "conclusions": 1,
+      "complete": true
+    },
+    {
+      "level": 14,
+      "scene": "NIGHT GALLERY",
+      "sources": 2,
+      "conclusions": 1,
+      "complete": true
+    },
+    {
+      "level": 15,
+      "scene": "NIGHT GALLERY",
+      "sources": 2,
+      "conclusions": 1,
+      "complete": true
+    },
+    {
+      "level": 16,
+      "scene": "HARBOUR DEPOT",
+      "sources": 3,
+      "conclusions": 2,
+      "complete": true
+    },
+    {
+      "level": 17,
+      "scene": "HARBOUR DEPOT",
+      "sources": 3,
+      "conclusions": 2,
+      "complete": true
+    },
+    {
+      "level": 18,
+      "scene": "HARBOUR DEPOT",
+      "sources": 3,
+      "conclusions": 2,
+      "complete": true
+    },
+    {
+      "level": 19,
+      "scene": "HARBOUR DEPOT",
+      "sources": 3,
+      "conclusions": 2,
+      "complete": true
+    },
+    {
+      "level": 20,
+      "scene": "HARBOUR DEPOT",
+      "sources": 3,
+      "conclusions": 2,
+      "complete": true
+    },
+    {
+      "level": 21,
+      "scene": "OBSERVATORY",
+      "sources": 3,
+      "conclusions": 2,
+      "complete": true
+    },
+    {
+      "level": 22,
+      "scene": "OBSERVATORY",
+      "sources": 3,
+      "conclusions": 2,
+      "complete": true
+    },
+    {
+      "level": 23,
+      "scene": "OBSERVATORY",
+      "sources": 3,
+      "conclusions": 2,
+      "complete": true
+    },
+    {
+      "level": 24,
+      "scene": "OBSERVATORY",
+      "sources": 3,
+      "conclusions": 2,
+      "complete": true
+    },
+    {
+      "level": 25,
+      "scene": "OBSERVATORY",
+      "sources": 3,
+      "conclusions": 2,
+      "complete": true
+    },
+    {
+      "level": 26,
+      "scene": "CITY ARCHIVE",
+      "sources": 4,
+      "conclusions": 2,
+      "complete": true
+    },
+    {
+      "level": 27,
+      "scene": "CITY ARCHIVE",
+      "sources": 4,
+      "conclusions": 2,
+      "complete": true
+    },
+    {
+      "level": 28,
+      "scene": "CITY ARCHIVE",
+      "sources": 4,
+      "conclusions": 2,
+      "complete": true
+    },
+    {
+      "level": 29,
+      "scene": "CITY ARCHIVE",
+      "sources": 4,
+      "conclusions": 2,
+      "complete": true
+    },
+    {
+      "level": 30,
+      "scene": "CITY ARCHIVE",
+      "sources": 4,
+      "conclusions": 2,
+      "complete": true
+    },
+    {
+      "level": 31,
+      "scene": "FESTIVAL THEATRE",
+      "sources": 4,
+      "conclusions": 3,
+      "complete": true
+    },
+    {
+      "level": 32,
+      "scene": "FESTIVAL THEATRE",
+      "sources": 4,
+      "conclusions": 3,
+      "complete": true
+    },
+    {
+      "level": 33,
+      "scene": "FESTIVAL THEATRE",
+      "sources": 4,
+      "conclusions": 3,
+      "complete": true
+    },
+    {
+      "level": 34,
+      "scene": "FESTIVAL THEATRE",
+      "sources": 4,
+      "conclusions": 3,
+      "complete": true
+    },
+    {
+      "level": 35,
+      "scene": "FESTIVAL THEATRE",
+      "sources": 4,
+      "conclusions": 3,
+      "complete": true
+    },
+    {
+      "level": 36,
+      "scene": "RESTORATION WORKSHOP",
+      "sources": 5,
+      "conclusions": 3,
+      "complete": true
+    },
+    {
+      "level": 37,
+      "scene": "RESTORATION WORKSHOP",
+      "sources": 5,
+      "conclusions": 3,
+      "complete": true
+    },
+    {
+      "level": 38,
+      "scene": "RESTORATION WORKSHOP",
+      "sources": 5,
+      "conclusions": 3,
+      "complete": true
+    },
+    {
+      "level": 39,
+      "scene": "RESTORATION WORKSHOP",
+      "sources": 5,
+      "conclusions": 3,
+      "complete": true
+    },
+    {
+      "level": 40,
+      "scene": "RESTORATION WORKSHOP",
+      "sources": 5,
+      "conclusions": 3,
+      "complete": true
+    },
+    {
+      "level": 41,
+      "scene": "STORM LAB",
+      "sources": 5,
+      "conclusions": 3,
+      "complete": true
+    },
+    {
+      "level": 42,
+      "scene": "STORM LAB",
+      "sources": 5,
+      "conclusions": 3,
+      "complete": true
+    },
+    {
+      "level": 43,
+      "scene": "STORM LAB",
+      "sources": 5,
+      "conclusions": 3,
+      "complete": true
+    },
+    {
+      "level": 44,
+      "scene": "STORM LAB",
+      "sources": 5,
+      "conclusions": 3,
+      "complete": true
+    },
+    {
+      "level": 45,
+      "scene": "STORM LAB",
+      "sources": 5,
+      "conclusions": 3,
+      "complete": true
+    },
+    {
+      "level": 46,
+      "scene": "CLOCKWORK VAULT",
+      "sources": 5,
+      "conclusions": 4,
+      "complete": true
+    },
+    {
+      "level": 47,
+      "scene": "CLOCKWORK VAULT",
+      "sources": 5,
+      "conclusions": 4,
+      "complete": true
+    },
+    {
+      "level": 48,
+      "scene": "CLOCKWORK VAULT",
+      "sources": 5,
+      "conclusions": 4,
+      "complete": true
+    },
+    {
+      "level": 49,
+      "scene": "CLOCKWORK VAULT",
+      "sources": 5,
+      "conclusions": 4,
+      "complete": true
+    },
+    {
+      "level": 50,
+      "scene": "CLOCKWORK VAULT",
+      "sources": 5,
+      "conclusions": 4,
+      "complete": true
+    }
+  ],
+  "errors": [],
+  "httpErrors": []
+}
