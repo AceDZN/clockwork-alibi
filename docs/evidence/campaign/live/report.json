@@ -1,0 +1,13 @@
+{
+  "site": "https://english-games.workbook.co.il",
+  "report": [
+    "Public home → game page → level50: all 50 catalog links, original lesson mappings, real same-origin models/ready, four required conclusions and witness questions passed.",
+    "Public390×844 advanced player (level46): actual touch navigation, readable LTR English, activity save and next-step transition passed without a rotate/loading blocker."
+  ],
+  "gameErrors": [],
+  "parentErrors": [
+    "Failed to load resource: the server responded with a status of 403 ()",
+    "Failed to load resource: the server responded with a status of 403 ()"
+  ],
+  "httpErrors": []
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "path": "/clockwork-alibi",
+    "status": 200,
+    "bytes": 330952,
+    "contentType": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/clockwork-alibi/play?level=50",
+    "status": 200,
+    "bytes": 72705,
+    "contentType": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/play/clockwork-alibi/2026-10-28/index.html?level=50",
+    "status": 200,
+    "bytes": 655,
+    "contentType": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/play/clockwork-alibi/2026-10-28/models/asset-status.json",
+    "status": 200,
+    "bytes": 2071,
+    "contentType": "application/json"
+  },
+  {
+    "path": "/play/clockwork-alibi/2026-10-28/models/porter.glb",
+    "status": 200,
+    "bytes": 2021208,
+    "contentType": "model/gltf-binary"
+  }
+]

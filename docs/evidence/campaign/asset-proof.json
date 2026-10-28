@@ -1,0 +1,267 @@
+{
+  "release": "https://assets.acedzn.xyz/games/clockwork-alibi/2026-10-28/",
+  "source": "2dacc795b530abaa7395a53ab16e10a26ee8b3fa",
+  "files": [
+    {
+      "file": "assets/heebo-hebrew-400-normal-CW-pNnu9.woff",
+      "status": 200,
+      "bytes": 6544,
+      "sha256": "8af4b8c698af7c4f95f66f3db412045287a338c54fb6c6643e5e70d3eb966036",
+      "matches": true,
+      "contentType": "font/woff",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-hebrew-400-normal-D5wnDyqV.woff2",
+      "status": 200,
+      "bytes": 5044,
+      "sha256": "32778d80b28dfae122f5da858bd2e4eb27994b28beeeb310dd7fc8dacb5eb162",
+      "matches": true,
+      "contentType": "font/woff2",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-hebrew-500-normal-BsDeJRsL.woff",
+      "status": 200,
+      "bytes": 6612,
+      "sha256": "16aacf82af64602a47d5c1bcc535c828dc19ceb7f0156d10f13cb1be599cee10",
+      "matches": true,
+      "contentType": "font/woff",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-hebrew-500-normal-CGTn5i_d.woff2",
+      "status": 200,
+      "bytes": 5220,
+      "sha256": "64b2cd37657d8a71c67b3d21f8064f2212b4273314aca12d79300ba07b16113b",
+      "matches": true,
+      "contentType": "font/woff2",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-latin-400-normal-BoFdNwwC.woff2",
+      "status": 200,
+      "bytes": 12012,
+      "sha256": "e7f9d2d3ab13ba53331a074257837b1b972234b96eac722b04a49693a7f79308",
+      "matches": true,
+      "contentType": "font/woff2",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-latin-400-normal-DcEMKv0t.woff",
+      "status": 200,
+      "bytes": 15636,
+      "sha256": "77686c07c3329f918a086dff1594052d364dd5a7754264b49aef174ec7f759e4",
+      "matches": true,
+      "contentType": "font/woff",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-latin-500-normal-BcQ-UPgn.woff",
+      "status": 200,
+      "bytes": 15804,
+      "sha256": "223323566a0382d814e82284ff379446acf4e781a05be3cf391257d5d854e251",
+      "matches": true,
+      "contentType": "font/woff",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-latin-500-normal-DeP8cluX.woff2",
+      "status": 200,
+      "bytes": 12240,
+      "sha256": "8fd37bbbee055cf1096c3987212ce7207939469ab57965e1a24bf966853fc5ac",
+      "matches": true,
+      "contentType": "font/woff2",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-latin-ext-400-normal-CD5N7RnM.woff",
+      "status": 200,
+      "bytes": 8556,
+      "sha256": "399e55b77035e9126c254dedab07a9259f6910c36c370e2134530ac0bf960e3c",
+      "matches": true,
+      "contentType": "font/woff",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-latin-ext-400-normal-DQQF5Kri.woff2",
+      "status": 200,
+      "bytes": 6368,
+      "sha256": "095a854c9a5cd79530347f2250022550abfd590b7a506a754933e15493192b75",
+      "matches": true,
+      "contentType": "font/woff2",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-latin-ext-500-normal-5dr4Pggx.woff",
+      "status": 200,
+      "bytes": 8664,
+      "sha256": "a64bf06cdf85406f03c346c498144bbaa4c2c5e23155fb2e910fd7eb1af15484",
+      "matches": true,
+      "contentType": "font/woff",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-latin-ext-500-normal-DfMHwPm7.woff2",
+      "status": 200,
+      "bytes": 6468,
+      "sha256": "355eb7e248923068db8f98989e491b20ec844022b0f05bc1c4114133106b28d6",
+      "matches": true,
+      "contentType": "font/woff2",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-math-400-normal-BCol6Y92.woff",
+      "status": 200,
+      "bytes": 12104,
+      "sha256": "f7c6569308d232527adcff0874880c10d5f6a23f94939cf38a54d76c69bb6eaa",
+      "matches": true,
+      "contentType": "font/woff",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-math-400-normal-D0ep2dDv.woff2",
+      "status": 200,
+      "bytes": 9460,
+      "sha256": "2114f3f38c48eaa83432d0a15cd7823d0590629a218cb4305012a9b290bd4176",
+      "matches": true,
+      "contentType": "font/woff2",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-math-500-normal-CBCIrLFC.woff2",
+      "status": 200,
+      "bytes": 9676,
+      "sha256": "af6ea35fbab04134893646cbc76bda6c5f81fd7cf9e458145a22b67ed3f02ca8",
+      "matches": true,
+      "contentType": "font/woff2",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-math-500-normal-DI-bUFDX.woff",
+      "status": 200,
+      "bytes": 12188,
+      "sha256": "b3394dd77d2b526855b90b5b9a4bf369fbabf8a624aadc2a7a97ff5ea60bc617",
+      "matches": true,
+      "contentType": "font/woff",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-symbols-400-normal-BbqTU_I0.woff2",
+      "status": 200,
+      "bytes": 5524,
+      "sha256": "8812008c94b8ca63330fe1ba1064714aee58c334973848543e0a6bd8eb8f6062",
+      "matches": true,
+      "contentType": "font/woff2",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-symbols-400-normal-C4IMj2OM.woff",
+      "status": 200,
+      "bytes": 7120,
+      "sha256": "bcd5a57acb52b3b68c7cd4a6a53d2a3760fa3dd59a3001376262858b27a2c40a",
+      "matches": true,
+      "contentType": "font/woff",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-symbols-500-normal-D0pI1kLq.woff",
+      "status": 200,
+      "bytes": 7188,
+      "sha256": "9fda60a89f8f40c20a0d1fc4229ca33d2628a7c0d3b3ef013d6361caefa648c2",
+      "matches": true,
+      "contentType": "font/woff",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/heebo-symbols-500-normal-fBcrHOvv.woff2",
+      "status": 200,
+      "bytes": 5648,
+      "sha256": "b5fe8ff51f4aa55a5855b71ccf0fde6341f159f234cdfbeb3c392bd18e1cd2d6",
+      "matches": true,
+      "contentType": "font/woff2",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/index-BiWqxu-F.js",
+      "status": 200,
+      "bytes": 707076,
+      "sha256": "9d6076d11a8d68a653ed3feb1dd17e8297f090111e17581e965f3945b3dfa64c",
+      "matches": true,
+      "contentType": "text/javascript; charset=utf-8",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "assets/index-Bs6xB7jv.css",
+      "status": 200,
+      "bytes": 23029,
+      "sha256": "7ac21fa09e4972079500222cfaa94810aed11260089bb158587258525aaffc01",
+      "matches": true,
+      "contentType": "text/css; charset=utf-8",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "favicon.svg",
+      "status": 200,
+      "bytes": 291,
+      "sha256": "e9a3c9069e61577e6cac1bb94d8ac9ed0d3cc78f81b3d22ded1d601b940c3ec4",
+      "matches": true,
+      "contentType": "image/svg+xml",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "fonts/Heebo-LICENSE.txt",
+      "status": 200,
+      "bytes": 4314,
+      "sha256": "18aabf190848725e2576eefb5c29ba06aac1029d02132252a7f312eac2e50cf3",
+      "matches": true,
+      "contentType": "text/plain; charset=utf-8",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "index.html",
+      "status": 200,
+      "bytes": 655,
+      "sha256": "5218d44516e8f0a42310808f31ad46910500698155a678ac37a0e207d6518c81",
+      "matches": true,
+      "contentType": "text/html; charset=utf-8",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "models/asset-status.json",
+      "status": 200,
+      "bytes": 2071,
+      "sha256": "335db48e34c6cd9ee8a7030fe55abb7c4a558eaec3eb12c849fb0c7fc8cb5d86",
+      "matches": true,
+      "contentType": "application/json",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "models/clockwork-bird.glb",
+      "status": 200,
+      "bytes": 1320748,
+      "sha256": "fffa44835dda7e830c66ed243861c16fba4a2c3a4617d36883f49a3d9028fb6f",
+      "matches": true,
+      "contentType": "model/gltf-binary",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "models/porter.glb",
+      "status": 200,
+      "bytes": 2021208,
+      "sha256": "2923e98d6526c3944c081796f319402f78ab1bc1c0dbe8316be7f43671011c56",
+      "matches": true,
+      "contentType": "model/gltf-binary",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "poster.png",
+      "status": 200,
+      "bytes": 364296,
+      "sha256": "751b38d98a8831d53cbc84ffa6fe4014fd8c5e8ad1194b3cc0bf2d2ee6a039bb",
+      "matches": true,
+      "contentType": "image/png",
+      "cache": "public, max-age=31536000, immutable"
+    }
+  ]
+}

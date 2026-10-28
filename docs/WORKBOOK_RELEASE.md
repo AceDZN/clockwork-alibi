@@ -1,3 +1,29 @@
+# Workbook English Games release · 2026-10-28
+
+Clockwork Alibi now has one 50-level campaign across ten story settings, with saved progress and a Continue action. Difficulty grows with level position; every level is selectable and no grade selection limits the campaign. New chapters add original reading incidents, container logs, relative-time reasoning, reported speech, passive agents, conditions and four required conclusions in the final chapter.
+
+- Game page: https://english-games.workbook.co.il/clockwork-alibi
+- Player: https://english-games.workbook.co.il/clockwork-alibi/play
+- Direct levels: `?level=1` through `?level=50`.
+- Game build source: `2dacc795b530abaa7395a53ab16e10a26ee8b3fa`.
+- Catalog PR: https://github.com/AceDZN/acedzn-tools/pull/367 (merged).
+- Catalog merge: `11f3a34b30c4e0c90a3a477e2d6d6ab1953119ad`.
+- Immutable release: https://assets.acedzn.xyz/games/clockwork-alibi/2026-10-28/
+- Preview: `dpl_GTu88HeS1gxg1XudENecJ2DzrrAC`, READY; successful English Games build in 55 seconds.
+- Production: `dpl_9aJC9wGJiyFocBrrVovWou3UkXmf`, READY on the public custom domain, from main commit `877f116bf5afd27fffed139031abae0d1fa7a4ad`, which contains the catalog merge above. The initially queued deployment was superseded by this newer main build.
+
+All 203 game checks and the static build/typecheck pass. The browser campaign completed every reconstruction and physical rescue across all 50 levels, rejected/corrected the final inference, rejected an early clamp, collected the key with the live timeline control, and verified the last-level ending, all 50 saved completions, reload/Continue and actual 390×844 touch map/reading. Console and HTTP error lists were empty. It uses ordinary UI controls and deterministic movement/time stepping, batched in the browser under host contention; it never assigns internal game state or injects victories. The installed action/capture client also passed at level 50. Actual scene, map, conclusion, contradiction, ending and mobile screenshots were opened and inspected.
+
+The final production bundle passes fresh iframe links at levels 1, 4, 5, 6, 16, 26, 36 and 50; ready precedes start after both models mount, and actual first-case reconstruction/recovery emits one completion before Next starts level 2. All 29 public files (4,621,764 bytes including poster) return 200, match the tested SHA-256 hashes and use immutable caching. All nine mapped English lesson pages return 200. Catalog tests (9), shared lesson/analytics tests (9), catalog typecheck/lint and the remote app build pass.
+
+The actual public flow passes home → Clockwork Alibi → level 50, all 50 catalog links, four required conclusions, loaded models/readiness, witness questions and the unrestricted 50-entry map. At 390×844, level 46 supports actual touch navigation, LTR reading, activity saving and the next-step transition. Game-console and game-asset HTTP errors were empty. The surrounding shell logged two nonblocking 403 responses; sign-in was not tested. A scoped production error/fatal log query returned no groups. The game page, player, versioned iframe entry, manifest and porter model all return 200; the iframe entry matches the tested bundle. An initial extra HTTP probe used obsolete unversioned asset URLs and was corrected to the catalog’s versioned play path. The first public browser attempt timed out starting local Chrome under host load; the retry with a longer launch allowance completed all public checks. Selected real public screenshots were opened and inspected.
+
+The ten settings reuse the station architecture with distinct signs, background colours, set dressing and recovered objects. The original character rigs remain; the new props are procedural meshes. These checks establish functional consistency and observed interaction behaviour, not learning gains, student-device performance or enjoyment. Detailed campaign scope: [CAMPAIGN.md](CAMPAIGN.md). Evidence: [evidence/campaign](evidence/campaign/).
+
+---
+
+The initial five-case release below is historical.
+
 # Workbook English Games release · 2026-10-26
 
 - Game page: https://english-games.workbook.co.il/clockwork-alibi

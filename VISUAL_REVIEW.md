@@ -80,3 +80,6 @@ Opened the actual public game-detail page, case4 player and390×844 witness PNGs
 ## 2026-10-28 campaign expansion
 
 Actual final-run captures are under docs/evidence/campaign. Opened and inspected: desktop map, gallery and workshop scenes, level-50 conclusions, campaign ending, 390×844 completed map, advanced mobile account, and the action client’s vault canvas. Ten themes reuse the station architecture with distinct signs, scene backgrounds, props and recovered objects; these are not claimed as ten separately modelled worlds. The map remains above the timeline on portrait screens, every level stays selectable, and the reading panel scrolls to its record controls.
+
+
+Public deployment verified: opened and inspected live desktop level50 questions, the unrestricted campaign map within the Workbook player and 390×844 advanced level46 reading. Images are under docs/evidence/campaign/live. The same scene, controls, fonts and map hierarchy appear through the real versioned player.

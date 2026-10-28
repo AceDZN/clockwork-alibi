@@ -1,0 +1,12 @@
+{
+  "project": "prj_q58z9wxccnVurx57GG26ZLO6O5QW",
+  "deployment": "dpl_9aJC9wGJiyFocBrrVovWou3UkXmf",
+  "environment": "production",
+  "lookback": "15m",
+  "levels": [
+    "error",
+    "fatal"
+  ],
+  "groupBy": "level",
+  "result": "No groups returned"
+}
